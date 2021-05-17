@@ -12,7 +12,6 @@
               <div class="card-header" >
                     Citas: ({{$bookings->count()}})
                  </div>
-
                 <div class="card-body">
                     <table class="table table-striped">
                       <thead>
@@ -71,7 +70,6 @@
                         @empty
                         <td>No hay citas</td>
                         @endforelse
-
                       </tbody>
                     </table>
                 </div>

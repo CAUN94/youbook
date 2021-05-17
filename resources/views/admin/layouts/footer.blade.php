@@ -118,6 +118,7 @@
         <script src="{{asset('js/widgets.js')}}"></script>
         <script src="{{asset('js/charts.js')}}"></script>
         <script src="{{asset('dist/js/theme.min.js')}}"></script>
+        <script src="{{ asset('js/app.js') }}"defer></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script type="text/javascript">
             $(document).ready(function(){
@@ -134,5 +135,6 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
+
     </body>
 </html>
