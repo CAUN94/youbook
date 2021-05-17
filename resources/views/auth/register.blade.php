@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="rut" class="col-md-4 col-form-label text-md-right">{{ __('Rut (sin puntos y con guión)') }}</label>
+                            <label for="rut" class="col-md-4 col-form-label text-md-right">{{ __('Rut') }}</label>
 
                             <div class="col-md-6">
                                 <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" placeholder="11111111-1" autofocus>

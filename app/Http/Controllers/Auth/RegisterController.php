@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Malahierba\ChileRut\ChileRut;
+use Malahierba\ChileRut\Rules\ValidChileanRut;
 
 class RegisterController extends Controller
 {
@@ -49,9 +51,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $data['rut'] = str_replace('.','',$data['rut']);
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'lastnames' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'rut' => ['required', 'string', 'max:255', 'unique:users',new ValidChileanRut(new ChileRut)],
+            'gender' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -66,7 +72,11 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'lastnames' => $data['lastnames'],
+            'rut' => str_replace('.','',$data['rut']),
             'email' => $data['email'],
+            'gender' => $data['gender'],
+            'role_id' => 3,
             'password' => Hash::make($data['password']),
         ]);
     }
