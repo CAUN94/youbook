@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class RedirectController extends Controller
 {
+	public function index() {
+		$url = "https://youjustbetter.cl/";
+		return Redirect::away($url);
+
+    }
+
     public function development() {
 		$url = "https://docs.google.com/forms/d/e/1FAIpQLSd59ziGnReCKq0pNSzsjodtHgyui_hWrk7oZHKxsPavQUuPRQ/viewform";
 		return Redirect::away($url);
