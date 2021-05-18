@@ -19,9 +19,9 @@ Route::get('/calendar','DashboardController@calendar');
 Route::get('/new-appoinment/{professionalId}/{date}','FrontendController@show')->name('create.appointment');
 Auth::routes();
 
-Route::get('/request-development','RedirectController@development');
-Route::get('/request-communications','RedirectController@communications');
-Route::get('/request-administration','RedirectController@administration');
+Route::get('/solicitud-desarrollo','RedirectController@development');
+Route::get('/solicitud-comunicaciones','RedirectController@communications');
+Route::get('/solicitud-administracion','RedirectController@administration');
 
 Route::group(['middleware'=>['auth','patient']],function(){
 	Route::post('/book/appointment','FrontendController@store')->name('booking.appointment');
