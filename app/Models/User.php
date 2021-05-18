@@ -90,4 +90,8 @@ class User extends Authenticatable
         return $name;
 
     }
+
+    public function Calendar() {
+      return $this->hasMany('App\Models\Calendar');
+    }
 }
