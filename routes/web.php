@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/solicitud-desarrollo','RedirectController@development');
 Route::get('/solicitud-comunicaciones','RedirectController@communications');
 Route::get('/solicitud-administracion','RedirectController@administration');
+Route::get('/youphone','RedirectController@whatsapp');
 
 Route::group(['middleware'=>['auth','patient']],function(){
 	Route::post('/book/appointment','FrontendController@store')->name('booking.appointment');

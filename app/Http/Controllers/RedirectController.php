@@ -24,4 +24,12 @@ class RedirectController extends Controller
 		return Redirect::away($url);
 
     }
+
+    public function whatsapp() {
+		$url = "https://api.whatsapp.com/send?phone=33809726&text=Hola%20Equipo%20You";
+		return Redirect::away($url);
+
+    }
+
+
 }
