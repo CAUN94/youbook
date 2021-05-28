@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Appointment;
+use App\Models\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,4 +28,15 @@ class DashboardController extends Controller
         }
         return view('/calendar');
     }
+
+    public function week()
+    {
+
+        if(Auth::user()->role->name=="paciente"){
+            return redirect('/');
+        }
+        return view('/week');
+    }
+
+
 }

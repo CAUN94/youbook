@@ -52,7 +52,7 @@
 		data(){
 			return {
 				loadcolor: '#f1715a',
-				time:'',
+				time: new Date(),
 				professionals:[],
 				loading:false,
 				disabledDates:{

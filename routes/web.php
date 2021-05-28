@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','RedirectController@index');
+// Route::get('/','RedirectController@index');
 
-
-Route::get('/book','FrontendController@index');
+// Route::get('/book','FrontendController@index');
+Route::get('/','FrontendController@index');
 Route::get('/dashboard','DashboardController@index');
 Route::get('/calendar','DashboardController@calendar');
+Route::get('/week','DashboardController@week');
 Route::get('/new-appoinment/{professionalId}/{date}','FrontendController@show')->name('create.appointment');
 Auth::routes();
 
@@ -26,6 +27,7 @@ Route::get('/solicitud-desarrollo','RedirectController@development');
 Route::get('/solicitud-comunicaciones','RedirectController@communications');
 Route::get('/solicitud-administracion','RedirectController@administration');
 Route::get('/youphone','RedirectController@whatsapp');
+Route::get('/entrenamiento','RedirectController@trainning');
 
 Route::group(['middleware'=>['auth','patient']],function(){
 	Route::post('/book/appointment','FrontendController@store')->name('booking.appointment');

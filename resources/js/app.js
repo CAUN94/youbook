@@ -3,10 +3,15 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+Vue.use(Vuetify);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,6 +28,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('find-professional', require('./components/FindProfessional.vue').default);
 Vue.component('add-btn', require('./components/AddBtn.vue').default);
 Vue.component('calendar', require('./components/Calendar.vue').default);
+Vue.component('week', require('./components/Week.vue').default);
 
 
 /**
@@ -33,4 +39,5 @@ Vue.component('calendar', require('./components/Calendar.vue').default);
 
 const app = new Vue({
     el: '#app',
+    vuetify: new Vuetify(),
 });
