@@ -29,6 +29,7 @@ Route::get('/solicitud-administracion','RedirectController@administration');
 Route::get('/youphone','RedirectController@whatsapp');
 Route::get('/entrenamiento','RedirectController@trainning');
 Route::get('/arancel','RedirectController@arancel');
+Route::get('/pago','RedirectController@pay');
 
 Route::group(['middleware'=>['auth','patient']],function(){
 	Route::post('/book/appointment','FrontendController@store')->name('booking.appointment');
