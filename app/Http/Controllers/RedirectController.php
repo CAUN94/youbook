@@ -50,4 +50,72 @@ class RedirectController extends Controller
 		$url = "https://pagatuprofesional.cl/profesionales/you-spa";
 		return Redirect::away($url);
     }
+
+    public function contreras() {
+    	$url = "https://meet.google.com/lookup/by3ys3yn4n";
+    	return Redirect::away($url);
+    }
+
+	public function barchiesi() {
+		$url = "https://meet.google.com/lookup/hjk2sg6ft7";
+		return Redirect::away($url);
+	}
+
+	public function cristi() {
+		$url = "https://meet.google.com/lookup/ezsojtf4ic";
+		return Redirect::away($url);
+	}
+
+	public function guzman() {
+		$url = "https://meet.google.com/lookup/hucadm5kxf";
+		return Redirect::away($url);
+	}
+
+	public function maldonado() {
+		$url = "https://meet.google.com/lookup/dmmpfyk7k7";
+		return Redirect::away($url);
+	}
+
+	public function martinez() {
+		$url = "https://meet.google.com/lookup/ccmxwbtfy7";
+		return Redirect::away($url);
+	}
+
+	public function moya() {
+		$url = "https://meet.google.com/lookup/h5jamuirmy";
+		return Redirect::away($url);
+	}
+
+	public function niklitschek() {
+		$url = "https://meet.google.com/lookup/bcm7tibb3e";
+		return Redirect::away($url);
+	}
+
+	public function ross() {
+		$url = "https://meet.google.com/lookup/hijisrvbtf";
+		return Redirect::away($url);
+	}
+
+	public function valenzuela() {
+		$url = "https://meet.google.com/lookup/d5wap4jf3r";
+		return Redirect::away($url);
+	}
+
+	public function vivallo() {
+		$url = "https://meet.google.com/lookup/cwd7ruxjqj";
+		return Redirect::away($url);
+	}
+
+	public function internos() {
+		$url = "https://meet.google.com/lookup/d6kgixnizn";
+		return Redirect::away($url);
+	}
+
+	public function meetyou() {
+		$url = "https://meet.google.com/lookup/bgymkxkfpy";
+		return Redirect::away($url);
+	}
+
+
+
 }

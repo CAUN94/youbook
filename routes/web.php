@@ -20,7 +20,13 @@ Route::get('/','FrontendController@index');
 Route::get('/dashboard','DashboardController@index');
 Route::get('/calendar','DashboardController@calendar');
 Route::get('/week','DashboardController@week');
+
+Route::get('/training-new','TrainingController@trainingnew');
+
 Route::get('/new-appoinment/{professionalId}/{date}','FrontendController@show')->name('create.appointment');
+
+
+
 Auth::routes();
 
 Route::get('/solicitud-desarrollo','RedirectController@development');
@@ -30,6 +36,19 @@ Route::get('/youphone','RedirectController@whatsapp');
 Route::get('/entrenamiento','RedirectController@trainning');
 Route::get('/arancel','RedirectController@arancel');
 Route::get('/pago','RedirectController@pay');
+Route::get('/box/contreras','RedirectController@contreras');
+Route::get('/box/barchiesi','RedirectController@barchiesi');
+Route::get('/box/cristi','RedirectController@cristi');
+Route::get('/box/guzman','RedirectController@guzman');
+Route::get('/box/maldonado','RedirectController@maldonado');
+Route::get('/box/martinez','RedirectController@martinez');
+Route::get('/box/moya','RedirectController@moya');
+Route::get('/box/niklitschek','RedirectController@niklitschek');
+Route::get('/box/ross','RedirectController@ross');
+Route::get('/box/valenzuela','RedirectController@valenzuela');
+Route::get('/box/vivallo','RedirectController@vivallo');
+Route::get('/box/internos','RedirectController@internos');
+Route::get('/box/meetyou','RedirectController@meetyou');
 
 Route::group(['middleware'=>['auth','patient']],function(){
 	Route::post('/book/appointment','FrontendController@store')->name('booking.appointment');

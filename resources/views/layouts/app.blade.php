@@ -97,6 +97,9 @@
                                     <a class="nav-link" href="{{ url("/profile") }}">{{ __('Mi Perfil') }}</a>
                             </li>
                             <li class="nav-item">
+                                    <a class="nav-link" href="{{ url("/training-new") }}">{{ __('Planes Entrenamiento') }}</a>
+                            </li>
+                            <li class="nav-item">
                                     <a class="nav-link" href="{{ route("my.booking") }}">{{ __('Mi Agenda') }}</a>
                             </li>
                             <li class="nav-item">
