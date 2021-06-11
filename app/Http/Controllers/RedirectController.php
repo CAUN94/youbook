@@ -52,67 +52,67 @@ class RedirectController extends Controller
     }
 
     public function contreras() {
-    	$url = "https://meet.google.com/lookup/by3ys3yn4n";
+    	$url = "https://meet.jit.si/dcontrerasb";
     	return Redirect::away($url);
     }
 
 	public function barchiesi() {
-		$url = "https://meet.google.com/lookup/hjk2sg6ft7";
+		$url = "https://meet.jit.si/rbarchiesiv";
 		return Redirect::away($url);
 	}
 
 	public function cristi() {
-		$url = "https://meet.google.com/lookup/ezsojtf4ic";
+		$url = "https://meet.jit.si/icristis";
 		return Redirect::away($url);
 	}
 
 	public function guzman() {
-		$url = "https://meet.google.com/lookup/hucadm5kxf";
+		$url = "https://meet.jit.si/jmguzmanh";
 		return Redirect::away($url);
 	}
 
 	public function maldonado() {
-		$url = "https://meet.google.com/lookup/dmmpfyk7k7";
+		$url = "https://meet.jit.si/amaldonados";
 		return Redirect::away($url);
 	}
 
 	public function martinez() {
-		$url = "https://meet.google.com/lookup/ccmxwbtfy7";
+		$url = "https://meet.jit.si/mjmartinezm";
 		return Redirect::away($url);
 	}
 
 	public function moya() {
-		$url = "https://meet.google.com/lookup/h5jamuirmy";
+		$url = "https://meet.jit.si/cmoyac";
 		return Redirect::away($url);
 	}
 
 	public function niklitschek() {
-		$url = "https://meet.google.com/lookup/bcm7tibb3e";
+		$url = "https://meet.jit.si/aniklitscheks";
 		return Redirect::away($url);
 	}
 
 	public function ross() {
-		$url = "https://meet.google.com/lookup/hijisrvbtf";
+		$url = "https://meet.jit.si/mrossg";
 		return Redirect::away($url);
 	}
 
 	public function valenzuela() {
-		$url = "https://meet.google.com/lookup/d5wap4jf3r";
+		$url = "https://meet.jit.si/cvalenzuelar";
 		return Redirect::away($url);
 	}
 
 	public function vivallo() {
-		$url = "https://meet.google.com/lookup/cwd7ruxjqj";
+		$url = "https://meet.jit.si/dvivallov";
 		return Redirect::away($url);
 	}
 
 	public function internos() {
-		$url = "https://meet.google.com/lookup/d6kgixnizn";
+		$url = "https://meet.jit.si/internos";
 		return Redirect::away($url);
 	}
 
 	public function meetyou() {
-		$url = "https://meet.google.com/lookup/bgymkxkfpy";
+		$url = "https://meet.jit.si/meetyou";
 		return Redirect::away($url);
 	}
 
