@@ -34,7 +34,7 @@ Route::get('/solicitud-comunicaciones','RedirectController@communications');
 Route::get('/solicitud-administracion','RedirectController@administration');
 Route::get('/youphone','RedirectController@whatsapp');
 Route::get('/entrenamiento','RedirectController@trainning');
-Route::get('/arancel','RedirectController@arancel');
+Route::get('/aranceles','RedirectController@arancel');
 Route::get('/pago','RedirectController@pay');
 Route::get('/box/dcontrerasb','RedirectController@contreras');
 Route::get('/box/rbarchiesiv','RedirectController@barchiesi');
