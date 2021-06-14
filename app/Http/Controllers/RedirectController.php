@@ -47,7 +47,7 @@ class RedirectController extends Controller
     }
 
     public function pay() {
-		$url = "https://pagatuprofesional.cl/profesionales/you-spa";
+		$url = "https://padpow.com/customer/professionals/3165/payments/new";
 		return Redirect::away($url);
     }
 
