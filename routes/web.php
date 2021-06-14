@@ -48,6 +48,9 @@ Route::get('/box/mrossg','RedirectController@ross');
 Route::get('/box/cvalenzuelar','RedirectController@valenzuela');
 Route::get('/box/dvivallov','RedirectController@vivallo');
 Route::get('/box/internos','RedirectController@internos');
+Route::get('/box/alopezm','RedirectController@adolfo');
+Route::get('/box/fguzmanh','RedirectController@francisco');
+Route::get('/box/chernandezc','RedirectController@catalina');
 Route::get('/box/meetyou','RedirectController@meetyou');
 
 Route::group(['middleware'=>['auth','patient']],function(){
