@@ -136,7 +136,9 @@ class RedirectController extends Controller
 		return Redirect::away($url);
 	}
 
-
-
+	public function rrhh() {
+		$url = "https://docs.google.com/forms/d/1L0q0JxTGUQF3EYHf9cmPwzTJs7Y03hQlgCCsr5H_-Mk/edit";
+		return Redirect::away($url);
+	}
 
 }
