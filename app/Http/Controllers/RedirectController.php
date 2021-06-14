@@ -116,18 +116,23 @@ class RedirectController extends Controller
 		return Redirect::away($url);
 	}
 
-	public function adolfo() {
+	public function lopez() {
 		$url = "https://meet.jit.si/alopezm";
 		return Redirect::away($url);
 	}
 
-	public function francisco() {
+	public function fguzman() {
 		$url = "https://meet.jit.si/fguzmanh";
 		return Redirect::away($url);
 	}
 
-	public function catalina() {
+	public function hernandez() {
 		$url = "https://meet.jit.si/chernandezc";
+		return Redirect::away($url);
+	}
+
+	public function vitali() {
+		$url = "https://meet.jit.si/svitalimz";
 		return Redirect::away($url);
 	}
 
