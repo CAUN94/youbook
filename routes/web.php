@@ -37,6 +37,8 @@ Route::get('/entrenamiento','RedirectController@trainning');
 Route::get('/aranceles','RedirectController@arancel');
 Route::get('/pago','RedirectController@pay');
 Route::get('/rrhh','RedirectController@rrhh');
+Route::get('/techosalud','RedirectController@techo');
+
 Route::get('/box/dcontrerasb','RedirectController@contreras');
 Route::get('/box/rbarchiesiv','RedirectController@barchiesi');
 Route::get('/box/icristis','RedirectController@cristi');

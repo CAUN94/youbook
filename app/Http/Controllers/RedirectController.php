@@ -142,4 +142,9 @@ class RedirectController extends Controller
 		return Redirect::away($url);
 	}
 
+	public function techo() {
+		$url = "https://docs.google.com/forms/d/e/1FAIpQLSeRuajbx4B0Ox8fA3g9hRZfIdfdRLAwoU6eJIsec98XlTq2gA/viewform?usp=pp_url";
+		return Redirect::away($url);
+	}
+
 }
