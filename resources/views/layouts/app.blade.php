@@ -87,6 +87,10 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarme') }}</a>
                                 </li>
                             @endif
+
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ url("/training-new") }}">{{ __('Planes de Entrenamiento') }}</a>
+                            </li>
                         @else
                             @if (Auth::user()->dashboard())
                                 <li class="nav-item">
@@ -97,14 +101,20 @@
                                     <a class="nav-link" href="{{ url("/profile") }}">{{ __('Mi Perfil') }}</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ url("/training-new") }}">{{ __('Planes Entrenamiento') }}</a>
-                            </li>
-                            <li class="nav-item">
                                     <a class="nav-link" href="{{ route("my.booking") }}">{{ __('Mi Agenda') }}</a>
                             </li>
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('my.record') }}">{{ __('Mi Ficha') }}</a>
                             </li>
+                            @if (Auth::user()->isStudent())
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ url("/training") }}">{{ __('Entrenamiento') }}</a>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ url("/training-user") }}">{{ __('Planes de Entrenamiento') }}</a>
+                            </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

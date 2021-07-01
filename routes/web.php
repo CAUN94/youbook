@@ -17,12 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/book','FrontendController@index');
 Route::get('/','FrontendController@index');
+
+
 Route::get('/dashboard','DashboardController@index');
 Route::get('/calendar','DashboardController@calendar');
 Route::get('/week','DashboardController@week');
 
 Route::get('/training-new','TrainingController@trainingnew');
-
+Route::get('/training-user','TrainingController@traininguser');
+Route::post('/training-register_new','TrainingController@create_training_new')->name('training-register');
+Route::post('/training-register_user','TrainingController@create_training_user')->name('training-register-user');
 Route::get('/new-appoinment/{professionalId}/{date}','FrontendController@show')->name('create.appointment');
 
 
@@ -59,8 +63,10 @@ Route::get('/box/meetyou','RedirectController@meetyou');
 
 Route::group(['middleware'=>['auth','patient']],function(){
 	Route::post('/book/appointment','FrontendController@store')->name('booking.appointment');
+	Route::post('/book/appointment-store','FrontendController@storetrain')->name('booking.train');
+	Route::delete('/book/appointment-delete','FrontendController@deletetrain')->name('delete.booking.train');
 	Route::get('/my-booking','FrontendController@myBookings')->name('my.booking');
-
+	Route::get('/training','TrainingController@index');
 	Route::get('/profile','ProfileController@index');
 	Route::post('/profile','ProfileController@store')->name('profile.store');
 	Route::post('/profile-pic','ProfileController@profilePic')->name('profile.pic');
@@ -70,14 +76,12 @@ Route::group(['middleware'=>['auth','patient']],function(){
 
 Route::group(['middleware'=>['auth','admin']], function(){
 	Route::resource('professionals','ProfessionalController');
-	// Route::get('/patients','PatientlistController@index')->name('patient');
-	// Route::get('/patients/all','PatientlistController@allTimeAppointment')->name('all.appointments');
+	Route::get('/patients','PatientlistController@index')->name('patient');
+	Route::get('/patients/all','PatientlistController@allTimeAppointment')->name('all.appointments');
 	Route::get('/status/update/{id}','PatientlistController@toggleStatus')->name('update.status');
 });
 
 Route::group(['middleware'=>['auth','professional']], function(){
-
-
 	Route::resource('appointments','AppointmentController');
 
 	Route::get('/patients','PatientlistController@index')->name('patient');
@@ -91,6 +95,12 @@ Route::group(['middleware'=>['auth','professional']], function(){
 	Route::post('/record','RecordController@store')->name('record');
 	Route::get('/record/{userId}/{date}','RecordController@show')->name('record.show');
 	Route::get('/recorded-patients','RecordController@patientsFromRecord')->name('record.patients');
+});
+
+Route::group(['middleware'=>['auth','trainer']], function(){
+	Route::get('/classes_today/{id}','AdminTrainingController@classes_today')->name('admin.training.today');
+	Route::get('/students','AdminTrainingController@students')->name('admin.training.students');
+	Route::get('/train_toogle/{student_id}/{book_id}','AdminTrainingController@toggleStatus')->name('admin.training.toogle');
 });
 
 Auth::routes();

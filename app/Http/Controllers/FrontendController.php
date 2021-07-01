@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Booking;
+use App\Models\BookingTrain;
 use App\Models\Record;
 use App\Models\Time;
 use App\Models\User;
@@ -81,6 +82,50 @@ class FrontendController extends Controller
         // }
 
         return redirect()->back()->with('message','Ahora agendada');
+    }
+
+    public function storetrain(Request $request)
+    {
+        date_default_timezone_set('Chile/Continental');
+
+        BookingTrain::create([
+            'user_id'=> auth()->user()->id,
+            'train_appointment_id'=> $request->getid,
+            'status'=> 0,
+        ]);
+
+
+        //send email notification
+        // $professionalName = User::where('id',$request->professionalId)->first();
+        // $mailData = [
+        //     'name'=>auth()->user()->name,
+        //     'time'=>$request->time,
+        //     'date'=>$request->date,
+        //     'professionalName' => $professionalName->name
+
+        // ];
+        // try{
+        //    // \Mail::to(auth()->user()->email)->send(new AppointmentMail($mailData));
+
+        // }catch(\Exception $e){
+
+        // }
+
+        return redirect()->back()->with('message','Hora Reservada');
+
+
+    }
+
+    public function deletetrain(Request $request)
+    {
+        date_default_timezone_set('Chile/Continental');
+
+        $bookingTrain = BookingTrain::where(
+            'user_id', auth()->user()->id)
+            ->where('train_appointment_id',$request->getid)
+            ->delete();
+
+        return redirect()->back()->with('message','Hora Cancelada');
 
 
     }
@@ -117,5 +162,6 @@ class FrontendController extends Controller
         $records = Record::where('user_id',auth()->user()->id)->get();
         return view('my-records',compact('records'));
     }
+
 
 }

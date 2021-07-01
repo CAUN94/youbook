@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Trainer
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role->name=="paciente" or Auth::user()->role->name == 'administrador' or Auth::user()->role->name == 'profesional'){
+        if(Auth::user()->role->name == 'entrenador' or Auth::user()->role->name == 'administrador'){
             return $next($request);
         }else{
             return redirect()->back();

@@ -58,8 +58,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Role','id','role_id');
     }
 
+    public function student(){
+        return $this->hasOne('App\Models\Student','user_id','id');
+    }
+
     public function dashboard(){
-        if (Auth::user()->role->name == 'administrador' || Auth::user()->role->name == 'profesional'){
+        if (Auth::user()->role->name != 'paciente'){
             return True;
         }else{
             return False;
@@ -67,7 +71,7 @@ class User extends Authenticatable
     }
 
     public function isProfessional(){
-        if (Auth::user()->role->name == 'profesional'){
+        if ($this->role->name == 'profesional'){
             return True;
         }else{
             return False;
@@ -75,7 +79,23 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-        if (Auth::user()->role->name == 'administrador'){
+        if ($this->role->name == 'administrador'){
+            return True;
+        }else{
+            return False;
+        }
+    }
+
+    public function isTrainer(){
+        if ($this->role->name == 'entrenador'){
+            return True;
+        }else{
+            return False;
+        }
+    }
+
+    public function isStudent(){
+        if ($this->student != Null){
             return True;
         }else{
             return False;
@@ -94,4 +114,13 @@ class User extends Authenticatable
     public function Calendar() {
       return $this->hasMany('App\Models\Calendar');
     }
+
+
+    public function classesStatus($bookId){
+        $train = BookingTrain::where('user_id',$this->id)->where('train_appointment_id',$bookId)->first();
+        return $train;
+    }
+
+
+
 }

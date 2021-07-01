@@ -12,7 +12,8 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
-        "malahierba-lab/chile-rut": "5.1.*"
+        "malahierba-lab/chile-rut": "5.1.*",
+        "nesbot/carbon": "^2.50"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

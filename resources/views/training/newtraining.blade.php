@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Registro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('training-register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -87,10 +87,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Plan de Entrenamiento') }}</label>
+                            <label for="plan" class="col-md-4 col-form-label text-md-right">{{ __('Plan de Entrenamiento') }}</label>
 
                             <div class="col-md-6">
-                                <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror">
+                                <select id="plan" name="plan" class="form-control @error('plan') is-invalid @enderror">
                                     <option>Seleccionar Plan</option>
                                     @foreach($trainings as $training)
                                         <option value="{{$training->id}}">{{$training->name}} {{$training->format}}</option>

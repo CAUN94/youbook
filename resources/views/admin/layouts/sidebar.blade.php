@@ -48,6 +48,20 @@
                                         </div>
                                     </div>
                                 @endif
+                                @if(Auth::user()->isTrainer())
+                                    <div class="nav-item has-sub">
+                                        <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Entrenamiento</span></a>
+                                        <div class="submenu-content">
+                                            <a href="#" class="menu-item"><strong>Clases de Hoy:</strong></a>
+                                            @foreach(App\Models\TrainAppointments::where('date',date('Y-m-d'))->get() as $class)
+                                                <a href="{{route('admin.training.today',['id' => $class->id])}}" class="menu-item">{{$class->name}} {{$class->time}}</a>
+                                            @endforeach
+                                            <hr>
+                                            <a href="{{route('admin.training.students')}}" class="menu-item">Alumnos</a>
+                                            <a href="#" class="menu-item">Clases Semana</a>
+                                        </div>
+                                    </div>
+                                @endif
 
                             </nav>
                         </div>
