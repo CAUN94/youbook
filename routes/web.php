@@ -104,7 +104,6 @@ Route::group(['middleware'=>['auth','trainer']], function(){
 	Route::get('/train_toogle/{student_id}/{book_id}','AdminTrainingController@toggleStatus')->name('admin.training.toogle');
 });
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
