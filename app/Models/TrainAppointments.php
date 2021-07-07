@@ -31,6 +31,7 @@ class TrainAppointments extends Model
         return False;
     }
 
-
-
+    public function trainer(){
+        return $this->hasOne(User::class,'id','trainer_id')->first();
+    }
 }

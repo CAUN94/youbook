@@ -44,6 +44,8 @@
                                         {{$appoinment->name}}
                                         {{$days_dias[date_format(date_create($appoinment->date), 'l')]}}
                                         {{$appoinment->time}}
+                                        {{$appoinment->trainer()->name}}
+                                        {{$appoinment->trainer()->lastnames}}
                                         <input type="submit" class="btn btn-primary ml-2" style="color:#fff;" value="Reservar">
                                     </div>
                                 </form>

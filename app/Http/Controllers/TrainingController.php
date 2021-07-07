@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Action;
 use App\Models\Student;
 use App\Models\Training;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Malahierba\ChileRut\ChileRut;
 use Malahierba\ChileRut\Rules\ValidChileanRut;
-use Carbon\Carbon;
 
 class TrainingController extends Controller
 {
@@ -29,6 +30,28 @@ class TrainingController extends Controller
             'Sunday'=>'Domingo'
             );
         return view('/training/index',compact('training','training_user','days_dias'));
+    }
+
+    public function training(){
+        $name = 'You Entrenamiento';
+        if(!auth::user()->isAdmin()){
+                abort(401);
+        }
+        if(auth::user()->isAdmin()){
+            $actions = Action::professionalCloseMonth($name);
+            $summary = $this->summary($actions);
+            foreach ($actions as $key => $action) {
+                $actions[$key]->Prestación = $this->moneda_chilena($actions[$key]->Prestación);
+                $actions[$key]->Abono = $this->moneda_chilena($actions[$key]->Abono);
+            }
+            $goal = 300;
+            $percentage = round($summary['Total']*100/$goal,1);
+            $remuneration = $this->moneda_chilena($summary['Prestación']*$this->coefficient($name));
+            $summary['Prestación'] = $this->moneda_chilena($summary['Prestación']);
+            $summary['Abono'] = $this->moneda_chilena($summary['Abono']);
+            $training = Training::where
+            return $summary;
+        }
     }
 
     public function trainingnew(){
@@ -98,5 +121,57 @@ class TrainingController extends Controller
         ]);
         return redirect('/');
 
+    }
+
+    public function summary($actions)
+    {
+        $values = ['Convenio','Sin_Convenio','Embajador','Prestación','Abono'];
+        $summary = [];
+        $summary['Total'] = 0;
+        $summary['Convenio'] = 0;
+        $summary['Sin_Convenio'] = 0;
+        $summary['Embajador'] = 0;
+        $summary['Prestación'] = 0;
+        $summary['Abono'] = 0;
+
+        foreach ($actions as $key => $action) {
+            $summary['Total'] += 1;
+            if($action->Convenio_Nombre != 'Sin Convenio' and $action->Convenio_Nombre != 'Embajador' and $action->Convenio_Nombre != 'Pro Bono'){
+                $summary['Convenio'] +=1;
+            }
+            elseif ($action->Convenio_Nombre == 'Sin Convenio') {
+                $summary['Sin_Convenio'] +=1;
+            }
+            elseif ($action->Convenio_Nombre = 'Embajador' or $action->Convenio_Nombre = 'Pro Bono') {
+                $summary['Embajador'] +=1;
+            }
+            $summary['Prestación'] += $action->Prestación;
+            $summary['Abono'] += $action->Abono;
+        }
+        return $summary;
+    }
+
+    public function moneda_chilena($numero){
+        $numero = (string)$numero;
+        $puntos = floor((strlen($numero)-1)/3);
+        $tmp = "";
+        $pos = 1;
+        for($i=strlen($numero)-1; $i>=0; $i--){
+        $tmp = $tmp.substr($numero, $i, 1);
+        if($pos%3==0 && $pos!=strlen($numero))
+        $tmp = $tmp.".";
+        $pos = $pos + 1;
+        }
+        $formateado = "$ ".strrev($tmp);
+        return $formateado;
+    }
+
+    public function coefficient($name)
+    {
+        $coff = [
+            'You Entrenamiento' => 1,
+        ];
+
+        return $coff[$name];
     }
 }
