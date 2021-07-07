@@ -49,7 +49,7 @@ class TrainingController extends Controller
             $remuneration = $this->moneda_chilena($summary['Prestación']*$this->coefficient($name));
             $summary['Prestación'] = $this->moneda_chilena($summary['Prestación']);
             $summary['Abono'] = $this->moneda_chilena($summary['Abono']);
-            $training = Training::where
+            // $training = Training::where
             return $summary;
         }
     }
