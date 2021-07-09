@@ -49,8 +49,17 @@ class TrainingController extends Controller
             $remuneration = $this->moneda_chilena($summary['Prestación']*$this->coefficient($name));
             $summary['Prestación'] = $this->moneda_chilena($summary['Prestación']);
             $summary['Abono'] = $this->moneda_chilena($summary['Abono']);
-            // $training = Training::where
-            return $summary;
+
+            $students = Student::where('settled',1);
+            $students_all = $students->get();
+            $sum = 0;
+            foreach($students_all as $student){
+                $sum += $student->training->price;
+            }
+            $sum = $this->moneda_chilena($sum);
+            $trainings = $students->groupBy('training_id')->pluck('training_id');
+            return view('/training/panel',compact('students_all','sum','trainings','summary'));
+
         }
     }
 

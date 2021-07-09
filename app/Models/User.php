@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\RoleApp;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -119,6 +120,10 @@ class User extends Authenticatable
     public function classesStatus($bookId){
         $train = BookingTrain::where('user_id',$this->id)->where('train_appointment_id',$bookId)->first();
         return $train;
+    }
+
+    public function medilinkname(){
+        return UserApp::where('rut',Auth::user()->rut)->first()->medilinkname;
     }
 
 

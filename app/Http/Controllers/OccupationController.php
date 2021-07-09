@@ -113,7 +113,7 @@ class OccupationController extends Controller
 
     public function occupationprofessional($type)
     {
-        if(!auth::user()->hasRole('professional')){
+        if(!Auth::user()->isProfessional()){
                 abort(401);
         }
         $action = new Action();
@@ -157,9 +157,9 @@ class OccupationController extends Controller
             return redirect('/');
         }
 
-        $actions = $action->occupation($firstday,$lastday,auth::user()->medilinkname);
+        $actions = $action->occupation($firstday,$lastday,auth::user()->medilinkname());
         $goal = $diff*75;
-        $categories = $action->category($firstday,$lastday,auth::user()->medilinkname);
+        $categories = $action->category($firstday,$lastday,auth::user()->medilinkname());
 
         $values = ['Atenciones','Convenio','Sin_Convenio','Embajador','Prestación','Abono'];
         $summary = $this->summary($actions,$values);
@@ -193,9 +193,9 @@ class OccupationController extends Controller
         }
         $title = "Ocupaciones del ".$request->firstday." al ".$request->lastday;
 
-        $actions = $action->occupation($firstday,$lastday,auth::user()->medilinkname);
+        $actions = $action->occupation($firstday,$lastday,auth::user()->medilinkname());
         $goal = $diff*75;
-        $categories = $action->category($firstday,$lastday,auth::user()->medilinkname);
+        $categories = $action->category($firstday,$lastday,auth::user()->medilinkname());
 
         $values = ['Atenciones','Convenio','Sin_Convenio','Embajador','Prestación','Abono'];
         $summary = $this->summary($actions,$values);
@@ -258,6 +258,6 @@ class OccupationController extends Controller
             'You Entrenamiento' => 1,
         ];
 
-        return $coff[auth::user()->medilinkname];
+        return $coff[auth::user()->medilinkname()];
     }
 }

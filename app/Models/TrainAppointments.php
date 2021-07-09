@@ -34,4 +34,15 @@ class TrainAppointments extends Model
     public function trainer(){
         return $this->hasOne(User::class,'id','trainer_id')->first();
     }
+
+    public function books(){
+        return $this->hasMany(BookingTrain::class,'train_appointment_id','id');
+    }
+
+    public function booksCount(){
+        return $this->books()->where('status',1)->count();
+    }
+
+
+
 }

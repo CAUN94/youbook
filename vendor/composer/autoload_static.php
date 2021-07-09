@@ -592,6 +592,7 @@ class ComposerStaticIniteb62c33eca4790e6df9b0a9f5a4fecf8
         'App\\Models\\Payment' => __DIR__ . '/../..' . '/app/Models/Payment.php',
         'App\\Models\\Record' => __DIR__ . '/../..' . '/app/Models/Record.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
+        'App\\Models\\RoleApp' => __DIR__ . '/../..' . '/app/Models/RoleApp.php',
         'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',
         'App\\Models\\Time' => __DIR__ . '/../..' . '/app/Models/Time.php',
         'App\\Models\\TrainAppointments' => __DIR__ . '/../..' . '/app/Models/TrainAppointments.php',
