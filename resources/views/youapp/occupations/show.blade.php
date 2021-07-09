@@ -6,7 +6,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{$title}}</h1>
-        @if(auth::user()->isAdmin() and $type != Null)
+        @if(Auth::user()->isAdmin() and $type != Null)
         <a href="{{ route('excel-download', ['type' => $type]) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i> Descargar Reporte</a>
         @endif
@@ -14,7 +14,7 @@
 
     <div class="row">
 
-        @if(auth::user()->isAdmin() and (Route::is('occupation') or Route::is('form-occupation')))
+        @if(Auth::user()->isAdmin() and (Route::is('occupation') or Route::is('form-occupation')))
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -50,7 +50,7 @@
         </div>
 
 
-        @elseif(auth::user()->isProfessional() and (Route::is('occupation-professional')) or Route::is('form-occupation-professional'))
+        @elseif(Auth::user()->isProfessional() and (Route::is('occupation-professional')) or Route::is('form-occupation-professional'))
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -130,7 +130,7 @@
                         <table class="table table-bordered" id="occupationTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    @if(auth::user()->isAdmin() and (Route::is('occupation') or Route::is('form-occupation')))
+                                    @if(Auth::user()->isAdmin() and (Route::is('occupation') or Route::is('form-occupation')))
                                         <th>Profesional</th>
                                         <th>Atenciones Totales</th>
                                         <th>Con Convenio</th>
@@ -138,7 +138,7 @@
                                         <th>Embajador</th>
                                         <th>Prestación</th>
                                         <th>Abono</th>
-                                    @elseif(auth::user()->isProfessional() and (Route::is('occupation-professional')) or Route::is('form-occupation-professional'))
+                                    @elseif(Auth::user()->isProfessional() and (Route::is('occupation-professional')) or Route::is('form-occupation-professional'))
                                         <th>Fecha Cita</th>
                                         <th>Paciente</th>
                                         <th>Con Convenio</th>
@@ -230,9 +230,9 @@
 <script type="text/javascript">
     categories = {!! json_encode($categories, JSON_HEX_TAG) !!}
 </script>
-@if(auth::user()->isAdmin() and (Route::is('occupation') or Route::is('form-occupation')))
+@if(Auth::user()->isAdmin() and (Route::is('occupation') or Route::is('form-occupation')))
 <script type="text/javascript" src="{{ asset('js/ocuppation/occupations.js')}}"></script>
-@elseif(auth::user()->isProfessional() and (Route::is('occupation-professional')) or Route::is('form-occupation-professional'))
+@elseif(Auth::user()->isProfessional() and (Route::is('occupation-professional')) or Route::is('form-occupation-professional'))
 <script type="text/javascript" src="{{ asset('js/ocuppation/ocuppation_professional.js')}}"></script>
 @endif
 
