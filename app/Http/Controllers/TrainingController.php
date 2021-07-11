@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Malahierba\ChileRut\ChileRut;
 use Malahierba\ChileRut\Rules\ValidChileanRut;
@@ -96,9 +97,29 @@ class TrainingController extends Controller
             'training_id' => $request->plan,
             'settled' => False,
         ]);
+
+        //send email notification
+        $professionalName = User::where('id',$request->professionalId)->first();
+
+        $to_name = $user->name;
+        $to_email = $user->email;
+        $data = array('name'=>'You Just Better', 'body' => 'Reserva de Plan');
+
+        try{
+           Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+            ->subject('Laravel Test Mail');
+            $message->from('desarrolo@justbetter.cl','Test Mail');
+            });
+
+        }catch(\Exception $e){
+
+        }
+
         $data = [];
         $data['rut'] = $request['rut'];
         $data['password'] = $request['password'];
+
         if (Auth::attempt($data)) {
             $request->session()->regenerate();
             return redirect('/');
@@ -120,14 +141,41 @@ class TrainingController extends Controller
             'plan' => ['required','nullable'],
         ]);
 
-
-
-
         Student::create([
             'user_id' => Auth::id(),
             'training_id' => $request->plan,
             'settled' => False,
         ]);
+
+        $to_name = Auth::user()->name;
+        $to_email = Auth::user()->email;
+        $data = array('name'=>'You Just Better', 'body' => 'Reserva de Plan');
+
+        try{
+           Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+            ->subject('Youbook');
+            $message->from('desarrolo@justbetter.cl','YouBook Test');
+            });
+
+        }catch(\Exception $e){
+
+        }
+
+        $to_name = Auth::user()->name;
+        $to_email = 'cristobalugarte6@gmail.com';
+        $data = array('name'=>'Registro', 'body' => Auth::user()->name);
+
+        try{
+           Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+            ->subject('Laravel Test Mail');
+            $message->from('desarrolo@justbetter.cl','Registro Youbook');
+            });
+
+        }catch(\Exception $e){
+
+        }
         return redirect('/');
 
     }
