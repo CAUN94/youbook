@@ -13,7 +13,7 @@ class Training extends Model
     use HasFactory;
 
     public function appointments(){
-        $from = Carbon::now()->startOfWeek()->format('Y-m-d');
+        $from = Carbon::now()->startOfWeek()->subDays(3)->format('Y-m-d');
         $to = Carbon::now()->endOfWeek()->addDays(3)->format('Y-m-d');
         return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to]);
     }

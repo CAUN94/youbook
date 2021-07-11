@@ -122,7 +122,7 @@ class TrainingController extends Controller
 
         if (Auth::attempt($data)) {
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect('/training');
         }
 
         return route('login');
@@ -176,7 +176,7 @@ class TrainingController extends Controller
         }catch(\Exception $e){
 
         }
-        return redirect('/');
+        return redirect('/training');
 
     }
 
