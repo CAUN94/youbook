@@ -52,7 +52,6 @@
 		data(){
 			return {
 				loadcolor: '#f1715a',
-				size: '',
 				time: new Date(),
 				professionals:[],
 				loading:false,
