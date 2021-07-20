@@ -36,7 +36,7 @@
 					</tbody>
 				</table>
 				<div class="text-center">
-					<pulse-loader :loading="loading" :color="loadcolor" :size="size"></pulse-loader>
+					<!-- <pulse-loader :loading="loading" :color="loadcolor" :size="size"></pulse-loader> -->
 				</div>
 			</div>
 		</div>
@@ -47,7 +47,7 @@
 <script type="text/javascript">
 	import datepicker from 'vuejs-datepicker';
 	import moment from 'moment';
-	import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+	// import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 	export default{
 		data(){
 			return {
