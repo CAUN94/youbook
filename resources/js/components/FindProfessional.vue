@@ -53,6 +53,7 @@
 			return {
 				loadcolor: '#f1715a',
 				time: new Date(),
+				size: '20px',
 				professionals:[],
 				loading:false,
 				disabledDates:{
