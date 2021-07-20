@@ -56,8 +56,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'lastnames' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            // 'rut' => ['required', 'string', 'max:255', 'unique:users',new ValidChileanRut(new ChileRut)],
-            'rut' => ['required', 'string', 'max:255', 'unique:users'],
+            'rut' => ['required', 'string', 'max:255', 'unique:users',new ValidChileanRut(new ChileRut)],
+            // 'rut' => ['required', 'string', 'max:255', 'unique:users'],
             'gender' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
