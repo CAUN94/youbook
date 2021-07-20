@@ -63,7 +63,7 @@
 		},
 		components:{
 			datepicker,
-			PulseLoader
+			// PulseLoader
 		},
 		methods:{
 			customDate(date){
