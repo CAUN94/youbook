@@ -67,8 +67,8 @@
 		},
 		methods:{
 			customDate(date){
-				this.loading =true
-				this.time = moment(date).format(' YYYY-MM-DD');
+				this.loading = true
+				this.time = moment(date).format("YYYY-MM-DD ");
 				axios.post('/api/findprofessionals',{date:this.time}).
 				then((response)=>{
 
