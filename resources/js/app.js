@@ -10,7 +10,7 @@ import 'vuetify/dist/vuetify.min.css'
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-Vue.use(Vuetify);
+// Vue.use(Vuetify);
 
 
 /**
