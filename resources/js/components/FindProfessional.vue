@@ -79,7 +79,7 @@
 
 
 
-				}).catch((error)=>{alert('error')})
+				}).catch((error)=>{})
 			}
 		},
 		mounted(){
