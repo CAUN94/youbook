@@ -33,6 +33,11 @@ class TrainingController extends Controller
         return view('/training/index',compact('training','training_user','days_dias'));
     }
 
+    public function delete(Request $request){
+        Student::where('user_id',$request->getid)->first()->delete();
+        return redirect('/');
+    }
+
     public function training(){
         $name = 'You Entrenamiento';
         if(!auth::user()->isAdmin()){
@@ -92,28 +97,41 @@ class TrainingController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        Student::create([
+        $student = Student::create([
             'user_id' => $user->id,
             'training_id' => $request->plan,
             'settled' => False,
         ]);
 
-        //send email notification
-        $professionalName = User::where('id',$request->professionalId)->first();
-
         $to_name = $user->name;
         $to_email = $user->email;
-        $data = array('name'=>'You Just Better', 'body' => 'Reserva de Plan');
+        $training = Training::find($student->training_id);
+        $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+        $price = numfmt_format_currency($fmt, $training->price, "CLP");
+        $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
         try{
-           Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
-            $message->to($to_email, $to_name)
-            ->subject('Laravel Test Mail');
-            $message->from('desarrolo@justbetter.cl','Test Mail');
+           Mail::send('emails.trainuser', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email,$to_name)
+            ->subject('You Registro de Plan');
+            $message->from('desarrollo@justbetter.cl','Registro de Plan');
             });
 
         }catch(\Exception $e){
+            return $e;
+        }
 
+        $to_name = $user->name;
+        $to_email = 'cristobalugarte6@gmail.com';
+
+        try{
+           Mail::send('emails.admintrain', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+            ->subject('Nuevo Registro');
+            $message->from('desarrollo@justbetter.cl','Registro Entrenamiento');
+            });
+
+        }catch(\Exception $e){
         }
 
         $data = [];
@@ -141,7 +159,7 @@ class TrainingController extends Controller
             'plan' => ['required','nullable'],
         ]);
 
-        Student::create([
+        $student = Student::create([
             'user_id' => Auth::id(),
             'training_id' => $request->plan,
             'settled' => False,
@@ -149,32 +167,32 @@ class TrainingController extends Controller
 
         $to_name = Auth::user()->name;
         $to_email = Auth::user()->email;
-        $data = array('name'=>'You Just Better', 'body' => 'Reserva de Plan');
+        $training = Training::find($student->training_id);
+        $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+        $price = numfmt_format_currency($fmt, $training->price, "CLP");
+        $data = array('user'=> Auth::user(), 'info' => $training, 'price' => $price);
 
         try{
-           Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
-            $message->to($to_email, $to_name)
-            ->subject('Youbook');
-            $message->from('desarrolo@justbetter.cl','YouBook Test');
+           Mail::send('emails.trainuser', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email,$to_name)
+            ->subject('You Registro de Plan');
+            $message->from('desarrollo@justbetter.cl','Registro de Plan');
             });
 
         }catch(\Exception $e){
-
         }
 
         $to_name = Auth::user()->name;
         $to_email = 'cristobalugarte6@gmail.com';
-        $data = array('name'=>'Registro', 'body' => Auth::user()->name);
 
         try{
-           Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+           Mail::send('emails.admintrain', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
-            ->subject('Laravel Test Mail');
-            $message->from('desarrolo@justbetter.cl','Registro Youbook');
+            ->subject("Nuevo Registro");
+            $message->from('desarrollo@justbetter.cl','Registro Entrenamiento');
             });
 
         }catch(\Exception $e){
-
         }
         return redirect('/training');
 

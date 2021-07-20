@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 @endif
-                @if(Auth::user()->isTrainer())
+                @if(Auth::user()->isTrainer() || Auth::user()->isAdmin())
                     <div class="nav-item has-sub">
                         <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Entrenamiento</span></a>
                         <div class="submenu-content">
@@ -58,7 +58,7 @@
                             @endforeach
                             <hr>
                             <a href="{{route('admin.training.students')}}" class="menu-item">Alumnos</a>
-                            <a href="#" class="menu-item">Clases Semana</a>
+                            {{-- <a href="#" class="menu-item">Clases Semana</a> --}}
                         </div>
                     </div>
                 @endif

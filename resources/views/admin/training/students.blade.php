@@ -61,10 +61,27 @@
                             <td>{{$student->address}}</td>
                             <td>
                                 <div class="table-actions">
-                                    {{-- <a href="#" data-toggle="modal" data-target="#exampleModal{{$student->id}}"><i class="ik ik-eye"></i></a> --}}
-                                    <a href="#"><i class="ik ik-eye"></i></a>
-                                    {{-- <a href="{{route('professionals.show',[$student->id])}}"><i class="ik ik-trash-2"></i></a> --}}
-                                    <a href="#"><i class="ik ik-trash-2"></i></a>
+
+                                        <form class="d-inline" method="POST" action="{{ url("/studentsSettled", ['id' => $student->id])}}">
+                                          @csrf
+                                          @method('PUT')
+                                            <button type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                                @if($student->isSettled())
+                                                    Registrar como No Pagado
+                                                @else
+                                                    Registrar como Pagado
+                                                @endif
+                                            </button>
+                                        </form>
+
+
+                                    <form class="d-inline" method="POST" action="{{ url("/students", ['id' => $student->id])}}">
+                                      @csrf
+                                      @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                            Eliminar
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

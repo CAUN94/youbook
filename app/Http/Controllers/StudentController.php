@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Training;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -67,9 +70,38 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update($id)
     {
-        //
+
+    }
+
+    public function settled($id)
+    {
+        $student = Student::where('user_id',$id)->first();
+        $student->settled = !$student->settled;
+
+        if ($student->settled){
+            $user = User::find($id);
+            $to_name = $user->name;
+            $to_email = $user->email;
+            $training = Training::find($student->training_id);
+            $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+            $price = numfmt_format_currency($fmt, $training->price, "CLP");
+            $data = array('user'=> $user, 'info' => $training, 'price' => $price);
+
+            try{
+               Mail::send('emails.settleduser', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email,$to_name)
+                ->subject('You Just Train');
+                $message->from('desarrollo@justbetter.cl','Confirmación de Pago');
+                });
+
+            }catch(\Exception $e){
+            }
+        }
+
+        $student->save();
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +110,10 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
-        //
+        $student = Student::where('user_id',$id)->first();
+        $student->delete();
+        return redirect()->back();
     }
 }

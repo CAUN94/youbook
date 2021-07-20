@@ -52,6 +52,7 @@
 		data(){
 			return {
 				loadcolor: '#f1715a',
+				size: '',
 				time: new Date(),
 				professionals:[],
 				loading:false,
@@ -84,7 +85,7 @@
 		mounted(){
 			//let time = moment(date).parseZone("Australia/Melbourne");
 			this.loading=true
-			axios.get('/api/professionalss/today').then((response)=>{
+			axios.get('/api/professionals/today').then((response)=>{
 				this.professionals = response.data
 				this.loading=false
 

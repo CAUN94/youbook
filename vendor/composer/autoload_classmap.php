@@ -63,7 +63,6 @@ return array(
     'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
     'App\\Models\\Record' => $baseDir . '/app/Models/Record.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
-    'App\\Models\\RoleApp' => $baseDir . '/app/Models/RoleApp.php',
     'App\\Models\\Student' => $baseDir . '/app/Models/Student.php',
     'App\\Models\\Time' => $baseDir . '/app/Models/Time.php',
     'App\\Models\\TrainAppointments' => $baseDir . '/app/Models/TrainAppointments.php',

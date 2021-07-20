@@ -4,11 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="{{asset('img/you-completo-nn.png')}}" class="img-fluid" style="border:1px solid #ccc;">
-            <div class="mt-5">
-               <a href="{{url('/register')}}"> <button class="btn btn-success">Registrarme</button></a>
-                <a href="{{url('/login')}}"><button class="btn btn-secondary">Iniciar Sesión</button></a>
-            </div>
+            <img src="{{asset('img/you-completo-nn.png')}}" class="img-fluid">
         </div>
         <div class="col-md-6">
             <h2>Crear Cuenta o Agendar hora</h2>

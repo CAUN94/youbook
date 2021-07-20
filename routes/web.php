@@ -26,6 +26,7 @@ Route::get('/week','DashboardController@week');
 
 Route::get('/training-new','TrainingController@trainingnew');
 Route::get('/training-user','TrainingController@traininguser');
+Route::delete('/training','TrainingController@delete');
 Route::post('/training-register_new','TrainingController@create_training_new')->name('training-register');
 Route::post('/training-register_user','TrainingController@create_training_user')->name('training-register-user');
 Route::get('/new-appoinment/{professionalId}/{date}','FrontendController@show')->name('create.appointment');
@@ -102,6 +103,10 @@ Route::group(['middleware'=>['auth','trainer']], function(){
 	Route::get('/classes_today/{id}','AdminTrainingController@classes_today')->name('admin.training.today');
 	Route::get('/students','AdminTrainingController@students')->name('admin.training.students');
 	Route::get('/train_toogle/{student_id}/{book_id}','AdminTrainingController@toggleStatus')->name('admin.training.toogle');
+	Route::delete('/students/{id}', 'StudentController@destroy');
+	Route::put('/studentsSettled/{id}', 'StudentController@settled');
+
+
 });
 
 
