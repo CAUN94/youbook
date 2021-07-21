@@ -62,17 +62,17 @@
                             <td>
                                 <div class="table-actions">
 
-                                        <form class="d-inline" method="POST" action="/studentsSettled/{{$student->id}}">
-                                          @csrf
-                                          @method('PUT')
-                                            <button type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
-                                                @if($student->isSettled())
-                                                    Registrar como No Pagado
-                                                @else
-                                                    Registrar como Pagado
-                                                @endif
-                                            </button>
-                                        </form>
+                                    <form class="d-inline" method="POST" action="{{ url('/studentsSettled', ['id' => $student->id])}}">
+                                      @csrf
+                                      @method('PUT')
+                                        <button type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                            @if($student->isSettled())
+                                                Registrar como No Pagado
+                                            @else
+                                                Registrar como Pagado
+                                            @endif
+                                        </button>
+                                    </form>
 
 
                                     <form class="d-inline" method="POST" action="{{ url('/students', ['id' => $student->id])}}">

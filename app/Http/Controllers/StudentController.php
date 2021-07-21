@@ -92,7 +92,7 @@ class StudentController extends Controller
             try{
                Mail::send('emails.settleduser', $data, function($message) use ($to_name, $to_email) {
                 $message->to($to_email,$to_name)
-                ->subject('You Just Train');
+                ->subject('You Train Better');
                 $message->from('desarrollo@justbetter.cl','Confirmación de Pago');
                 });
 
