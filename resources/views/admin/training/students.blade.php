@@ -64,7 +64,7 @@
 
                                         <form class="d-inline" method="POST" action="{{ url("/studentsSettled", ['id' => $student->id])}}">
                                           @csrf
-                                          @method('PUT')
+                                          <input type="hidden" name="_method" value="PUT" />
                                             <button type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                                 @if($student->isSettled())
                                                     Registrar como No Pagado
