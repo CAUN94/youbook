@@ -24,7 +24,7 @@ class ProfileController extends Controller
     {
     	$this->validate($request,['file'=>'required|image|mimes:jpeg,jpg,png']);
     	if($request->hasFile('file')){
-    		$user = User::where('id',auth()->user()->id);
+    		$user = User::where('id',auth()->user()->id)->first();
     		$image = $request->file('file');
     		$name = time().'.'.$image->getClientOriginalExtension();
 
