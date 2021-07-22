@@ -64,7 +64,7 @@ Route::get('/box/svitalim','RedirectController@vitali');
 Route::get('/box/meetyou','RedirectController@meetyou');
 
 Route::group(['middleware'=>['auth','patient']],function(){
-	Route::post('/book/appointment','FrontendController@store')->name('booking.appointment');
+	Route::post('/book/appointment','FrontendController@store')->name('fng.appointment');
 	Route::post('/book/appointment-store','FrontendController@storetrain')->name('booking.train');
 	Route::delete('/book/appointment-delete','FrontendController@deletetrain')->name('delete.booking.train');
 	Route::get('/my-booking','FrontendController@myBookings')->name('my.booking');
