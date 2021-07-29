@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <p class="card-text">Hola {{Auth::user()->name}},</p>
                     <p>Tu plan es {{$training->name}} {{$training->format}}</p>
-                    <p>En este plan de entrenamiento debes reservar las clases en las que quieres participar en la semana. Puedes elegir todas las que quieras!</p>
+                    <p>{{$training->description}}</p>
                     @if($training_user->settled)
                         <a href="#" class="badge badge-success">Pagado</a>
                     @else

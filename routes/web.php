@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/book','FrontendController@index');
 Route::get('/','FrontendController@index');
 
-
 Route::get('/dashboard','DashboardController@index');
 Route::get('/calendar','DashboardController@calendar');
 Route::get('/week','DashboardController@week');
+Route::get('/padpow','PadpowController@pay');
 
 
 Route::get('/training-new','TrainingController@trainingnew');

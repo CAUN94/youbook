@@ -71,6 +71,11 @@ class TrainingController extends Controller
 
     public function trainingnew(){
         $trainings = Training::orderBy('name')->get();
+        $trainings = $trainings->map(function ($item, $key) {
+            $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+            $item->price = numfmt_format_currency($fmt, $item->price, "CLP");
+            return $item;
+        });
         return view('/training/newtraining',compact('trainings'));
     }
 
@@ -149,6 +154,11 @@ class TrainingController extends Controller
 
     public function traininguser(){
         $trainings = Training::orderBy('name')->get();
+        $trainings = $trainings->map(function ($item, $key) {
+            $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+            $item->price = numfmt_format_currency($fmt, $item->price, "CLP");
+            return $item;
+        });
         return view('/training/training',compact('trainings'));
     }
 
