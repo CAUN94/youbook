@@ -25,7 +25,7 @@ class PadpowController extends Controller
         //         ]);
         $response = Http::withHeaders([
             'X-API-TOKEN' => 'd3c8da22-6dc6-47f4-baa6-22ee741d9008',
-        ])->get('https://www.padpow.com/api/v1/charges');
+        ])->get('https://nimrod.avispa.work/');
 
         return $response->throw()->json();
     }
