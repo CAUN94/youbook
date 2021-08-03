@@ -27,6 +27,16 @@ class AppointmentApp extends Model
     public static function tomorrow_appoiments()
     {
         $tomorrow = Carbon::tomorrow();
+        if ($tomorrow->format('l') == 'Saturday'){
+            $monday = $tomorrow->addDays(2);
+            return DB::select( DB::raw("select a.id,a.Profesional , a.Tratamiento_Nr, Estado,Nombre_paciente,Apellidos_paciente,Celular,Hora_inicio,TotalAtencion+Avance as TotalAtencion,Mail from appointment_apps as a join treatments
+        on a.Tratamiento_Nr = treatments.Atencion where  a.id in (SELECT max(id) FROM appointment_apps where Fecha = '".$tomorrow."' or Fecha ='".$monday."'  group by Tratamiento_Nr) and Estado in ('No Confirmado','Agenda Online') order by Hora_inicio asc") );
+        }
+        if ($tomorrow->format('l') == 'Sunday'){
+            $monday = $tomorrow->addDays(1);
+            return DB::select( DB::raw("select a.id,a.Profesional , a.Tratamiento_Nr, Estado,Nombre_paciente,Apellidos_paciente,Celular,Hora_inicio,TotalAtencion+Avance as TotalAtencion,Mail from appointment_apps as a join treatments
+        on a.Tratamiento_Nr = treatments.Atencion where  a.id in (SELECT max(id) FROM appointment_apps where Fecha = '".$monday."' or Fecha ='".$monday."'  group by Tratamiento_Nr) and Estado in ('No Confirmado','Agenda Online') order by Hora_inicio asc") );
+        }
         return DB::select( DB::raw("select a.id,a.Profesional , a.Tratamiento_Nr, Estado,Nombre_paciente,Apellidos_paciente,Celular,Hora_inicio,TotalAtencion+Avance as TotalAtencion,Mail from appointment_apps as a join treatments
         on a.Tratamiento_Nr = treatments.Atencion where  a.id in (SELECT max(id) FROM appointment_apps where Fecha = '".$tomorrow."'  group by Tratamiento_Nr) and Estado in ('No Confirmado','Agenda Online') order by Hora_inicio asc") );
     }

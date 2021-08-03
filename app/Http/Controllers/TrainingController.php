@@ -132,6 +132,7 @@ class TrainingController extends Controller
         try{
            Mail::send('emails.admintrain', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
+            ->bcc('clinica@justbetter.cl')
             ->subject('Nuevo Registro');
             $message->from('desarrollo@justbetter.cl','Registro Entrenamiento');
             });
@@ -198,6 +199,7 @@ class TrainingController extends Controller
         try{
            Mail::send('emails.admintrain', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
+            ->bcc('clinica@justbetter.cl')
             ->subject("Nuevo Registro");
             $message->from('desarrollo@justbetter.cl','Registro Entrenamiento');
             });
