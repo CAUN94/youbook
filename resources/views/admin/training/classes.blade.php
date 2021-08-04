@@ -22,11 +22,17 @@
                       </thead>
                       <tbody>
                         @forelse($students as $key => $student)
-                        <tr>
+                        @if($student->classesStatus($id)->status == 1)
+                          <tr class="table-warning">
+                        @else
+                          <tr class="table-success">
+                        @endif
                           <th scope="row">{{$key+1}}</th>
-                          <td>
-                            <img src="/profile/{{$student->image}}" width="80" style="border-radius: 50%;">
-                          </td>
+                          @if(!is_null($student->image))
+                                <td><img width="60" height="60" src="{{asset('/img/professionals')}}/{{$student->image}}" class="thumb1" alt=""></td>
+                          @else
+                              <td><img width="60" height="60" src="{{asset('/img/logo-basic-naranjo.png')}}" class="thumb1" alt=""></td>
+                          @endif
                           <td>{{$student->name}} {{$student->lastnames}}</td>
                           <td>{{$student->email}}</td>
                           <td>{{$student->phone}}</td>
@@ -35,7 +41,7 @@
                               @if($student->classesStatus($id)->status == 1)
                               <a href="{{route('admin.training.toogle',['student_id' => $student->id, 'book_id' => $id])}}"><button class="btn btn-primary"> No Asistio</button></a>
                               @else
-                               <a href="{{route('admin.training.toogle',['student_id' => $student->id, 'book_id' => $id])}}"><button class="btn btn-success"> Asistio</button></a>
+                               <a href="{{route('admin.training.toogle',['student_id' => $student->id, 'book_id' => $id])}}"><button class="btn btn-primary"> Asistio</button></a>
                               @endif
                           </td>
                         </tr>

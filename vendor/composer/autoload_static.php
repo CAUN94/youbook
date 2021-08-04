@@ -480,6 +480,7 @@ class ComposerStaticIniteb62c33eca4790e6df9b0a9f5a4fecf8
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\OccupationController' => __DIR__ . '/../..' . '/app/Http/Controllers/OccupationController.php',
         'App\\Http\\Controllers\\PDFController' => __DIR__ . '/../..' . '/app/Http/Controllers/PDFController.php',
+        'App\\Http\\Controllers\\PadpowController' => __DIR__ . '/../..' . '/app/Http/Controllers/PadpowController.php',
         'App\\Http\\Controllers\\PatientlistController' => __DIR__ . '/../..' . '/app/Http/Controllers/PatientlistController.php',
         'App\\Http\\Controllers\\PaymentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/PaymentsController.php',
         'App\\Http\\Controllers\\ProfessionalAppController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfessionalAppController.php',

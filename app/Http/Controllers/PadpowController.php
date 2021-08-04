@@ -10,17 +10,17 @@ class PadpowController extends Controller
 {
     public function pay(){
         $data = [
-                    'id' => 'JSBTT-R5S7V',
+                    'id' => 'JSBTT-R5S7Va',
                     'type' => 'exampletype',
                     'attributes' => [
-                        'amount_cents' => 10000,
+                        'amount_cents' => 50,
                         'work' => 'Example Hora',
                         'detail' => 'Agenda Example',
-                        'reference_code' => 'JSBTT-R5S7V'
+                        'reference_code' => 'JSBTT-R5S7Va'
                     ]
                 ];
          $links = [
-            'return_url' => 'https://yjb-book.test/padpow/JSBTT-R5S7V/return_url'
+            'return_url' => config('app.url', 'http://localhost').'padpow/JSBTT-R5S7Va/return_url'
             ];
 
         $url = 'https://nimrod.avispa.work/api/v1/charges';
@@ -39,7 +39,13 @@ class PadpowController extends Controller
         // 200
         // echo $response->getHeader('content-type');
         // 'application/json; charset=utf8'
-        return  $response->getBody();
+        $pay = json_decode($response->getBody(), true);
+        // return  $pay['data']['attributes']['url'];
+        return  redirect()->away($pay['data']['attributes']['url']);
         // {"type":"User"...'
+    }
+
+    public function code($code){
+        return $code;
     }
 }

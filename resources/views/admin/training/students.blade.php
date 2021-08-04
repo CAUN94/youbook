@@ -55,7 +55,11 @@
                     @foreach($students as $student)
                         <tr>
                             <td>{{$student->name}} {{$student->lastnames}}</td>
-                            <td><img width="60" height="60" src="{{asset('/img/professionals')}}/{{$student->image}}" class="thumb1" alt=""></td>
+                            @if(!is_null($student->image))
+                                <td><img width="60" height="60" src="{{asset('/img/professionals')}}/{{$student->image}}" class="thumb1" alt=""></td>
+                            @else
+                                <td><img width="60" height="60" src="{{asset('/img/logo-basic-naranjo.png')}}" class="thumb1" alt=""></td>
+                            @endif
                             <td>{{$student->email}}</td>
                             <td>{{$student->phone}}</td>
                             <td>{{$student->address}}</td>
