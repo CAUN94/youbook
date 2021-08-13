@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\RoleApp;
+use App\Models\Training;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -61,6 +62,10 @@ class User extends Authenticatable
 
     public function student(){
         return $this->hasOne('App\Models\Student','user_id','id');
+    }
+
+    public function plan(){
+        return Training::find($this->student->training_id);
     }
 
     public function dashboard(){
