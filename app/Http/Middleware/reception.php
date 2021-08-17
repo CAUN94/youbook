@@ -16,7 +16,7 @@ class reception
      */
     public function handle($request, Closure $next)
     {
-        if (auth::user()->hasRole('reception') or auth::user()->hasRole('admin')) {
+        if (auth::user()->hasRole('reception') or auth::user()->hasRole('administrador')) {
             return $next($request);
         }
         return redirect('home');

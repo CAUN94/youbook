@@ -561,7 +561,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
-                                    @if(auth::user()->hasrole('admin'))
+                                    @if(auth::user()->hasrole('adminstrador'))
                                     <a class="dropdown-item" href="{{ route('register') }}">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         {{ __('Registrar') }}

@@ -15,15 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -50,27 +41,27 @@ class HomeController extends Controller
 
     public function panel()
     {
-        auth::user()->isAdmin();
+
         $pacientes = DB::table('appointment_apps')->groupBy('Rut_Paciente')->orderBy('Fecha_Generación','desc')->get();
         return view('youapp.you-wsp/index',compact('pacientes'));
     }
 
     public function excel()
     {
-        auth::user()->isAdmin();
+
         return view('youapp.you-wsp/excel');
     }
 
     public function canceled()
     {
-        auth::user()->isAdmin();
+
         $canceled = AppointmentApp::canceled();
         return view('youapp.canceled/index',compact('canceled'));
     }
 
     public function today()
     {
-        auth::user()->isAdmin();
+
         $date = Carbon::today();
         $pacientes = AppointmentApp::appoiments($date);
         $appointment_last = AppointmentApp::last_register();
@@ -80,7 +71,7 @@ class HomeController extends Controller
 
     public function tomorrow()
     {
-        auth::user()->isAdmin();
+
         $pacientes = AppointmentApp::tomorrow_appoiments();
         $appointment_last = AppointmentApp::last_register();
 
@@ -89,14 +80,14 @@ class HomeController extends Controller
 
     public function training()
     {
-        auth::user()->isAdmin();
+
         return view('youapp.you-wsp/training');
     }
 
     // Falta hacer refactoring
     public function general()
     {
-        auth::user()->isAdmin();
+
         // $now = Carbon::now()->addMonth();
         $last = Carbon::now()->subYear();
         $endOfYear = $last->copy()->endOfYear();
