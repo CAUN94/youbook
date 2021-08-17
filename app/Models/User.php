@@ -57,7 +57,33 @@ class User extends Authenticatable
     ];
 
     public function role(){
-        return $this->hasOne('App\Models\Role','id','role_id');
+        return $this->belongsToMany(Role::class)->first();
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    public function authorizeRoles($roles)
+    {
+        abort_unless($this->hasAnyRole($roles), 401);
+        return true;
+    }
+    public function hasAnyRole($roles)
+    {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasRole($roles)) {
+                 return true;
+            }
+        }
+        return false;
     }
 
     public function student(){
@@ -69,15 +95,23 @@ class User extends Authenticatable
     }
 
     public function dashboard(){
-        if (Auth::user()->role->name != 'paciente'){
+        if (Auth::user()->role()->name != 'paciente'){
             return True;
         }else{
             return False;
         }
     }
 
+    public function hasRole($role)
+    {
+        if ($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
+
     public function isProfessional(){
-        if ($this->role->name == 'profesional'){
+        if ($this->hasRole('profesional')){
             return True;
         }else{
             return False;
@@ -85,7 +119,7 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-        if ($this->role->name == 'administrador'){
+        if ($this->hasRole('administrador')){
             return True;
         }else{
             return False;
@@ -93,7 +127,7 @@ class User extends Authenticatable
     }
 
     public function isTrainer(){
-        if ($this->role->name == 'entrenador'){
+        if ($this->hasRole('entrenador')){
             return True;
         }else{
             return False;

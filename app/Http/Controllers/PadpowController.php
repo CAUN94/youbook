@@ -15,19 +15,20 @@ class PadpowController extends Controller
             return back();
         }
         $data = [
-                    'id' => $this->code(Auth::user()),
+                    'id' => '139-19-08-21',
                     'type' => 'Plan de Entrenamiento',
                     'attributes' => [
                         'amount_cents' => Auth::user()->plan()->price,
                         // 'amount_cents' => 1000,
                         'work' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                         'detail' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
-                        'reference_code' => $this->code(Auth::user())
+                        'reference_code' =>'139-19-08-21'
                     ]
                 ];
          $links = [
-            'return_url' => config('app.url', 'http://localhost').'padpow/'.$this->code(Auth::user()).'/return_url'
+            'return_url' => config('app.url', 'http://localhost').'padpow/'.'139-19-08-21'.'/return_url'
             ];
+
 
         $url = 'https://nimrod.avispa.work/api/v1/charges';
         $client = new Client();
@@ -43,6 +44,7 @@ class PadpowController extends Controller
         ]);
 
         $pay = json_decode($response->getBody(), true);
+        // return $pay;
         if ($pay['data']['attributes']['aasm_state'] == 'paying'
             and !Auth::user()->isSettled()){
             Auth::user()->student->settled = 1;

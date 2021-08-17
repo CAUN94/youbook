@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Professional
+class professional
 {
     /**
      * Handle an incoming request.
@@ -15,12 +14,11 @@ class Professional
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        if(Auth::user()->role->name == 'profesional'){
+        if (auth::user()->hasRole('professional')) {
             return $next($request);
-        }else{
-            return redirect()->back();
         }
+        return redirect('home');
     }
 }

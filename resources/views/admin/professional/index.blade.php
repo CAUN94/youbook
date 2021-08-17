@@ -2,33 +2,10 @@
 
 @section('content')
 <div class="page-header">
-    <div class="row align-items-end">
-        <div class="col-lg-8">
-            <div class="page-header-title">
-                <i class="ik ik-inbox bg-blue"></i>
-                <div class="d-inline">
-                    <h5>Profesionales</h5>
-                    <span>Lista de los Profesionales</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <nav class="breadcrumb-container" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="../index.html"><i class="ik ik-home"></i></a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="#">Profesionales</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Lista</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
+
 </div>
 
-<div class="row">
+<div class="row mx-2">
     <div class="col-md-12">
         @if(Session::has('message'))
             <div class="alert alert-success">
@@ -49,8 +26,6 @@
                             <th>Dirección</th>
                             <th>Área</th>
                             <th class="nosort">&nbsp;</th>
-                            <th class="nosort">&nbsp;</th>
-                            <th class="nosort">&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,14 +38,10 @@
                             <td>{{$professional->address}}</td>
                             <td>{{$professional->department}}</td>
                             <td>
-                                <div class="table-actions">
-                                    <a href="#" data-toggle="modal" data-target="#exampleModal{{$professional->id}}"><i class="ik ik-eye"></i></a>
-                                    <a href="{{route('professionals.edit',[$professional->id])}}"><i class="ik ik-edit-2"></i></a>
-                                    <a href="{{route('professionals.show',[$professional->id])}}"><i class="ik ik-trash-2"></i></a>
-                                </div>
+                                <a href="#" data-toggle="modal" data-target="#exampleModal{{$professional->id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                <a href="{{route('professionals.edit',[$professional->id])}}"><i class="fas fa-edit"></i></a>
+                                <a href="{{route('professionals.show',[$professional->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
-                            <td></td>
-                            <td></td>
                         </tr>
                         @include('admin.professional.modal')
                     @endforeach

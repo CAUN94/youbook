@@ -1,69 +1,159 @@
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-
-<div class="page-wrap">
-<div class="app-sidebar colored">
-    <div class="sidebar-header">
-        <a class="header-brand" href="index.html">
-            <span class="text">{{ config('app.name', 'Laravel') }}</span>
-        </a>
-        <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
-        <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
-    </div>
-
-    <div class="sidebar-content">
-        <div class="nav-container">
-            <nav id="main-menu-navigation" class="navigation-main">
-                <div class="nav-lavel">Administración</div>
-                <div class="nav-item">
-                    <a href="#"><i class="ik ik-bar-chart-2"></i><span>Panel</span></a>
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home')}}" >
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-laptop-medical"></i>
                 </div>
-                {{-- <div class="nav-item">
-                    <a href="pages/navbar.html"><i class="ik ik-menu"></i><span>Navigation</span> <span class="badge badge-success">New</span></a>
-                </div> --}}
-                @if(Auth::user()->isAdmin())
-                    <div class="nav-item has-sub">
-                        <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Profesionales</span></a>
-                        <div class="submenu-content">
-                            <a href="{{url('professionals')}}" class="menu-item">Lista</a>
-                            <a href="{{url('professionals/create')}}" class="menu-item">Crear</a>
-                        </div>
-                    </div>
-                @endif
-                @if(Auth::user()->isProfessional())
-                    <div class="nav-item has-sub">
-                        <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Mi Horario</span></a>
-                        <div class="submenu-content">
-                            <a href="{{url('appointments')}}" class="menu-item">Lista</a>
-                            <a href="{{url('appointments/create')}}" class="menu-item">Crear mi horario</a>
-                        </div>
-                    </div>
-                @endif
-                @if(Auth::user()->isProfessional())
-                    <div class="nav-item has-sub">
-                        <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Citas Pacientes</span></a>
-                        <div class="submenu-content">
-                            <a href="{{route('patient')}}" class="menu-item">Pacientes (Hoy)</a>
-                            <a href="{{route('record.index')}}" class="menu-item">Evolucionar Fichas</a>
-                            <a href="{{route('all.appointments')}}" class="menu-item">Pacientes (Historico)</a>
-                        </div>
-                    </div>
-                @endif
-                @if(Auth::user()->isTrainer() || Auth::user()->isAdmin())
-                    <div class="nav-item has-sub">
-                        <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Entrenamiento</span></a>
-                        <div class="submenu-content">
-                            <a href="#" class="menu-item"><strong>Clases de Hoy:</strong></a>
-                            @foreach(App\Models\TrainAppointments::where('date',date('Y-m-d'))->get() as $class)
-                                <a href="{{route('admin.training.today',['id' => $class->id])}}" class="menu-item">{{$class->name}} {{$class->time}}</a>
-                            @endforeach
-                            <hr>
-                            <a href="{{route('admin.training.students')}}" class="menu-item">Alumnos</a>
-                            {{-- <a href="#" class="menu-item">Clases Semana</a> --}}
-                        </div>
-                    </div>
-                @endif
+                <div class="sidebar-brand-text mx-3">{{ config('app.name', 'Laravel') }}</div>
+            </a>
 
-            </nav>
-        </div>
-    </div>
-</div>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/dashboard') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Inicio</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Paneles
+            </div>
+            @if(Auth::user()->isAdmin())
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-users"></i>
+                        <span>Profesionales</span>
+                    </a>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                             <a href="{{url('professionals')}}" class="collapse-item"><span><i class="fas fa-users"></i> Lista</span></a>
+                            <a href="{{url('professionals/create')}}" class="collapse-item"><span><i class="fas fa-users"></i> Crear</span></a>
+                        </div>
+                    </div>
+                </li>
+            @endif
+            @if(Auth::user()->isProfessional())
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-users"></i>
+                        <span>Mi Horario</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                             <a href="{{url('appointments')}}" class="collapse-item"><span><i class="fas fa-users"></i> Lista</span></a>
+                            <a href="{{url('appointments/create')}}" class="collapse-item"><span><i class="fas fa-users"></i> Crear mi horario</span></a>
+                        </div>
+                    </div>
+                </li>
+            @endif
+            @if(Auth::user()->isProfessional())
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-users"></i>
+                        <span>Citas Pacientes</span>
+                    </a>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                             <a href="{{route('patient')}}" class="collapse-item"><span><i class="fas fa-users"></i> Pacientes (Hoy)</span></a>
+                            <a href="{{route('record.index')}}" class="collapse-item"><span><i class="fas fa-users"></i> Evolucionar Fichas</span></a>
+                            <a href="{{route('record.index')}}" class="collapse-item"><span><i class="fas fa-users"></i> Pacientes (Historico)</span></a>
+                        </div>
+                    </div>
+                </li>
+            @endif
+            @if(Auth::user()->isTrainer() || Auth::user()->isAdmin())
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                        aria-expanded="true" aria-controls="collapseFour">
+                        <i class="fas fa-users"></i>
+                        <span>Entrenamiento</span>
+                    </a>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            @foreach(App\Models\TrainAppointments::where('date',date('Y-m-d'))->get() as $class)
+                             <a href="{{route('admin.training.today',['id' => $class->id])}}" class="collapse-item"><span>{{$class->name}} {{$class->time}}</span></a>
+                            @endforeach
+                            <a href="{{route('admin.training.students')}}" class="collapse-item"><span>Alumnos</span></a>
+                        </div>
+                    </div>
+                </li>
+            @endif
+    </ul>
+
+
+
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                <img class="img-profile rounded-circle" src="{{ asset('/img/you_ y naranja.png')}}">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                @if(Auth::user()->isAdmin())
+                                <a class="dropdown-item" href="{{ route('register') }}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {{ __('Registrar') }}
+                                </a>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+
+
+
+
+                <!-- /.container-fluid -->
+
+
+            <!-- End of Main Content -->

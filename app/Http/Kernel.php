@@ -66,5 +66,9 @@ class Kernel extends HttpKernel
         'professional' => \App\Http\Middleware\Professional::class,
         'patient' => \App\Http\Middleware\Patient::class,
         'trainer' => \App\Http\Middleware\Trainer::class,
+        'admin' => \App\Http\Middleware\admin::class,
+        'patient' => \App\Http\Middleware\patient::class,
+        'professional' => \App\Http\Middleware\professional::class,
+        'reception' => \App\Http\Middleware\reception::class,
     ];
 }

@@ -1,34 +1,9 @@
 @extends('admin.layouts.master')
 
 @section('content')
-<div class="page-header">
-    <div class="row align-items-end">
-        <div class="col-lg-8">
-            <div class="page-header-title">
-                <i class="ik ik-inbox bg-blue"></i>
-                <div class="d-inline">
-                    <h5>Alumnos</h5>
-                    <span>Lista de Alumnos</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <nav class="breadcrumb-container" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="../index.html"><i class="ik ik-home"></i></a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="#">Alumnos</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Lista</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
 
-<div class="row">
+
+<div class="row mx-2">
     <div class="col-md-12">
         @if(Session::has('message'))
             <div class="alert alert-success">
@@ -36,7 +11,7 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header"><h3>Data Table</h3></div>
+            <div class="card-header"><h3>Alumnos</h3></div>
             <div class="card-body">
                 @if(count($students)>0)
                 <table id="data_table" class="table">
@@ -69,10 +44,11 @@
                                     <form class="d-inline" method="POST" action="{{ url('/studentsSettled', ['id' => $student->id])}}">
                                       @csrf
                                       @method('PUT')
-                                        <button type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                             @if($student->isSettled())
-                                                Registrar como No Pagado
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                                    Registrar como No Pagado
                                             @else
+                                                <button type="submit" class="btn btn-success" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                                 Registrar como Pagado
                                             @endif
                                         </button>
@@ -82,7 +58,7 @@
                                     <form class="d-inline" method="POST" action="{{ url('/students', ['id' => $student->id])}}">
                                       @csrf
                                       @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                        <button class="btn btn-secondary" type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                             Eliminar
                                         </button>
                                     </form>

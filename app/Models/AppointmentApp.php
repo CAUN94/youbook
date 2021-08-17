@@ -41,6 +41,11 @@ class AppointmentApp extends Model
         on a.Tratamiento_Nr = treatments.Atencion where  a.id in (SELECT max(id) FROM appointment_apps where Fecha = '".$tomorrow."'  group by Tratamiento_Nr) and Estado in ('No Confirmado','Agenda Online') order by Hora_inicio asc") );
     }
 
+    public static function form_appoiments($day){
+        return DB::select( DB::raw("select a.id,a.Profesional , a.Tratamiento_Nr, Estado,Nombre_paciente,Apellidos_paciente,Celular,Hora_inicio,TotalAtencion+Avance as TotalAtencion,Mail,Fecha from appointments as a join treatments
+        on a.Tratamiento_Nr = treatments.Atencion where  a.id in (SELECT max(id) FROM appointments where Fecha = '".$day."'  group by Tratamiento_Nr) and Estado in ('No Confirmado','Agenda Online') order by Fecha asc,Hora_inicio asc") );
+    }
+
     public static function tomorrow_appoiment($nr){
         return DB::select( DB::raw("select a.id, a.Tratamiento_Nr, a.Profesional , a.Rut_Paciente,Fecha, Estado,Nombre_paciente,Apellidos_paciente,Celular,Hora_inicio,Mail from appointment_apps as a  where  a.id in (SELECT max(id) FROM appointment_apps group by Tratamiento_Nr) and a.Tratamiento_Nr = '".$nr."' order by Hora_inicio asc") );
     }
