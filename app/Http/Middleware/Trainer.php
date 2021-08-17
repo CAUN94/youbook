@@ -17,7 +17,7 @@ class Trainer
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role->name == 'entrenador' or Auth::user()->role->name == 'administrador'){
+        if(Auth::user()->hasRole('entrenador') or Auth::user()->hasRole('administrador')){
             return $next($request);
         }else{
             return redirect()->back();
