@@ -3,9 +3,9 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home')}}" >
-                <div class="sidebar-brand-icon">
+           {{--      <div class="sidebar-brand-icon">
                     <i class="fas fa-laptop-medical"></i>
-                </div>
+                </div> --}}
                 <div class="sidebar-brand-text mx-3">{{ config('app.name', 'Laravel') }}</div>
             </a>
 
@@ -16,7 +16,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Inicio</span></a>
+                    <span>Dashboard</span></a>
             </li>
 
             <!-- Divider -->
@@ -124,6 +124,10 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ url('/') }}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {{ __('Inicio') }}
+                                </a>
                                 @if(Auth::user()->isAdmin())
                                 <a class="dropdown-item" href="{{ route('register') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
