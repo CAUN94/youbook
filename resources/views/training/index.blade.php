@@ -10,12 +10,12 @@
                     <p class="card-text">Hola {{Auth::user()->name}},</p>
                     <p>Tu plan es {{$training->name}} {{$training->format}}</p>
                     <p>{{$training->description}}</p>
-                    @if($training_user->settled)
+                    @if($training_user->settled or $training->price == 0)
                         <a href="#" class="badge badge-success">Pagado</a>
                     @else
                         <a href="{{url('/padpow')}}" class="badge badge-danger">Por Pagar</a>
                     @endif
-                    <a href="#" class="badge badge-info">Cambiar Plan</a>
+                    {{-- <a href="#" class="badge badge-info">Cambiar Plan</a> --}}
                     <form class="d-inline" method="post" action="/training">
                         @csrf
                         @method('DELETE')

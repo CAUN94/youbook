@@ -111,7 +111,7 @@
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('my.record') }}">{{ __('Mi Ficha') }}</a>
                             </li>
-                            @if (Auth::user()->isStudent())
+                            @if (auth::user()->isStudent())
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ url("/training") }}">{{ __('Entrenamiento') }}</a>
                             </li>

@@ -6,6 +6,7 @@ use App\Models\Action;
 use App\Models\Student;
 use App\Models\Training;
 use App\Models\User;
+use App\Models\UserRole;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -102,10 +103,23 @@ class TrainingController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
+        $user_role = UserRole::create([
+                'role_id' => 3,
+                'user_id' => $user->id
+            ]
+        );
+
+        $training = Training::find($request->plan);
+        if ($training->price == 0){
+            $settled = True;
+        }
+        else{
+            $settled = False;
+        }
         $student = Student::create([
             'user_id' => $user->id,
             'training_id' => $request->plan,
-            'settled' => False,
+            'settled' => $settled,
         ]);
 
         $to_name = $user->name;
@@ -169,11 +183,17 @@ class TrainingController extends Controller
         $this->validate($request, [
             'plan' => ['required','nullable'],
         ]);
-
+        $training = Training::find($request->plan);
+        if ($training->price == 0){
+            $settled = True;
+        }
+        else{
+            $settled = False;
+        }
         $student = Student::create([
             'user_id' => Auth::id(),
             'training_id' => $request->plan,
-            'settled' => False,
+            'settled' => $settled,
         ]);
 
         $to_name = Auth::user()->name;

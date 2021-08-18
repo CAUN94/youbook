@@ -13,6 +13,9 @@ class Training extends Model
     use HasFactory;
 
     public function appointments(){
+        if($this->price == 0){
+            return $this->hasMany(TrainAppointments::class)->orderby('date');
+        }
         $today = new Carbon();
         if($today->dayOfWeek == Carbon::THURSDAY){
 
