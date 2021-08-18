@@ -123,7 +123,7 @@ Route::get('/scraping-actions', 'ScrapingController@actions')->name('scraping-ac
 Route::get('/scraping-treatments', 'ScrapingController@treatments')->name('scraping-treatments');
 Route::get('/scraping-payments', 'ScrapingController@payments')->name('scraping-payments');
 
-Route::group(['middleware'=>['reception']])->group(function () {
+Route::group(['middleware'=>['reception']], function () {
     Route::get('/pdf/{id}', 'PDFController@download')->name('permiso');
     Route::get('/you-wsp', 'HomeController@panel')->name('you-wsp');
     Route::post('/you-wsp/tomorrow', 'HomeController@tomorrowform')->name('tomorrow.form');
@@ -134,7 +134,7 @@ Route::group(['middleware'=>['reception']])->group(function () {
 
 });
 
-Route::group(['middleware'=>['admin']])->group(function () {
+Route::group(['middleware'=>['admin']], function () {
 	Route::get('/excel', 'HomeController@excel')->name('excel');
 	Route::get('/general', 'HomeController@general')->name('general');
 	Route::get('/excel/ocuppation/{type}', 'ExcelController@occupation')->name('excel-download');
@@ -149,7 +149,7 @@ Route::group(['middleware'=>['admin']])->group(function () {
 	Route::post('/occupation-professional', 'OccupationController@formprofessional')->name('form-occupation-professional');
 });
 
-Route::group(['middleware'=>['professional']])->group(function () {
+Route::group(['middleware'=>['professional']], function () {
 	Route::get('/occupation/{type}', 'OccupationController@occupation')->name('occupation');
 	Route::get('/professional', 'ProfessionalAppController@index')->name('professional.index');
 	Route::get('/professional/{name}', 'ProfessionalAppController@show')->name('professional.show');
