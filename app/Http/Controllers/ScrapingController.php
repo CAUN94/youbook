@@ -19,7 +19,7 @@ class ScrapingController extends Controller
 
     public function carbon()
     {
-    	$date = Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d');;
+    	$date = Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d');
     	return $date;
     }
 

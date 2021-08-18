@@ -162,7 +162,7 @@ class User extends Authenticatable
     }
 
     public function medilinkname(){
-        return UserApp::where('rut',Auth::user()->rut)->first()->medilinkname;
+        return UserApp::where('rut',$this->rut)->first()->medilinkname;
     }
 
     public function isSettled(){
