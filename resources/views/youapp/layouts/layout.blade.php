@@ -35,7 +35,7 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    @if(auth::user()->isAdmin())
+    @if(Auth::User()->isAdmin())
         <div id="wrapper">
 
             <!-- Sidebar -->
