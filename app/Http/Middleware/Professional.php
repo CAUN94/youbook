@@ -16,7 +16,7 @@ class professional
      */
     public function handle($request, Closure $next)
     {
-        if (auth::user()->hasRole('professional')) {
+        if (auth::user()->hasRole('professional') || auth::user()->hasRole('administrador')) {
             return $next($request);
         }
         return redirect('home');
