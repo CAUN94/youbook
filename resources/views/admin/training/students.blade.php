@@ -55,10 +55,10 @@
                                     </form>
 
 
-                                    <form class="d-inline mt-2" method="POST" action="{{ url('/students', ['id' => $student->id])}}">
+                                    <form class="d-inline" method="POST" action="{{ url('/students', ['id' => $student->id])}}">
                                       @csrf
                                       @method('DELETE')
-                                        <button class="btn btn-secondary" type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                        <button class="btn btn-secondary  mt-2" type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                             Eliminar
                                         </button>
                                     </form>
