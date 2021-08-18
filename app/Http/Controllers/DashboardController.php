@@ -15,7 +15,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-    	if(Auth::user()->hasRole("paciente")){
+    	if(Auth::user()->dashboard()){
     		return redirect('/');
     	}
     	return view('/dashboard');
