@@ -169,6 +169,13 @@ class User extends Authenticatable
         return $this->student->settled;
     }
 
+    public function image(){
+        if ($this->image){
+            return $this->image;
+        }
+        return 'logo-basic-naranjo.png';
+    }
+
 
 
 }

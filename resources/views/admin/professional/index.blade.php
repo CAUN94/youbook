@@ -32,7 +32,7 @@
                     @foreach($professionals as $professional)
                         <tr>
                             <td>{{$professional->name}} {{$professional->lastnames}}</td>
-                            <td><img width="60" height="60" src="{{asset('/img/professionals')}}/{{$professional->image}}" class="thumb1" alt=""></td>
+                            <td><img width="60" height="60" src="{{asset('/img/professionals')}}/{{$professional->image()}}" class="thumb1" alt=""></td>
                             <td>{{$professional->email}}</td>
                             <td>{{$professional->phone}}</td>
                             <td>{{$professional->address}}</td>
