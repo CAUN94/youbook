@@ -16,7 +16,7 @@ class patient
      */
     public function handle($request, Closure $next)
     {
-        if (auth::user()->hasRole('paciente') || auth::user()->hasRole('administrador')) {
+        if (auth::user()->hasRole('paciente') or auth::user()->hasRole('administrador')) {
             return $next($request);
         }
         return redirect('home');
