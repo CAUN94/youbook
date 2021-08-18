@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
     public function calendar()
     {
-        if(Auth::user()->hasRole("paciente")){
+        if(Auth::user()->dashboard()){
             return redirect('/');
         }
         return view('/calendar');
@@ -32,7 +32,7 @@ class DashboardController extends Controller
     public function week()
     {
 
-        if(Auth::user()->hasRole("paciente")){
+        if(Auth::user()->dashboard()){
             return redirect('/');
         }
         return view('/week');
