@@ -9,7 +9,9 @@
                   </div>
                   <div class="modal-body">
                     <p><img src="{{asset('/img/professionals')}}/{{$professional->image}}" class="table-user-thumb" alt="" width="200"></p>
-                    <p class="badge badge-pill badge-dark">Role: {{$professional->role->name}}</p>
+                    @foreach($professional->roles as $role)
+                    <p class="badge badge-pill badge-dark">Role: {{$role->name}}</p>
+                    @endforeach
                     <p>Nombre:{{$professional->name}} {{$professional->lastnames}}</p>
                     <p>Genero:{{$professional->gender}}</p>
                     <p>Email:{{$professional->email}}</p>
