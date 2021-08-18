@@ -95,7 +95,7 @@ class User extends Authenticatable
     }
 
     public function dashboard(){
-        if (Auth::user()->role()->name != 'paciente'){
+        if (Auth::user()->hasAnyRole(['administrador','entrenador','professional'])){
             return True;
         }else{
             return False;
