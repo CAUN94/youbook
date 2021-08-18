@@ -102,6 +102,14 @@ class User extends Authenticatable
         }
     }
 
+    public function youApp(){
+        if (Auth::user()->hasAnyRole(['administrador','professional'])){
+            return True;
+        }else{
+            return False;
+        }
+    }
+
     public function hasRole($role)
     {
         if ($this->roles()->where('name', $role)->first()) {

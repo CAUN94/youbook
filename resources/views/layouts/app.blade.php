@@ -92,6 +92,11 @@
                                     <a class="nav-link" href="{{ url("/training-new") }}">{{ __('Planes de Entrenamiento') }}</a>
                             </li>
                         @else
+                            @if (Auth::user()->youApp())
+                                <li class="nav-item">
+                                        <a class="nav-link" href="{{ url("/youapp") }}">{{ __('YouApp') }}</a>
+                                </li>
+                            @endif
                             @if (Auth::user()->dashboard())
                                 <li class="nav-item">
                                         <a class="nav-link" href="{{ url("/dashboard") }}">{{ __('Dashboard') }}</a>

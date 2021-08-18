@@ -13,6 +13,13 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+            @if (Auth::user()->youApp())
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/youapp') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>YouApp</span></a>
+            </li>
+            @endif
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>

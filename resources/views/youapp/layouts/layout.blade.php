@@ -54,9 +54,14 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
+                    <a class="nav-link" href="{{ url('/youapp') }}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Inicio</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/dashboard') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
                 </li>
 
                 <!-- Divider -->
@@ -307,6 +312,10 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="{{ url('/') }}">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        {{ __('Inicio') }}
+                                    </a>
                                     @if(auth::user()->isAdmin())
                                     <a class="dropdown-item" href="{{ route('register') }}">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -380,6 +389,7 @@
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Inicio</span></a>
                 </li>
+
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
