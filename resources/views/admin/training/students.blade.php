@@ -46,10 +46,10 @@
                                       @method('PUT')
                                             @if($student->isSettled())
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Seguro? Piensa que haria la Dani')">
-                                                    Registrar como No Pagado
+                                                    No Pagado
                                             @else
                                                 <button type="submit" class="btn btn-success" onclick="return confirm('Seguro? Piensa que haria la Dani')">
-                                                Registrar como Pagado
+                                                Pagado
                                             @endif
                                         </button>
                                     </form>
