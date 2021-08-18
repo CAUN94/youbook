@@ -106,7 +106,7 @@ class ProfessionalAppController extends Controller
             'César Moya Calderón' => 0.32,
             'Daniella Vivallo Vera' => 0.45,
             'Juan Manuel Guzmán Habinger' => 0.7,
-            'Iver Cristi' => 0.6,
+            'Iver Cristi Sánchez' => 0.6,
             'Renata Barchiesi Vitali' => 0.6,
             'Sofía Vitali Magasich' => 0.45,
             'Carolina Avilés Espinoza' => 0.7,
