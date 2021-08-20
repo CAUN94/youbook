@@ -151,7 +151,7 @@ class User extends Authenticatable
     }
 
     public function isTeamYou(){
-        if ($this->student != Null){
+        if ($this->team == 'you'){
             return True;
         }else{
             return False;
