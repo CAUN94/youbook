@@ -437,7 +437,7 @@
                     </div>
                 </li>
         </div>
-    @elseif(auth::user()->hasrole('professional'))
+    @elseif(auth::user()->hasrole('profesional'))
         <div id="wrapper">
 
             <!-- Sidebar -->
