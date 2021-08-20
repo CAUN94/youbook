@@ -17,9 +17,9 @@ class OccupationController extends Controller
 
     public function occupation($type)
     {
-        if(!auth::user()->isAdmin()){
-                abort(401);
-        }
+        // if(!auth::user()->isAdmin()){
+        //         abort(401);
+        // }
         $action = new Action();
 
         if($type == "actual-month"){
