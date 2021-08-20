@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Show the application dashboard.
      *
