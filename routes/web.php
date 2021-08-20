@@ -144,9 +144,7 @@ Route::group(['middleware'=>['admin']], function () {
 	Route::get('/weekreport', 'WeekController@index')->name('week.index');
 	Route::post('/weekreport', 'WeekController@show')->name('form-week');
 
-	Route::post('/occupation', 'OccupationController@form')->name('form-occupation');
-	Route::get('/occupation-professional/{type}', 'OccupationController@occupationprofessional')->name('occupation-professional');
-	Route::post('/occupation-professional', 'OccupationController@formprofessional')->name('form-occupation-professional');
+
 });
 
 Route::group(['middleware'=>['professional']], function () {
@@ -154,5 +152,8 @@ Route::group(['middleware'=>['professional']], function () {
 	Route::get('/professional', 'ProfessionalAppController@index')->name('professional.index');
 	Route::get('/professional/{name}', 'ProfessionalAppController@show')->name('professional.show');
 	Route::get('/team', 'TeamController@index')->name('team.index');
+	Route::post('/occupation', 'OccupationController@form')->name('form-occupation');
+	Route::get('/occupation-professional/{type}', 'OccupationController@occupationprofessional')->name('occupation-professional');
+	Route::post('/occupation-professional', 'OccupationController@formprofessional')->name('form-occupation-professional');
 
 });
