@@ -13,10 +13,13 @@ class Training extends Model
     use HasFactory;
 
     public function appointments(){
-        if($this->price == 0){
+        $today = new Carbon();
+        if($this->period == 'month'){
+            $from = $today->format('Y-m-d');
+            $to = $today->endOfMonth()->format('Y-m-d');
             return $this->hasMany(TrainAppointments::class)->orderby('date');
         }
-        $today = new Carbon();
+
         if($today->dayOfWeek == Carbon::THURSDAY){
 
         }

@@ -54,8 +54,11 @@
                                 @else
                                     <tr class="table-success">
                                 @endif
-                                    <td>{{$days_dias[date_format(date_create($appoinment->date), 'l')]}}
-                                    {{$appoinment->time}}</td>
+                                    <td>
+                                        {{$days_dias[date_format(date_create($appoinment->date), 'l')]}}
+                                        {{date_format(date_create($appoinment->date), 'd')}}
+                                        {{$appoinment->time}}
+                                    </td>
                                     <td>
                                         {{$appoinment->name}} con
                                         {{$appoinment->trainer()->name}}

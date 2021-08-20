@@ -150,6 +150,14 @@ class User extends Authenticatable
         }
     }
 
+    public function isTeamYou(){
+        if ($this->student != Null){
+            return True;
+        }else{
+            return False;
+        }
+    }
+
     public function userAvatar($request){
         $image = $request->file('image');
         $name = $image->hashName();

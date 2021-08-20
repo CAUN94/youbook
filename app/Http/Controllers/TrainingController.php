@@ -71,7 +71,15 @@ class TrainingController extends Controller
     }
 
     public function trainingnew(){
-        $trainings = Training::orderBy('name')->get();
+        $trainings = Training::orderBy('name')->where('type','!=','you')->get();
+        if (Auth::check()){
+          if(Auth::user()->isTeamYou()){
+            $trainings = Training::orderBy('name')->get();
+            }
+        }
+
+
+
         $trainings = $trainings->map(function ($item, $key) {
             $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
             $item->price = numfmt_format_currency($fmt, $item->price, "CLP");
