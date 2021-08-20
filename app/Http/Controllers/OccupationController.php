@@ -17,9 +17,9 @@ class OccupationController extends Controller
 
     public function occupation($type)
     {
-        // if(!auth::user()->isAdmin()){
-        //         abort(401);
-        // }
+        if(!auth::user()->isAdmin()){
+                abort(401);
+        }
         $action = new Action();
 
         if($type == "actual-month"){
@@ -60,7 +60,7 @@ class OccupationController extends Controller
             $title = "Mes Actual desde el ".$firstday->format('d-m-y');
         }
         else {
-            return redirect('/');
+            return redirect()->back();
         }
 
         $actions = $action->occupation($firstday,$lastday);
