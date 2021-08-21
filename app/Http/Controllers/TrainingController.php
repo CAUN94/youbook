@@ -117,7 +117,7 @@ class TrainingController extends Controller
             ]
         );
 
-        $training = Training::find($request->plan);
+        $training = Training::findorfail($request->plan);
         if ($training->price == 0){
             $settled = True;
         }
@@ -132,7 +132,7 @@ class TrainingController extends Controller
 
         $to_name = $user->name;
         $to_email = $user->email;
-        $training = Training::find($student->training_id);
+        $training = Training::findorfail($student->training_id);
         $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
         $price = numfmt_format_currency($fmt, $training->price, "CLP");
         $data = array('user'=> $user, 'info' => $training, 'price' => $price);
