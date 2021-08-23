@@ -17,7 +17,7 @@ class Training extends Model
         if($this->period == 'month'){
             $from = $today->format('Y-m-d');
             $to = $today->endOfMonth()->format('Y-m-d');
-            return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to])->orderby('date')->orderby('time', 'ASC');
+            return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to])->orderby('date')->orderby('time', 'desc');
         }
 
         if($today->dayOfWeek == Carbon::THURSDAY){
@@ -27,7 +27,7 @@ class Training extends Model
         $to = $today->endOfWeek()->format('Y-m-d');
 
 
-        return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to])->orderby('date')->orderby('time', 'ASC');;
+        return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to])->orderby('date')->orderby('time', 'desc');
     }
 
     public function hasAppointments(){
