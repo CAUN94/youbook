@@ -290,7 +290,23 @@ class TrainingController extends Controller
     public function coefficient($name)
     {
         $coff = [
+            'Alonso Niklitschek Sanhueza' => 0.6,
+            'César Moya Calderón' => 0.32,
+            'Daniella Vivallo Vera' => 0.45,
+            'Juan Manuel Guzmán Habinger' => 0.7,
+            'Iver Cristi Sánchez' => 0.6,
+            'Renata Barchiesi Vitali' => 0.6,
+            'Sofía Vitali Magasich' => 0.45,
+            'Carolina Avilés Espinoza' => 0.7,
+            'Mariano Neira Palomo' => 0.45,
+            'Sara Tarifeño Ramos' => 1,
+            'María Jesús Martinez León' => 0.45,
+            'Melissa Ross Guerra' => 0.55,
+            'Cristina Valenzuela ' => 0.42,
+            'Adolfo Lopez Macera' => 0.46,
+            'Diego Ignacio Contreras Briceño' => 0.7,
             'You Entrenamiento' => 1,
+            'Camila Valentini Rojas' => 0.45,
         ];
 
         return $coff[$name];
