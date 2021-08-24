@@ -237,7 +237,7 @@ class OccupationController extends Controller
         return $formateado;
     }
 
-    public function coefficient($name)
+    public function coefficient()
     {
         $coff = [
             'Alonso Niklitschek Sanhueza' => 0.6,
@@ -259,6 +259,6 @@ class OccupationController extends Controller
             'Camila Valentini Rojas' => 0.45,
         ];
 
-        return $coff[$name];
+        return $coff[auth::user()->medilinkname()];
     }
 }
