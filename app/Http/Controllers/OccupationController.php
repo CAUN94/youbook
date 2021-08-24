@@ -237,7 +237,7 @@ class OccupationController extends Controller
         return $formateado;
     }
 
-    public function coefficient()
+    public function coefficient($name)
     {
         $coff = [
             'Alonso Niklitschek Sanhueza' => 0.6,
