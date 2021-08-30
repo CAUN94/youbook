@@ -365,8 +365,8 @@
             <!-- End of Content Wrapper -->
 
         </div>
-    <!-- @elseif(auth::user()->hasrole('reception')) -->
-        @elseif(auth::user()->isAdmin())
+    @elseif(auth::user()->hasrole('reception'))
+        {{-- @elseif(auth::user()->isAdmin()) --}}
         <div id="wrapper">
 
             <!-- Sidebar -->

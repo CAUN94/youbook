@@ -103,7 +103,7 @@ class User extends Authenticatable
     }
 
     public function youApp(){
-        if (Auth::user()->hasAnyRole(['administrador','profesional'])){
+        if (Auth::user()->hasAnyRole(['administrador','profesional','reception'])){
             return True;
         }else{
             return False;
