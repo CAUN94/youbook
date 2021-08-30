@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class Patient
@@ -14,7 +15,7 @@ class Patient
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         if (auth::user()->hasRole('paciente') or auth::user()->hasRole('administrador')) {
             return $next($request);
