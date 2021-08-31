@@ -9,5 +9,5 @@ En caso de querer cambiar de plan sólo debes seleccionar la opción "desinscrib
 <br><br>
 En caso que no quieras continuar con un plan de entrenamiento por este mes te agradeceríamos que nos avisaras en https://yjb.cl/youphone.
 <br><br>
-Saludos y nos vemos en nuestra próxima clase,
+Saludos y nos vemos en nuestra próxima clase,<br>
 Team You Train Better
