@@ -36,6 +36,20 @@ class RedirectController extends Controller
 		return Redirect::away($url);
     }
 
+    public function whatsappform(Request $request) {
+    	$validated = $request->validate([
+	        'message' => 'required',
+	        'number' => 'required|min:8',
+	    ]);
+    	$data = $request->all();
+    	$number= substr($data['number'], -8);
+    	$data['message'] = $data['message']." ";
+    	$data['message'] = preg_replace('/\n+/', '%0A', $data['message']);
+    	$data['message'] = preg_replace('/\s+/', '%20', $data['message']);
+		$url = "https://api.whatsapp.com/send?phone=569".$number."&text=".$data['message'];
+		return Redirect::away($url);
+    }
+
     public function trainning() {
 		$url = "https://docs.google.com/forms/d/e/1FAIpQLScpUiedpwx-A20tpT_zVjineUTcGvpkHPpal7ztKekMTqP6TQ/viewform?usp=sf_link";
 		return Redirect::away($url);

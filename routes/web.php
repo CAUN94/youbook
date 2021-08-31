@@ -40,6 +40,7 @@ Route::get('/solicitud-desarrollo','RedirectController@development');
 Route::get('/solicitud-comunicaciones','RedirectController@communications');
 Route::get('/solicitud-administracion','RedirectController@administration');
 Route::get('/youphone','RedirectController@whatsapp');
+Route::post('/youphone_whatsapp','RedirectController@whatsappform');
 Route::get('/entrenamiento','RedirectController@trainning');
 Route::get('/aranceles','RedirectController@arancel');
 Route::get('/pago','RedirectController@pay');

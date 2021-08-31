@@ -45,13 +45,24 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Escribir Mensaje</h6><small>En construcción</small>
+                    <h6 class="m-0 font-weight-bold text-primary">Escribir Mensaje</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                     <!-- Estimad@ Nombre de Paciente: -->
-                    <div class="chart-pie pt-4 pb-2">
-                        <textarea class="form-control" id="message" rows="8"></textarea>
+                    <div class="pt-2 pb-2">
+                        <form target="_blank" action="{{url('/youphone_whatsapp')}}" method="POST">
+                            @csrf('POST')
+                            <div class="mb-2">
+                                <input type="number" class="form-control" name="number" placeholder="Whatsapp" required="">
+                            </div>
+                            <div class="mb-2">
+                                <textarea class="form-control" name="message" rows="8">Hola</textarea>
+                            </div>
+                            <div class="mb">
+                                <input class="btn btn-primary btn-block" type="submit" value="Send">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
