@@ -140,6 +140,8 @@ class TrainingController extends Controller
         try{
            Mail::send('emails.trainuser', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email,$to_name)
+            ->bcc('clinica@justbetter.cl')
+            ->bcc('you@justbetter.cl')
             ->subject('You Registro de Plan');
             $message->from('desarrollo@justbetter.cl','Registro de Plan');
             });
@@ -152,10 +154,11 @@ class TrainingController extends Controller
         $to_email = 'cristobalugarte6@gmail.com';
 
         try{
-           Mail::send('emails.admintrain', $data, function($message) use ($to_name, $to_email) {
+           Mail::send('emails.adminuserpay', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
             ->bcc('clinica@justbetter.cl')
-            ->subject('Nuevo Registro');
+            ->bcc('you@justbetter.cl')
+            ->subject('Nuevo Registro '.$to_name);
             $message->from('desarrollo@justbetter.cl','Registro Entrenamiento');
             });
 
@@ -234,7 +237,7 @@ class TrainingController extends Controller
            Mail::send('emails.admintrain', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
             ->bcc('clinica@justbetter.cl')
-            ->subject("Nuevo Registro");
+            ->subject('Nuevo Registro '.$to_name);
             $message->from('desarrollo@justbetter.cl','Registro Entrenamiento');
             });
 

@@ -45,20 +45,26 @@
                                       @csrf
                                       @method('PUT')
                                             @if($student->isSettled())
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                                <button type="submit" class="btn btn-sm btn-block btn-danger" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                                     No Pagado
                                             @else
-                                                <button type="submit" class="btn btn-success" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                                <button type="submit" class="btn btn-sm btn-block btn-success" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                                 Pagado
                                             @endif
                                         </button>
                                     </form>
 
 
+                                    <a class="btn btn-sm btn-block btn-warning  mt-2" type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')" href="{{ url('/reminder', ['id' => $student->id])}}">
+                                        Recordar Pago
+                                    </a>
+
+
+
                                     <form  method="POST" action="{{ url('/students', ['id' => $student->id])}}">
                                       @csrf
                                       @method('DELETE')
-                                        <button class="btn btn-secondary  mt-2" type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                        <button class="btn btn-sm btn-block btn-secondary  mt-2" type="submit" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                             Eliminar
                                         </button>
                                     </form>

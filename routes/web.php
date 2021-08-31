@@ -104,6 +104,7 @@ Route::group(['middleware'=>['auth','trainer']], function(){
 	Route::get('/classes_today/{id}','AdminTrainingController@classes_today')->name('admin.training.today');
 	Route::get('/students','AdminTrainingController@students')->name('admin.training.students');
 	Route::get('/train_toogle/{student_id}/{book_id}','AdminTrainingController@toggleStatus')->name('admin.training.toogle');
+	Route::get('/reminder/{id}', 'StudentController@reminder');
 	Route::delete('/students/{id}', 'StudentController@destroy');
 	Route::put('/studentsSettled/{id}', 'StudentController@settled');
 });

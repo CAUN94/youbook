@@ -99,8 +99,51 @@ class StudentController extends Controller
             }catch(\Exception $e){
             }
         }
+        else {
+            $user = User::find($id);
+            $to_name = $user->name;
+            $to_email = $user->email;
+            $training = Training::find($student->training_id);
+            $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+            $price = numfmt_format_currency($fmt, $training->price, "CLP");
+            $data = array('user'=> $user, 'info' => $training, 'price' => $price);
+
+            try{
+               Mail::send('emails.reminderduser', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email,$to_name)
+                ->subject('You Train Better');
+                $message->from('desarrollo@justbetter.cl','Recordatorio de Pago');
+                });
+
+            }catch(\Exception $e){
+            }
+        }
 
         $student->save();
+        return redirect()->back();
+    }
+
+    public function reminder($id)
+    {
+        $student = Student::where('user_id',$id)->first();
+        $user = User::find($id);
+        $to_name = $user->name;
+        $to_email = $user->email;
+        $training = Training::find($student->training_id);
+        $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+        $price = numfmt_format_currency($fmt, $training->price, "CLP");
+        $data = array('user'=> $user, 'info' => $training, 'price' => $price);
+
+        try{
+           Mail::send('emails.reminderduser', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email,$to_name)
+            ->subject('You Train Better');
+            $message->from('desarrollo@justbetter.cl','Recordatorio de Pago');
+            });
+
+        }catch(\Exception $e){
+        }
+
         return redirect()->back();
     }
 

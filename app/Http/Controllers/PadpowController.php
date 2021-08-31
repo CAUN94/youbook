@@ -15,18 +15,17 @@ class PadpowController extends Controller
             return back();
         }
         $data = [
-                    'id' => '139-19-08-21',
+                    'id' => $this->code(Auth::user()),
                     'type' => 'Plan de Entrenamiento',
                     'attributes' => [
                         'amount_cents' => Auth::user()->plan()->price,
-                        // 'amount_cents' => 1000,
                         'work' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                         'detail' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
-                        'reference_code' =>'139-19-08-21'
+                        'reference_code' =>$this->code(Auth::user())
                     ]
                 ];
          $links = [
-            'return_url' => config('app.url', 'http://localhost').'padpow/'.'139-19-08-21'.'/return_url'
+            'return_url' => config('app.url', 'http://localhost').'padpow/'.$this->code(Auth::user()).'/return_url'
             ];
 
 
@@ -65,7 +64,6 @@ class PadpowController extends Controller
             'type' => 'Plan de Entrenamiento',
             'attributes' => [
                     'amount_cents' => Auth::user()->plan()->price,
-                    'amount_cents' => 1000,
                     'work' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                     'detail' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                     'reference_code' => $code
@@ -92,6 +90,17 @@ class PadpowController extends Controller
         if ($pay['data']['attributes']['aasm_state'] == 'paying'){
             Auth::user()->student->settled = 1;
             Auth::user()->student->save();
+            try{
+               Mail::send('emails.adminuserpay', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)
+                ->bcc('clinica@justbetter.cl')
+                ->bcc('you@justbetter.cl')
+                ->subject('Nuevo Pago '.$to_name);
+                $message->from('desarrollo@justbetter.cl','Pago Entrenamiento');
+                });
+
+            }catch(\Exception $e){
+            }
         }
 
         return redirect('/training');
@@ -105,6 +114,5 @@ class PadpowController extends Controller
         array_push($code, date('m'));
         array_push($code, date('y'));
         return implode($code,'-');
-        return $user;
     }
 }
