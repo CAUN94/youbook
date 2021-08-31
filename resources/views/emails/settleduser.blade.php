@@ -6,5 +6,5 @@ Hola <strong>{{ $user->name }}</strong>,
 	Para revisarlo entra al siguiente link https://yjb.cl/training
 	<br><br>
 	saludos,<br>
-	Team You Train Better
+	Team You, Train Better
 </p>
