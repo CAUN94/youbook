@@ -7,7 +7,7 @@ Se viene un nuevo mes de entrenamiento, por lo que te recordamos que renueves tu
 Tu plan actual es {{$info->name}} con un valor de {{$price}}.
 En caso de querer cambiar de plan sólo debes seleccionar la opción "desinscribir" y seleccionar un nuevo plan.
 <br><br>
-En caso que no quieras continuar con un plan de entrenamiento por este mes te agradeceríamos que nos avisaras en https://yjb.cl/phone.
+En caso que no quieras continuar con un plan de entrenamiento por este mes te agradeceríamos que nos avisaras en https://yjb.cl/youphone.
 <br><br>
 Saludos y nos vemos en nuestra próxima clase,
 Team You Train Better
