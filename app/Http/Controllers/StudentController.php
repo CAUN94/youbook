@@ -133,6 +133,7 @@ class StudentController extends Controller
         $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
         $price = numfmt_format_currency($fmt, $training->price, "CLP");
         $data = array('user'=> $user, 'info' => $training, 'price' => $price);
+        return $data;
 
         try{
            Mail::send('emails.reminderduser', $data, function($message) use ($to_name, $to_email) {
