@@ -44,4 +44,13 @@ class AdminTrainingController extends Controller
         return redirect()->back();
 
     }
+
+    public function toggleClassStatus($id)
+    {
+        $train = TrainAppointments::find($id);
+        $train->status = ! $train->status;
+        $train->save();
+        return redirect()->back();
+
+    }
 }

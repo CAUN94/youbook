@@ -5,7 +5,17 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Clase: {{$training->name}}  {{$days_dias[date_format(date_create($training->date), 'l')]}}  {{$training->hour}} {{$students->count()}} Alumnos</h3>
+                    <h4 class="d-flex justify-content-between align-items-center">Clase: {{$training->training->name}} {{$training->name}}  {{$days_dias[date_format(date_create($training->date), 'l')]}}  {{$training->hour}} {{$students->count()}} Alumnos
+                      <div>
+                        Estado:
+                        @if($training->status == 1)
+                          <a class="btn btn-sm btn-primary"  href="{{route('class.training.toogle',['id' => $training->id])}}">Realizada</a>
+                        @else
+                           <a class="btn btn-sm btn-primary" href="{{route('class.training.toogle',['id' => $training->id])}}">No Realizada</a>
+                        @endif
+                      </div>
+
+                    </h4>
                  </div>
                 <div class="card-body">
                     <table class="table table-striped">
