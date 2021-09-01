@@ -55,4 +55,14 @@ class Training extends Model
         $formateado = "$ ".strrev($tmp);
         return $formateado;
     }
+
+    public function planPrice(){
+
+
+            if ($this->type == 'duo'){
+                return $this->price/2;
+            }
+
+            return $this->price;
+    }
 }

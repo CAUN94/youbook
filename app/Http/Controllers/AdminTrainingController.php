@@ -13,7 +13,7 @@ class AdminTrainingController extends Controller
 {
     public function students(){
         $students_id = Student::all('user_id')->pluck('user_id')->toArray();
-        $students = User::whereIn('id', $students_id)->get();
+        $students = User::whereIn('id', $students_id)->orderBy('name')->get();
 
         return view('admin.training.students',compact('students'));
     }

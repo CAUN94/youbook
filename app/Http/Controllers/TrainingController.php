@@ -118,7 +118,7 @@ class TrainingController extends Controller
         );
 
         $training = Training::findorfail($request->plan);
-        if ($training->price == 0){
+        if ($training->planPrice() == 0){
             $settled = True;
         }
         else{
@@ -134,7 +134,7 @@ class TrainingController extends Controller
         $to_email = $user->email;
         $training = Training::findorfail($student->training_id);
         $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-        $price = numfmt_format_currency($fmt, $training->price, "CLP");
+        $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
         $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
         try{
@@ -201,7 +201,7 @@ class TrainingController extends Controller
             'plan' => ['required','nullable'],
         ]);
         $training = Training::find($request->plan);
-        if ($training->price == 0){
+        if ($training->planPrice() == 0){
             $settled = True;
         }
         else{
@@ -217,7 +217,7 @@ class TrainingController extends Controller
         $to_email = Auth::user()->email;
         $training = Training::find($student->training_id);
         $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-        $price = numfmt_format_currency($fmt, $training->price, "CLP");
+        $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
         $data = array('user'=> Auth::user(), 'info' => $training, 'price' => $price);
 
         try{

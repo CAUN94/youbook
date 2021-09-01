@@ -148,7 +148,7 @@
                               <td>{{$training->name}}</td>
                               <td>{{$training->time_in_minutes}} min</td>
                               <td>{{$training->format}}</td>
-                              <td>{{$training->price}}</td>
+                              <td>{{$training->planPrice()}}</td>
                           </tr>
                       @endforeach
                     </table>

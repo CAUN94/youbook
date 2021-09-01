@@ -86,7 +86,7 @@ class StudentController extends Controller
             $to_email = $user->email;
             $training = Training::find($student->training_id);
             $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-            $price = numfmt_format_currency($fmt, $training->price, "CLP");
+            $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
             $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
             try{
@@ -105,7 +105,7 @@ class StudentController extends Controller
             $to_email = $user->email;
             $training = Training::find($student->training_id);
             $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-            $price = numfmt_format_currency($fmt, $training->price, "CLP");
+            $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
             $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
             try{
@@ -131,7 +131,7 @@ class StudentController extends Controller
         $to_email = $user->email;
         $training = Training::find($student->training_id);
         $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-        $price = numfmt_format_currency($fmt, $training->price, "CLP");
+        $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
         $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
         try{
