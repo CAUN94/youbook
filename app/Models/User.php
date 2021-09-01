@@ -94,6 +94,16 @@ class User extends Authenticatable
         return Training::find($this->student->training_id);
     }
 
+    public function planPrice(){
+        $plan = $this->plan();
+
+        if ($plan->type == 'duo'){
+            return $plan->price/2;
+        }
+
+        return $plan->price;
+    }
+
     public function dashboard(){
         if (Auth::user()->hasAnyRole(['administrador','entrenador'])){
             return True;

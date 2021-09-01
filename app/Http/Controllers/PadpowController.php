@@ -18,7 +18,7 @@ class PadpowController extends Controller
                     'id' => $this->code(Auth::user()),
                     'type' => 'Plan de Entrenamiento',
                     'attributes' => [
-                        'amount_cents' => Auth::user()->plan()->price,
+                        'amount_cents' => Auth::user()->planPrice(),
                         'work' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                         'detail' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                         'reference_code' =>$this->code(Auth::user())
@@ -63,7 +63,7 @@ class PadpowController extends Controller
             'id' => $code,
             'type' => 'Plan de Entrenamiento',
             'attributes' => [
-                    'amount_cents' => Auth::user()->plan()->price,
+                    'amount_cents' => Auth::user()->planPrice(),
                     'work' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                     'detail' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                     'reference_code' => $code
