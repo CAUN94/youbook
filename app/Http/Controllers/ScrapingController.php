@@ -28,7 +28,7 @@ class ScrapingController extends Controller
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
 		$form = $crawler->selectButton('Ingresar')->form();
-		$form->setValues(['rut' => 'admin', 'password' => 'Omnium123']);
+		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos/reporte/citas');
 		$array = $crawler->text();
@@ -79,7 +79,7 @@ class ScrapingController extends Controller
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
 		$form = $crawler->selectButton('Ingresar')->form();
-		$form->setValues(['rut' => 'admin', 'password' => 'Omnium123']);
+		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
 		$first = strval(Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d'));
@@ -132,7 +132,7 @@ class ScrapingController extends Controller
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
 		$form = $crawler->selectButton('Ingresar')->form();
-		$form->setValues(['rut' => 'admin', 'password' => 'Omnium123']);
+		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
 		$url = "https://youjustbetter.softwaremedilink.com/reportesdinamicos/reporte/resumen_tratamientos_saldos";
@@ -175,7 +175,7 @@ class ScrapingController extends Controller
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
 		$form = $crawler->selectButton('Ingresar')->form();
-		$form->setValues(['rut' => 'admin', 'password' => 'Omnium123']);
+		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
 		$url = "https://youjustbetter.softwaremedilink.com/reportesdinamicos/reporte/pagos_pacientes";

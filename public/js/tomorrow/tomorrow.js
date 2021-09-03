@@ -12,18 +12,25 @@ pacientes.forEach(function (paciente) {
         precio = precio.replace(/\s/g,'%20')
         phone = "569"+ paciente['Celular'].substr(paciente['Celular'].length - 8);
         mail = "<a href=mailto:"+paciente['Mail']+">"+paciente['Mail']+"</a>"
-        texto = 'Hola '+paciente['Nombre_paciente']+'! Te recordamos que tienes atención mañana con '+profesional+' a las '+hora+' hrs.'
+        var d = new Date(paciente['Fecha']);
+        var dayName = d.toString().split(' ')[0];
+        if ( dayName == 'Mon'){
+            texto = 'Hola '+paciente['Nombre_paciente']+'! Te recordamos que tienes atención el lunes con '+profesional+' a las '+hora+' hrs.'
+        } else {
+            texto = 'Hola '+paciente['Nombre_paciente']+'! Te recordamos que tienes atención mañana con '+profesional+' a las '+hora+' hrs.'
+        }
+
 
         if(paciente['TotalAtencion']!=0){
             texto += '--No olvides pagar antes de tu atención en el siguiente link http://yjb.cl/pago. El monto a pagar es de '+precio
         }
 
-        if ((paciente['TotalAtencion'] == 40000 || paciente['TotalAtencion'] == 35000 || paciente['TotalAtencion'] == 35000*80/100 || paciente['TotalAtencion'] == 45000*80/100) && paciente['Profesional'] == "Melissa Ross Guerra"){
-            texto += "%0A%0ALa%20Nutricionista%20Melissa%20solicita%20llenar%20la%20siguiente%20encuesta%20para%20facilitar%20el%20proceso:%0Ahttps://docs.google.com/forms/d/1mp5OTanOpuyFlWvzInIW3oM5pnxUz8kbWoaNAsDlXWY/edit?usp=sharing"
+        if (paciente['Profesional'] == "Melissa Ross Guerra"){
+            texto += '--Traer short y petos, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'
         }
-
-        texto += '--Adjuntamos documento que se solicita en comisaria virtual para obtención de salvoconducto.%0Ahttp://justbetter.cl/youapp/public/pdf/'+nr
-        texto += '--Trae ropa cómoda, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'
+        else {
+            texto += '--Trae ropa cómoda, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'
+        }
 
         texto = texto.replace(/\--/g,'%0A%0A')
         texto = texto.replace(/\s/g,'%20')
