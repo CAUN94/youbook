@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registrarme') }}</div>
+                <div class="card-header">{{ __('Ingresar') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="rut" class="col-md-4 col-form-label text-md-right">{{ __('Rut') }}</label>
+                            <label for="rut" class="col-md-4 col-form-label text-md-right">{{ __('Rut con Guión') }}</label>
 
                             <div class="col-md-6">
                                 <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" autocomplete="rut" autofocus>
