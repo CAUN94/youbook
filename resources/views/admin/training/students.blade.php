@@ -20,8 +20,7 @@
                             <th>Nombre </th>
                             <th class="nosort">Foto</th>
                             <th>Email</th>
-                            <th>Celular</th>
-                            <th>Dirección</th>
+                            <th>Plan</th>
                             <th class="nosort">&nbsp;</th>
                             <th class="nosort">&nbsp;</th>
                         </tr>
@@ -36,19 +35,19 @@
                                 <td><img width="60" height="60" src="{{asset('/img/logo-basic-naranjo.png')}}" class="thumb1" alt=""></td>
                             @endif
                             <td>{{$student->email}}</td>
-                            <td>{{$student->phone}}</td>
-                            <td>{{$student->address}}</td>
+                            <td>{{$student->plan()['name']}}</td>
                             <td>
                                 <div class="table-actions">
-
+                                    <a href="#" data-toggle="modal" class="btn btn-sm btn-block btn-primary" data-target="#Modal{{$student->id}}">Ver Más</a>
+                                    @include('admin.training.modal')
                                     <form class="d-inline" method="POST" action="{{ url('/studentsSettled', ['id' => $student->id])}}">
                                       @csrf
                                       @method('PUT')
                                             @if($student->isSettled())
-                                                <button type="submit" class="btn btn-sm btn-block btn-danger" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                                <button type="submit" class="mt-2 btn btn-sm btn-block btn-danger" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                                     No Pagado
                                             @else
-                                                <button type="submit" class="btn btn-sm btn-block btn-success" onclick="return confirm('Seguro? Piensa que haria la Dani')">
+                                                <button type="submit" class="mt-2 btn btn-sm btn-block btn-success" onclick="return confirm('Seguro? Piensa que haria la Dani')">
                                                 Pagado
                                             @endif
                                         </button>

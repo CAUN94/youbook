@@ -70,9 +70,15 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request,$id)
     {
-
+        $user = User::find($id);
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->discount = $request->discount;
+        $user->save();
+        return redirect('/students');
     }
 
     public function settled($id)
@@ -85,8 +91,7 @@ class StudentController extends Controller
             $to_name = $user->name;
             $to_email = $user->email;
             $training = Training::find($student->training_id);
-            $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-            $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
+            $price = $user->planPrice();
             $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
             try{
@@ -104,8 +109,8 @@ class StudentController extends Controller
             $to_name = $user->name;
             $to_email = $user->email;
             $training = Training::find($student->training_id);
-            $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-            $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
+            $price = $user->planPrice();
+            $price = $user->planPrice();
             $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
             try{
@@ -130,8 +135,7 @@ class StudentController extends Controller
         $to_name = $user->name;
         $to_email = $user->email;
         $training = Training::find($student->training_id);
-        $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-        $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
+        $price = $user->planPrice();
         $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
         try{

@@ -96,12 +96,10 @@ class User extends Authenticatable
 
     public function planPrice(){
         $plan = $this->plan();
+        $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+        $price = numfmt_format_currency($fmt, $plan['price']*(1 - ($this->discount/100)), "CLP");
 
-        if ($plan->type == 'duo'){
-            return $plan->price/2;
-        }
-
-        return $plan->price;
+        return $price;
     }
 
     public function dashboard(){
@@ -174,7 +172,6 @@ class User extends Authenticatable
         $destination = public_path('/img/professionals/');
         $image->move($destination,$name);
         return $name;
-
     }
 
     public function Calendar() {
@@ -201,7 +198,4 @@ class User extends Authenticatable
         }
         return 'logo-basic-naranjo.png';
     }
-
-
-
 }

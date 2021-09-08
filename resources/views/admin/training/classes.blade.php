@@ -27,12 +27,13 @@
                           <th scope="col">Email</th>
                           <th scope="col">Telefono</th>
                           <th scope="col">Genero</th>
+                          <th scope="col">Acciones</th>
                           <th scope="col">Estado</th>
                         </tr>
                       </thead>
                       <tbody>
                         @forelse($students as $key => $student)
-                        @if($student->classesStatus($id)->status == 1)
+                        @if($student->classesStatus($id)->status == 0)
                           <tr class="table-warning">
                         @else
                           <tr class="table-success">
@@ -49,14 +50,14 @@
                           <td>{{$student->gender}}</td>
                           <td>
                               @if($student->classesStatus($id)->status == 1)
-                              <a href="{{route('admin.training.toogle',['student_id' => $student->id, 'book_id' => $id])}}"><button class="btn btn-primary"> No Asistio</button></a>
+                              <a href="{{route('admin.training.toogle',['student_id' => $student->id, 'book_id' => $id])}}"><button class="btn btn-primary"> Asistio</button></a>
                               @else
-                               <a href="{{route('admin.training.toogle',['student_id' => $student->id, 'book_id' => $id])}}"><button class="btn btn-primary"> Asistio</button></a>
+                               <a href="{{route('admin.training.toogle',['student_id' => $student->id, 'book_id' => $id])}}"><button class="btn btn-primary"> No Asistio</button></a>
                               @endif
                           </td>
                         </tr>
                         @empty
-                        <td>No Hay Horas</td>
+                        <td>No Hay Reservas</td>
                         @endforelse
 
                       </tbody>

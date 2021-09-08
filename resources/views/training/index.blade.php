@@ -10,7 +10,7 @@
                     <p class="card-text">Hola {{Auth::user()->name}},</p>
                     <p>Tu plan es {{$training->name}} {{$training->format}}</p>
                     <p>{{$training->description}}</p>
-                    @if($training_user->settled or $training->planPrice() == 0)
+                    @if($training_user->settled or $training->price == 0)
                         <a href="#" class="badge badge-success">Pagado</a>
                     @else
                         <a href="{{url('/padpow')}}" class="badge badge-danger">Por Pagar</a>
@@ -20,7 +20,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="getid" value="{{ Auth::user()->id }}">
-                        <span class="badge badge-secondary"><button type="submit">Desinscribirme</button></span>
+                        <span class="badge badge-secondary"><button type="submit" onclick="return confirm('Seguro?')">Cambiarme de Plan</button></span>
                     </form>
                 </div>
             </div>

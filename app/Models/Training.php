@@ -14,11 +14,11 @@ class Training extends Model
 
     public function appointments(){
         $today = new Carbon();
-        if($this->period == 'month'){
-            $from = $today->format('Y-m-d');
-            $to = $today->endOfMonth()->format('Y-m-d');
-            return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to])->orderby('date')->orderby('time', 'desc');
-        }
+
+        $from = $today->format('Y-m-d');
+        $to = $today->endOfMonth()->format('Y-m-d');
+        return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to])->orderby('date')->orderby('time', 'desc');
+
 
         if($today->dayOfWeek == Carbon::THURSDAY){
 
@@ -41,7 +41,7 @@ class Training extends Model
     }
 
     public function monedaPrice(){
-        $numero = $this->price;
+        $numero = $$this->price*(1 - ($this->discount/100));
         $numero = (string)$numero;
         $puntos = floor((strlen($numero)-1)/3);
         $tmp = "";
@@ -57,12 +57,10 @@ class Training extends Model
     }
 
     public function planPrice(){
-
-
             if ($this->type == 'duo'){
-                return $this->price/2;
+                return ($this->price*(1 - ($this->discount/100)))/2;
             }
 
-            return $this->price;
+            return $this->price*(1 - ($this->discount/100));
     }
 }

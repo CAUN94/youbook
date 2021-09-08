@@ -71,10 +71,13 @@ class TrainingController extends Controller
     }
 
     public function trainingnew(){
+
         $trainings = Training::orderBy('name')->where('type','!=','you')->get();
+        if(Auth::user()->isStudent()){
+            return redirect('/training');
+        }
         if (Auth::check()){
           if(Auth::user()->isTeamYou()){
-
             $trainings = Training::orderBy('name')->get();
             }
         }
@@ -118,7 +121,7 @@ class TrainingController extends Controller
         );
 
         $training = Training::findorfail($request->plan);
-        if ($training->planPrice() == 0){
+        if ($training->price == 0){
             $settled = True;
         }
         else{
@@ -133,8 +136,7 @@ class TrainingController extends Controller
         $to_name = $user->name;
         $to_email = $user->email;
         $training = Training::findorfail($student->training_id);
-        $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-        $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
+        $price = $user->planPrice();
         $data = array('user'=> $user, 'info' => $training, 'price' => $price);
 
         try{
@@ -179,6 +181,9 @@ class TrainingController extends Controller
     }
 
     public function traininguser(){
+        if(Auth::user()->isStudent()){
+            return redirect('/training');
+        }
         $trainings = Training::orderBy('name')->where('type','!=','you')->get();
         if (Auth::check()){
           if(Auth::user()->isTeamYou()){
@@ -201,7 +206,7 @@ class TrainingController extends Controller
             'plan' => ['required','nullable'],
         ]);
         $training = Training::find($request->plan);
-        if ($training->planPrice() == 0){
+        if ($training->price == 0){
             $settled = True;
         }
         else{
@@ -216,8 +221,7 @@ class TrainingController extends Controller
         $to_name = Auth::user()->name;
         $to_email = Auth::user()->email;
         $training = Training::find($student->training_id);
-        $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
-        $price = numfmt_format_currency($fmt, $training->planPrice(), "CLP");
+        $price = $user->planPrice();
         $data = array('user'=> Auth::user(), 'info' => $training, 'price' => $price);
 
         try{

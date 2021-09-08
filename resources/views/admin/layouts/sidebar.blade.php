@@ -88,10 +88,25 @@
                     </a>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
+                            <a href="{{route('admin.training.students')}}" class="collapse-item"><span>Alumnos</span></a>
+                            <hr>
                             @foreach(App\Models\TrainAppointments::where('date',date('Y-m-d'))->get() as $class)
                              <a href="{{route('admin.training.today',['id' => $class->id])}}" class="collapse-item"><span>{{$class->name}} {{$class->time}}</span></a>
                             @endforeach
-                            <a href="{{route('admin.training.students')}}" class="collapse-item"><span>Alumnos</span></a>
+                        </div>
+                    </div>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                        aria-expanded="true" aria-controls="collapseFive">
+                        <i class="fas fa-users"></i>
+                        <span>Planes y Calendario</span>
+                    </a>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a href="{{route('admin.training.students')}}" class="collapse-item"><span></span>Planes</a>
+                            <hr>
+                            @foreach(App\Models\TrainAppointments::where('date',date('Y-m-d'))->get() as $class)
+                             <a href="{{route('admin.training.today',['id' => $class->id])}}" class="collapse-item"><span>{{$class->name}} {{$class->time}}</span></a>
+                            @endforeach
                         </div>
                     </div>
                 </li>
