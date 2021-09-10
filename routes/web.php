@@ -99,6 +99,8 @@ Route::group(['middleware'=>['auth','professional']], function(){
 	Route::post('/record','RecordController@store')->name('record');
 	Route::get('/record/{userId}/{date}','RecordController@show')->name('record.show');
 	Route::get('/recorded-patients','RecordController@patientsFromRecord')->name('record.patients');
+
+	Route::resource('/classes', 'ClassesController');
 });
 
 Route::group(['middleware'=>['auth','trainer']], function(){

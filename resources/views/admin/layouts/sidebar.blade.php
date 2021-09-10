@@ -102,11 +102,8 @@
                     </a>
                     <div id="collapseFive" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a href="{{route('admin.training.students')}}" class="collapse-item"><span></span>Planes</a>
-                            <hr>
-                            @foreach(App\Models\TrainAppointments::where('date',date('Y-m-d'))->get() as $class)
-                             <a href="{{route('admin.training.today',['id' => $class->id])}}" class="collapse-item"><span>{{$class->name}} {{$class->time}}</span></a>
-                            @endforeach
+                            <a href="{{url('/classes')}}" class="collapse-item"><span></span>Planes</a>
+                            {{-- <hr> --}}
                         </div>
                     </div>
                 </li>

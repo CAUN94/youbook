@@ -221,7 +221,7 @@ class TrainingController extends Controller
         $to_name = Auth::user()->name;
         $to_email = Auth::user()->email;
         $training = Training::find($student->training_id);
-        $price = $user->planPrice();
+        $price = Auth::user()->planPrice();
         $data = array('user'=> Auth::user(), 'info' => $training, 'price' => $price);
 
         try{
