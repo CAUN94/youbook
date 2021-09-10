@@ -2378,33 +2378,33 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
+  color: white !important;
   background-color: var(--orange);
   border-color: var(--orange);
 }
 
 .btn-primary:hover {
-  color: #fff;
+  color: white !important;
   background-color: var(--orangedark);
   border-color: var(--orangedark);
 }
 
 .btn-primary:focus, .btn-primary.focus {
-  color: #fff;
+  color: white !important;
   background-color: var(--orangedark);
   border-color: var(--orangedark);
   box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
-  color: #fff;
+  color: white !important;
   background-color: var(--orange);
   border-color: var(--orange);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  color: #fff;
+  color: white !important;
   background-color: var(--orangedark);
   border-color: #244ec9;
 }
@@ -6406,6 +6406,7 @@ a.close.disabled {
 
 .bg-primary {
   background-color: var(--orange) !important;
+  color: white !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -9846,7 +9847,7 @@ a:focus {
 }
 
 .scroll-to-top:focus, .scroll-to-top:hover {
-  color: white;
+  color: white !important;
 }
 
 .scroll-to-top:hover {

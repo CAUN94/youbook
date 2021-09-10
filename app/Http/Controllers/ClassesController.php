@@ -15,7 +15,7 @@ class ClassesController extends Controller
     public function index()
     {
         $plans = Training::where('id','>',0)->orderby('name')->orderby('format')->get();
-        return view('admin.classes.index');
+        return view('admin.classes.index',compact('plans'));
     }
 
     /**
