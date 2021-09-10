@@ -18,7 +18,7 @@ class PadpowController extends Controller
                     'id' => $this->code(Auth::user()),
                     'type' => 'Plan de Entrenamiento',
                     'attributes' => [
-                        'amount_cents' => Auth::user()->plan()->planPrice(),
+                        'amount_cents' => Auth::user()->planPricenr(),
                         'work' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                         'detail' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                         'reference_code' =>$this->code(Auth::user())
@@ -27,7 +27,6 @@ class PadpowController extends Controller
          $links = [
             'return_url' => config('app.url', 'http://localhost').'padpow/'.$this->code(Auth::user()).'/return_url'
             ];
-
 
         $url = 'https://nimrod.avispa.work/api/v1/charges';
         $client = new Client();
@@ -63,7 +62,7 @@ class PadpowController extends Controller
             'id' => $code,
             'type' => 'Plan de Entrenamiento',
             'attributes' => [
-                    'amount_cents' => Auth::user()->planPrice(),
+                    'amount_cents' =>  Auth::user()->planPricenr(),
                     'work' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                     'detail' => Auth::user()->plan()->name.' '.Auth::user()->plan()->format,
                     'reference_code' => $code

@@ -102,6 +102,13 @@ class User extends Authenticatable
         return $price;
     }
 
+    public function planPricenr(){
+        $plan = $this->plan();
+        $price = intval($plan['price']*(1 - ($this->discount/100)));
+
+        return $price;
+    }
+
     public function dashboard(){
         if (Auth::user()->hasAnyRole(['administrador','entrenador'])){
             return True;
