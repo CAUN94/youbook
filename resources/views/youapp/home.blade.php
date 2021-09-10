@@ -4,7 +4,7 @@
 @section('content')
 @section('container')
 <div class="container-fluid">
-    @if(Auth::user()->isAdmin())
+    @if(Auth::user()->isAdmin() or auth::user()->hasrole('reception'))
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard You</h1>
     </div>

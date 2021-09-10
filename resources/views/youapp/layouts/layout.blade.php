@@ -392,10 +392,17 @@
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
+
+
                 <!-- Heading -->
                 <div class="sidebar-heading">
                     Paneles
                 </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/dashboard') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
