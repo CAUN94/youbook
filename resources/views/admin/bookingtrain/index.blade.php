@@ -8,46 +8,55 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Planes</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Clases agendadas</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="accordion accordion-flush border" id="accordionPanelsStayOpenExample">
-                        @foreach($bookings as $book)
+                        @foreach($trainAppointments as $trainAppointment)
                         <div class="accordion-item ">
                             <h2 class="accordion-header" id="flush-headingOne">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#code{{$book->id}}" aria-expanded="false" aria-controls="code{{$book->id}}">
-                                {{$book->train_appointment()->name}} &nbsp
-                                {{$book->train_appointment()->date}} &nbsp
-                                {{$book->train_appointment()->time}} &nbsp
-                                {{$book->train_appointment()->training()->name}} &nbsp
-                                {{$book->train_appointment()->training()->format}} &nbsp
-                                @if($book->train_appointment()->status == 1)
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#code{{$trainAppointment->id}}" aria-expanded="false" aria-controls="code{{$trainAppointment->id}}">
+                                {{$trainAppointment->name}} &nbsp
+                                {{$trainAppointment->date}} &nbsp
+                                {{$trainAppointment->time}} &nbsp
+                                {{$trainAppointment->training()->name}} &nbsp
+                                {{$trainAppointment->training()->format}} &nbsp
+                                @if($trainAppointment->status == 1)
                                     <span class="badge bg-success">Realizada</span>
                                 @else
                                     <span class="badge bg-danger">No Realizada</span>
                                 @endif
                               </button>
                             </h2>
-                            <div id="code{{$book->id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div id="code{{$trainAppointment->id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                               <div class="accordion-body">
                                 <h5 class="card-title">
-                                    {{$book->train_appointment()->name}}
-                                    {{$book->train_appointment()->trainer()->name}}
-                                    {{$book->train_appointment()->trainer()->lastnames}}
+                                    {{$trainAppointment->name}}
+                                    {{$trainAppointment->trainer()->name}}
+                                    {{$trainAppointment->trainer()->lastnames}}
                                 </h5>
 
                                 <p>Estado:
-                                @if($book->train_appointment()->status == 1)
-                                  <a class="btn btn-sm btn-primary"  href="{{route('class.training.toogle',['id' => $book->train_appointment()->id])}}">Realizada</a>
+                                @if($trainAppointment->status == 1)
+                                  <a class="btn btn-sm btn-primary"  href="{{route('class.training.toogle',['id' => $trainAppointment->id])}}">Realizada</a>
                                 @else
-                                   <a class="btn btn-sm btn-primary" href="{{route('class.training.toogle',['id' => $book->train_appointment()->id])}}">No Realizada</a>
+                                   <a class="btn btn-sm btn-primary" href="{{route('class.training.toogle',['id' => $trainAppointment->id])}}">No Realizada</a>
                                 @endif
                                 </p>
-                                Estudiante registrados: {{$book->studentcount()}}
+                                Estudiante registrados: {{$trainAppointment->bookscount()}}
                                 <ul class="list-group">
-                                @foreach($book->student() as $student)
-                                    <li class="list-group-item">{{$student->name}} {{$student->lastnames}}</li>
+                                @foreach($trainAppointment->books() as $book)
+                                    <li class="list-group-item">
+                                        {{$book->student()['id']}}
+                                        {{$book->student()['lastnames']}}
+                                        {{$book->id}}
+                                        @if($book->status == 1)
+                                            <a href="{{route("admin.training.toogleid",["id" => $book->id])}}"><button class="badge bg-success"> Asistio</button></a>
+                                          @else
+                                            <a href="{{route("admin.training.toogleid",["id" => $book->id])}}"><button class="badge bg-danger"> No Asistio</button></a>
+                                          @endif
+                                    </li>
                                 @endforeach
                                 </ul>
 

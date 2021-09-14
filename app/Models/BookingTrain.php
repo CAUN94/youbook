@@ -17,7 +17,7 @@ class BookingTrain extends Model
     }
 
     public function student(){
-        return $this->hasmany(User::class,'id','user_id')->get();
+        return $this->belongsTo(User::class,'user_id','id')->first();
     }
 
     public function studentcount(){

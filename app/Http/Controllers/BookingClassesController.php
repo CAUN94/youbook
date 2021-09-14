@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\BookingTrain;
+use App\Models\TrainAppointments;
 use Illuminate\Http\Request;
 
 class BookingClassesController extends Controller
@@ -14,8 +16,8 @@ class BookingClassesController extends Controller
      */
     public function index()
     {
-        $bookings = BookingTrain::orderBy('id', 'DESC')->get();
-        return view('admin.bookingtrain.index',compact('bookings'));
+        $trainAppointments = TrainAppointments::orderBy('date', 'DESC')->get();
+        return view('admin.bookingtrain.index',compact('trainAppointments'));
     }
 
     /**

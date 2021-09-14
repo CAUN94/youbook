@@ -109,6 +109,8 @@ Route::group(['middleware'=>['auth','trainer']], function(){
 	Route::get('/classes_today/{id}','AdminTrainingController@classes_today')->name('admin.training.today');
 	Route::get('/students','AdminTrainingController@students')->name('admin.training.students');
 	Route::get('/train_toogle/{student_id}/{book_id}','AdminTrainingController@toggleStatus')->name('admin.training.toogle');
+	Route::get('/train_toogleid/{id}','AdminTrainingController@toggleStatusid')->name('admin.training.toogleid');
+
 	Route::get('/class_toogle/{id}','AdminTrainingController@toggleClassStatus')->name('class.training.toogle');
 	Route::get('/reminder/{id}', 'StudentController@reminder');
 	Route::put('/student/{id}', 'StudentController@update');
