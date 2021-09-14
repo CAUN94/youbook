@@ -26,7 +26,7 @@ pacientes.forEach(function (paciente) {
         }
 
         if (paciente['Profesional'] == "Melissa Ross Guerra"){
-            texto += '--Traer short y petos, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'
+            texto += '--Traer short y peto, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'
         }
         else {
             texto += '--Trae ropa cómoda, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'

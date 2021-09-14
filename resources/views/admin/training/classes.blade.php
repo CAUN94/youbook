@@ -27,7 +27,6 @@
                           <th scope="col">Email</th>
                           <th scope="col">Telefono</th>
                           <th scope="col">Genero</th>
-                          <th scope="col">Acciones</th>
                           <th scope="col">Estado</th>
                         </tr>
                       </thead>

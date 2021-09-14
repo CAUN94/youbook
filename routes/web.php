@@ -101,6 +101,8 @@ Route::group(['middleware'=>['auth','professional']], function(){
 	Route::get('/recorded-patients','RecordController@patientsFromRecord')->name('record.patients');
 
 	Route::resource('/classes', 'ClassesController');
+	Route::resource('/booking', 'BookingClassesController');
+
 });
 
 Route::group(['middleware'=>['auth','trainer']], function(){

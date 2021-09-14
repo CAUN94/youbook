@@ -12,17 +12,50 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <ol class="list-group list-group-numbered">
-                    @foreach($plans as $plan)
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">{{$plan->name}} <strong>{{$plan->format}}</strong></div>
-                        Descripción: {{$plan->description}}
-                      </div>
-                      <span class="badge bg-primary rounded-pill">{{$plan->hasStudents()}}</span>
-                    </li>
-                    @endforeach
-                  </ol>
+                    <div class="accordion" id="accordionFlushExample">
+                        @foreach($plans as $plan)
+                        <div class="accordion-item ">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$plan->id}}" aria-expanded="false" aria-controls="collapse{{$plan->id}}">
+                                {{$plan->name}}<strong>&nbsp
+                                {{$plan->format}}</strong>&nbsp
+                                <span class="badge bg-primary rounded-pill">Estudiantes: {{$plan->hasStudents()}}</span>
+                              </button>
+                            </h2>
+                            <div id="collapse{{$plan->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$plan->id}}" data-bs-parent="#accordionExample">
+                              <div class="accordion-body">
+                               <p>Description: {{$plan->description}}</p>
+                               <p>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidth{{$plan->id}}" aria-expanded="false" aria-controls="collapseWidth{{$plan->id}}">
+                                    Clases del Mes
+                                </button>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidth{{$plan->id}}" aria-expanded="false" aria-controls="collapseWidth{{$plan->id}}">
+                                    Crear Nueva Clase
+                                </button>
+                                </p>
+                                <div>
+                                  <div class="collapse collapse-horizontal" id="collapseWidth{{$plan->id}}">
+                                    <div class="card card-body" style="width: 800px;">
+                                        <ul class="list-group">
+                                            @foreach($plan->monthAppointments() as $appointment)
+                                                <li class="list-group-item">
+                                                    {{$appointment->name}}
+                                                    {{$appointment->date}}
+                                                    {{$appointment->time}}
+                                                    {{$appointment->trainer()->name}}
+                                                    {{$appointment->trainer()->lastnames}}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

@@ -102,7 +102,8 @@
                     </a>
                     <div id="collapseFive" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a href="{{url('/classes')}}" class="collapse-item"><span></span>Planes</a>
+                            <a href="{{url('/classes')}}" class="collapse-item"><span>Planes</span></a>
+                            <a href="{{url('/booking')}}" class="collapse-item"><span>Resumen Clases del Mes</span></a>
                             {{-- <hr> --}}
                         </div>
                     </div>

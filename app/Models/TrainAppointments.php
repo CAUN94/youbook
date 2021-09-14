@@ -14,8 +14,14 @@ class TrainAppointments extends Model
     protected $table = 'train_appointments';
 
     public function training(){
-        return $this->belongsTo(Training::class);
+        return $this->belongsTo(Training::class)->first();
     }
+
+    // public function (){
+
+    // }
+
+
 
     public function status(){
         if (count(BookingTrain::where('user_id',Auth::user()->id)->where('train_appointment_id',$this->id)->get()) >0){
