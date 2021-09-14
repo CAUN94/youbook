@@ -48,9 +48,8 @@
                                 <ul class="list-group">
                                 @foreach($trainAppointment->books() as $book)
                                     <li class="list-group-item">
-                                        {{$book->student()['id']}}
+                                        {{$book->student()['name']}}
                                         {{$book->student()['lastnames']}}
-                                        {{$book->id}}
                                         @if($book->status == 1)
                                             <a href="{{route("admin.training.toogleid",["id" => $book->id])}}"><button class="badge bg-success"> Asistio</button></a>
                                           @else
