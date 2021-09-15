@@ -38,6 +38,15 @@ class BookingClassesController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'training_id' => 'required',
+            'name' => 'required',
+            'places' => 'required',
+            'status' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'trainer_id' => 'required'
+        ]);
         $trainAppointment = new TrainAppointments([
             'training_id' => $request->plan,
             'name' => $request->class,

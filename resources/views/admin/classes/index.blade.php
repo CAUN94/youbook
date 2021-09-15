@@ -67,7 +67,7 @@
 
                                           <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Entrenador</label>
-                                            <select class="form-select" name="train" aria-label="Default select example">
+                                            <select class="form-select" name="train" aria-label="Default select example" required>>
                                               <option selected>Entrenador</option>
                                               @foreach(App\Models\User::alltrainers() as $trainer)
                                                 <option value="{{$trainer->id}}">
@@ -79,7 +79,7 @@
                                           </div>
                                           <div class="col-md-6">
                                             <label for="validationCustom01" class="form-label">Clase</label>
-                                            <select class="form-select" name="class" aria-label="Default select example">
+                                            <select class="form-select" name="class" aria-label="Default select example" required>>
                                               <option selected>Clase</option>
                                               @foreach(App\Models\ TrainAppointments::all()->unique('name') as $class)
                                                 <option value="{{$class->name}}">
