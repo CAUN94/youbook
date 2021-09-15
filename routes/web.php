@@ -99,10 +99,6 @@ Route::group(['middleware'=>['auth','professional']], function(){
 	Route::post('/record','RecordController@store')->name('record');
 	Route::get('/record/{userId}/{date}','RecordController@show')->name('record.show');
 	Route::get('/recorded-patients','RecordController@patientsFromRecord')->name('record.patients');
-
-	Route::resource('/classes', 'ClassesController');
-	Route::resource('/booking', 'BookingClassesController');
-
 });
 
 Route::group(['middleware'=>['auth','trainer']], function(){
@@ -116,6 +112,9 @@ Route::group(['middleware'=>['auth','trainer']], function(){
 	Route::put('/student/{id}', 'StudentController@update');
 	Route::delete('/students/{id}', 'StudentController@destroy');
 	Route::put('/studentsSettled/{id}', 'StudentController@settled');
+	Route::resource('/classes', 'ClassesController');
+	Route::resource('/booking', 'BookingClassesController');
+
 });
 
 

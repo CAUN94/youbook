@@ -38,7 +38,17 @@ class BookingClassesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $trainAppointment = new TrainAppointments([
+            'training_id' => $request->plan,
+            'name' => $request->class,
+            'places' => 20,
+            'status' => 0,
+            'date' => $request->date,
+            'time' => $request->time,
+            'trainer_id' => $request->train
+        ]);
+        $trainAppointment->save();
+        return redirect()->back();
     }
 
     /**
@@ -83,6 +93,9 @@ class BookingClassesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $trainAppointment = TrainAppointments::find($id);
+        $trainAppointment->delete();
+        BookingTrain::where('train_appointment_id',$id)->delete();
+        return redirect()->back();
     }
 }

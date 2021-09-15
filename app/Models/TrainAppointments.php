@@ -13,6 +13,8 @@ class TrainAppointments extends Model
     use HasFactory;
     protected $table = 'train_appointments';
 
+    protected $guarded = [];
+
     public function training(){
         return $this->belongsTo(Training::class)->first();
     }

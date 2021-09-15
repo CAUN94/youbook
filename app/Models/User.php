@@ -56,6 +56,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function allTrainers(){
+        $users = User::all();
+
+        $users = $users->filter(function($user)
+        {
+            return $user->isTrainer();
+        });
+
+
+        return $users;
+    }
+
+
+
     public function role(){
         return $this->belongsToMany(Role::class)->first();
     }

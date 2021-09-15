@@ -35,7 +35,7 @@ class BookingTrainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
