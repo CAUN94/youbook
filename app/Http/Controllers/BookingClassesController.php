@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\BookingTrain;
 use App\Models\TrainAppointments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class BookingClassesController extends Controller
 {
@@ -39,14 +41,12 @@ class BookingClassesController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'training_id' => 'required',
-            'name' => 'required',
-            'places' => 'required',
-            'status' => 'required',
-            'date' => 'required',
-            'time' => 'required',
-            'trainer_id' => 'required'
-        ]);
+            'plan' => 'required',
+            'class' => "required|not_in:'null'",
+            'date' => 'required|not_in:null',
+            'time' => 'required|not_in:null',
+            'train' => "required|not_in:'null'"
+        ])->validate();
         $trainAppointment = new TrainAppointments([
             'training_id' => $request->plan,
             'name' => $request->class,
