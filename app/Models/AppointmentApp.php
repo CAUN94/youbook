@@ -27,7 +27,7 @@ class AppointmentApp extends Model
     public static function tomorrow_appoiments()
     {
         $tomorrow = Carbon::tomorrow();
-        if ($tomorrow->format('l') == 'Saturday'){
+        if ($tomorrow->format('l') == 'Saturday' or $tomorrow->format('l') == 'Friday'){
             $monday = $tomorrow->copy()->addDays(2);
 
             return DB::select( DB::raw("select a.id,a.Profesional , a.Tratamiento_Nr, Estado,Nombre_paciente,Apellidos_paciente,Celular,Hora_inicio,TotalAtencion+Avance as TotalAtencion,Mail,Fecha from appointment_apps as a join treatments

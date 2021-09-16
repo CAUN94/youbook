@@ -47,6 +47,7 @@ class BookingClassesController extends Controller
             'time' => 'required|not_in:null',
             'train' => "required|not_in:'null'"
         ])->validate();
+
         $trainAppointment = new TrainAppointments([
             'training_id' => $request->plan,
             'name' => $request->class,
