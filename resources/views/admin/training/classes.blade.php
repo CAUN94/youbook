@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="d-flex justify-content-between align-items-center">Clase: {{$training->training->name}} {{$training->name}}  {{$days_dias[date_format(date_create($training->date), 'l')]}}  {{$training->hour}} {{$students->count()}} Alumnos
+                    <h4 class="d-flex justify-content-between align-items-center">Clase: {{$training->training()->name}} {{$training->name}}  {{$days_dias[date_format(date_create($training->date), 'l')]}}  {{$training->hour}} {{$students->count()}} Alumnos
                       <div>
                         Estado:
                         @if($training->status == 1)
