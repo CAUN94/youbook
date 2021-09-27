@@ -43,16 +43,16 @@ class PadpowController extends Controller
 
         $pay = json_decode($response->getBody(), true);
         // return $pay;
-        // if ($pay['data']['attributes']['aasm_state'] == 'paying'
-        //     and !Auth::user()->isSettled()){
-        //     Auth::user()->student->settled = 1;
-        //     Auth::user()->student->save();
-        //     return redirect()->back();
-        // }
+        if ($pay['data']['attributes']['aasm_state'] == 'paying'
+            and !Auth::user()->isSettled()){
+            Auth::user()->student->settled = 1;
+            Auth::user()->student->save();
+            return redirect()->back();
+        }
 
-        // if ($pay['data']['attributes']['aasm_state'] == 'paying'){
-        //     return redirect()->back();
-        // }
+        if ($pay['data']['attributes']['aasm_state'] == 'paying'){
+            return redirect()->back();
+        }
         return  redirect()->away($pay['data']['attributes']['url']);
     }
 
@@ -107,7 +107,7 @@ class PadpowController extends Controller
 
     public function code($user){
         $code = []; //user-plan-month-year
-        array_push($code, 'y-j-b');
+        array_push($code, 'yjb');
         array_push($code, $user->id);
         array_push($code, $user->student->training_id);
         array_push($code, date('m'));
