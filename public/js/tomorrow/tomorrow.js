@@ -20,17 +20,21 @@ pacientes.forEach(function (paciente) {
             texto = 'Hola '+paciente['Nombre_paciente']+'! Te recordamos que tienes atención mañana con '+profesional+' a las '+hora+' hrs.'
         }
 
+        texto += ' *Favor confirmar tu asistencia respondiendo este mensaje*'
+
 
         if(paciente['TotalAtencion']!=0){
-            texto += '--No olvides pagar antes de tu atención en el siguiente link http://yjb.cl/pago. El monto a pagar es de '+precio
+            texto += '--Te recordamos que puedes pagar tu atención en el siguiente link http://yjb.cl/pago. El monto a pagar es de '+precio
         }
 
         if (paciente['Profesional'] == "Melissa Ross Guerra"){
-            texto += '--Traer short y peto, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'
+            texto += '--Traer short y/o peto'
         }
         else {
-            texto += '--Trae ropa cómoda, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'
+            texto += '--Trae ropa cómoda'
         }
+
+        texto += ', estamos en San pascual 736, Las Condes. Contamos con estacionamiento afuera del local.'
 
         texto = texto.replace(/\--/g,'%0A%0A')
         texto = texto.replace(/\s/g,'%20')

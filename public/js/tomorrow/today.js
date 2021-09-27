@@ -14,16 +14,21 @@ pacientes.forEach(function (paciente) {
         mail = "<a href=mailto:"+paciente['Mail']+">"+paciente['Mail']+"</a>"
         texto = 'Hola '+paciente['Nombre_paciente']+'! Te recordamos que tienes atención hoy con '+profesional+' a las '+hora+' hrs.'
 
+        texto += ' *Favor confirmar tu asistencia respondiendo este mensaje*'
+
+
         if(paciente['TotalAtencion']!=0){
-            texto += '--No olvides pagar antes de tu atención en el siguiente link http://yjb.cl/pago. El monto a pagar es de '+precio
+            texto += '--Te recordamos que puedes pagar tu atención en el siguiente link http://yjb.cl/pago. El monto a pagar es de '+precio
         }
 
-        if ((paciente['TotalAtencion'] == 40000 || paciente['TotalAtencion'] == 35000 || paciente['TotalAtencion'] == 35000*80/100 || paciente['TotalAtencion'] == 45000*80/100) && paciente['Profesional'] == "Melissa Ross Guerra"){
-            texto += "%0A%0ALa%20Nutricionista%20Melissa%20solicita%20llenar%20la%20siguiente%20encuesta%20para%20facilitar%20el%20proceso:%0Ahttps://docs.google.com/forms/d/1mp5OTanOpuyFlWvzInIW3oM5pnxUz8kbWoaNAsDlXWY/edit?usp=sharing"
+        if (paciente['Profesional'] == "Melissa Ross Guerra"){
+            texto += '--Traer short y/o peto'
+        }
+        else {
+            texto += '--Trae ropa cómoda'
         }
 
-        texto += '--Adjuntamos documento que se solicita en comisaria virtual para obtención de salvoconducto.--http://justbetter.cl/youapp/public/pdf/'+nr
-        texto += '--Trae ropa cómoda, estamos en San pascual 736, Las Condes--Avisar en caso de haber presentado algún síntoma en los últimos 14 días'
+        texto += ', estamos en San pascual 736, Las Condes. Contamos con estacionamiento afuera del local.'
 
         texto = texto.replace(/\--/g,'%0A%0A')
         texto = texto.replace(/\s/g,'%20')

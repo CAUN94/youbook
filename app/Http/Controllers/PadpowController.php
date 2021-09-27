@@ -45,8 +45,8 @@ class PadpowController extends Controller
         // return $pay;
         if ($pay['data']['attributes']['aasm_state'] == 'paying'
             and !Auth::user()->isSettled()){
-            Auth::user()->student->settled = 1;
-            Auth::user()->student->save();
+            // Auth::user()->student->settled = 1;
+            // Auth::user()->student->save();
             return redirect()->back();
         }
 
