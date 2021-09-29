@@ -114,6 +114,8 @@ Route::group(['middleware'=>['auth','trainer']], function(){
 	Route::put('/studentsSettled/{id}', 'StudentController@settled');
 	Route::resource('/classes', 'ClassesController');
 	Route::resource('/booking', 'BookingClassesController');
+	Route::post('/manybookings', 'BookingClassesController@multistore');
+
 
 });
 

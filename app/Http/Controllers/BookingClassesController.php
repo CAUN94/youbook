@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookingTrain;
 use App\Models\TrainAppointments;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -58,6 +59,38 @@ class BookingClassesController extends Controller
             'trainer_id' => $request->train
         ]);
         $trainAppointment->save();
+        return redirect()->back();
+    }
+
+    public function multistore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'plan' => 'required',
+            'class' => "required|not_in:'null'",
+            'iteration' => "required|not_in:null",
+            'date' => 'required|not_in:null',
+            'time' => 'required|not_in:null',
+            'train' => "required|not_in:'null'"
+        ])->validate();
+
+        $date = Carbon::createFromFormat('Y-m-d', $request->date);
+        for ($i=0; $i < $request->iteration; $i++) {
+
+            $trainAppointment = new TrainAppointments([
+                'training_id' => $request->plan,
+                'name' => $request->class,
+                'places' => 20,
+                'status' => 0,
+                'date' => $date->format('Y-m-d'),
+                'time' => $request->time,
+                'trainer_id' => $request->train
+            ]);
+
+            $trainAppointment->save();
+            $date = $date->addWeeks(1);
+        }
+
+
         return redirect()->back();
     }
 

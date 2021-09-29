@@ -122,7 +122,59 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-
+                    <form action="{{url('/manybookings')}}" method="POST" class="row g-3 needs-validation" novalidate>
+                        @csrf
+                        <div class="col-md-12">
+                            <label for="validationCustom05" class="form-label">Plan</label>
+                            <select class="form-select" name="plan" aria-label="Default select example" required>
+                              <option value='null' selected>Plan</option>
+                              @foreach(App\Models\Training::where('id','>',0)->orderby('name')->orderby('format')->get() as $plan)
+                                <option value="{{$plan->id}}">
+                                    {{$plan->name}}
+                                    {{$plan->format}}
+                                </option>
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label  class="form-label">Semanas</label>
+                            <input type="number" class="form-control" name="iteration"  placeholder="Cantidad de Semanas" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="validationCustom01" class="form-label">Entrenador</label>
+                            <select class="form-select" name="train" aria-label="Default select example" required>
+                              <option value='null' selected>Entrenador</option>
+                              @foreach(App\Models\User::alltrainers() as $trainer)
+                                <option value="{{$trainer->id}}">
+                                    {{$trainer->name}}
+                                    {{$trainer->lastnames}}
+                                </option>
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="validationCustom01" class="form-label">Clase</label>
+                            <select class="form-select" name="class" aria-label="Default select example" required>
+                              <option value='null' selected>Clase</option>
+                              @foreach(App\Models\ TrainAppointments::all()->unique('name') as $class)
+                                <option value="{{$class->name}}">
+                                    {{$class->name}}
+                                </option>
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="validationCustom02" class="form-label">Fecha</label>
+                            <input type="date" name="date" class="form-control" id="validationCustom02"  required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="validationCustom02" class="form-label">Hora</label>
+                            <input type="time" name="time" class="form-control" id="validationCustom02"  required>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Cargar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
