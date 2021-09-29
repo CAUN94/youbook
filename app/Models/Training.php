@@ -32,7 +32,7 @@ class Training extends Model
 
     public function hasAppointments(){
         $from = Carbon::now()->startOfMonth()->format('Y-m-d');
-        $to = Carbon::now()->endOfMonth()->format('Y-m-d');
+        $to = Carbon::now()->endOfMonth()->addWeeks(1)->format('Y-m-d');
         return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to]);
     }
 
