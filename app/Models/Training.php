@@ -38,7 +38,7 @@ class Training extends Model
 
     public function monthAppointments(){
         $from = Carbon::now()->subMonth()->startOfMonth()->format('Y-m-d');
-        $to = Carbon::now()->endOfMonth()->format('Y-m-d');
+        $to = Carbon::now()->endOfMonth()->addWeeks(1)->format('Y-m-d');
         return $this->hasMany(TrainAppointments::class)->whereBetween('date', [$from, $to])
             ->orderby('date','desc')->get();
     }

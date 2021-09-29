@@ -122,7 +122,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    {{-- <form action="{{url('/manybookings')}}" method="POST" class="row g-3 needs-validation" novalidate>
+                    <form action="{{url('/manybookings')}}" method="POST" class="row g-3 needs-validation" novalidate>
                         @csrf
                         <div class="col-md-12">
                             <label for="validationCustom05" class="form-label">Plan</label>
@@ -174,7 +174,7 @@
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Cargar</button>
                         </div>
-                    </form> --}}
+                    </form>
                 </div>
             </div>
         </div>
