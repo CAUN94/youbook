@@ -121,7 +121,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-10 mx-auto mt-4 mb-10s">
+      <div class="col-12 col-lg-10 mx-auto mt-4 mb-10">
         <div class="d-grid gap-2 d-block d-md-flex justify-content-md-end">
           <button type="submit" class="btn btn-primary btn-lg" style="background-color: #f2715a; border: #f2715a;" >Enviar</button>
         </div>
