@@ -32,7 +32,9 @@ Route::post('/training-register_new','TrainingController@create_training_new')->
 Route::post('/training-register_user','TrainingController@create_training_user')->name('training-register-user');
 Route::get('/new-appoinment/{professionalId}/{date}','FrontendController@show')->name('create.appointment');
 
-Route::get('/encuesta','PollController@create'); //polls/create
+Route::get('/encuesta','PollsController@create'); //polls/create
+Route::post('/encuesta','PollsController@store');
+Route::get('/success','PollsController@success');
 
 Auth::routes();
 
