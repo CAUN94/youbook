@@ -40,6 +40,7 @@ class PollsController extends Controller
             'satisfaction' => $request->satisfaction,
             'experience' => $request->experience,
             'friend' => $request->friend,
+            'comment' => $request->comment
         ]);
 
         return redirect('/success');
