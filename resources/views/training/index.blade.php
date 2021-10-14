@@ -16,7 +16,7 @@
                     @if($training_user->settled or $training->price == 0)
                         <a href="#" class="badge badge-success">Pagado</a>
                     @else
-                        <a href="{{url('/pagos')}}" class="badge badge-danger">Por Pagar</a>
+                        <a href="{{url('/pago')}}" class="badge badge-danger">Por Pagar</a>
                     @endif
                     {{-- <a href="#" class="badge badge-info">Cambiar Plan</a> --}}
                     <form class="d-inline" method="post" action="/training">
