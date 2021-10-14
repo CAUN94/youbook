@@ -11,7 +11,7 @@
                     <p>Tu plan es {{$training->name}} {{$training->format}}</p>
                     <p>{{$training->description}}</p>
                     @if(!$training_user->settled)
-                        <p>El costo es de <strong>{{$training->price}}</strong></p>
+                        <p>El costo es de <strong>{{$price}}</strong></p>
                     @endif
                     @if($training_user->settled or $training->price == 0)
                         <a href="#" class="badge badge-success">Pagado</a>
