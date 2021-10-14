@@ -22,6 +22,8 @@ class TrainingController extends Controller
         $training_user = Auth::user()->student;
         $training_id  = $training_user->training_id;
         $training = Training::find($training_id);
+        $fmt = numfmt_create('es_CL', \NumberFormatter::CURRENCY);
+        $price = numfmt_format_currency($fmt, $training->price, "CLP");
         $days_dias = array(
             'Monday'=>'Lunes',
             'Tuesday'=>'Martes',
@@ -31,7 +33,7 @@ class TrainingController extends Controller
             'Saturday'=>'Sábado',
             'Sunday'=>'Domingo'
             );
-        return view('/training/index',compact('training','training_user','days_dias'));
+        return view('/training/index',compact('training','training_user','days_dias','price'));
     }
 
     public function delete(Request $request){
