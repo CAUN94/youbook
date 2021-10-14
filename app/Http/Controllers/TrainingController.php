@@ -74,7 +74,7 @@ class TrainingController extends Controller
 
     public function trainingnew(){
 
-        $trainings = Training::orderBy('name')->where('type','!=','you')->get();
+        $trainings = Training::orderBy('name')->where('type','<>','you')->get();
         if (Auth::check()){
           if(Auth::user()->isStudent()){
             return redirect('/training');
@@ -189,7 +189,7 @@ class TrainingController extends Controller
         if(Auth::user()->isStudent()){
             return redirect('/training');
         }
-        $trainings = Training::orderBy('name')->where('type','!=','you')->get();
+        $trainings = Training::orderBy('name')->where('type','<>','you')->get();
         if (Auth::check()){
           if(Auth::user()->isTeamYou()){
 
