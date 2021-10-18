@@ -35,6 +35,7 @@ class ScrapingController extends Controller
 
 		$array = substr($array,2,-2);
 		$split = explode('},{', $array);
+		// return $split;
 
 		$date = Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d');
 
@@ -92,6 +93,7 @@ class ScrapingController extends Controller
 
 		$array = substr($array,2,-2);
 		$split = explode('},{', $array);
+		return $split;
 		foreach ($split as $string)
 		{
 			$jsonobj = "{".$string."}";

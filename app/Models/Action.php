@@ -18,13 +18,13 @@ class Action extends Model
     public static function occupation_summary($firstday,$lastday)
     {
         $sql = "select  Query.Pro as Profesional,count(Query.T) as Atenciones,";
-        $sql .= "count(CASE when C <> 'Sin Convenio' and C <> 'Embajador' and C <> 'Pro Bono' THEN 1 END) as Convenio,";
-        $sql .= "count(CASE when C = 'Sin Convenio' THEN 1 END) as Sin_Convenio,";
-        $sql .= "count(CASE when C = 'Embajador' or C = 'Pro Bono' THEN 1 END) as Embajador,";
-        $sql .= "sum(PP) as Prestación, sum(A) as Abono";
-        $sql .= "from (";
-        $sql .= "select Profesional as Pro,Tratamiento_Nr as T, sum(Precio_Prestacion) as PP, sum(Abonoo) as A, Convenio as C, concat(Nombre,' ',Apellido) as P, Estado as E from actions where Fecha_Realizacion <= '".$lastday."' and Fecha_Realizacion >= '".$firstday."' and Profesional not like 'Internos You' group by Profesional,Tratamiento_Nr) as Query";
-        $sql .= "group by Query.Pro";
+        $sql .= " count(CASE when C <> 'Sin Convenio' and C <> 'Embajador' and C <> 'Pro Bono' THEN 1 END) as Convenio,";
+        $sql .= " count(CASE when C = 'Sin Convenio' THEN 1 END) as Sin_Convenio,";
+        $sql .= " count(CASE when C = 'Embajador' or C = 'Pro Bono' THEN 1 END) as Embajador,";
+        $sql .= " sum(PP) as Prestación, sum(A) as Abono";
+        $sql .= " from (";
+        $sql .= " select Profesional as Pro,Tratamiento_Nr as T, sum(Precio_Prestacion) as PP, sum(Abonoo) as A, Convenio as C, concat(Nombre,' ',Apellido) as P, Estado as E from actions where Fecha_Realizacion <= '".$lastday."' and Fecha_Realizacion >= '".$firstday."' and Profesional not like 'Internos You' group by Profesional,Tratamiento_Nr) as Query";
+        $sql .= " group by Query.Pro";
 
         return DB::select( DB::raw($sql) );
     }
