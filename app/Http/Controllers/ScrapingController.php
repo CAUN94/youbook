@@ -84,16 +84,16 @@ class ScrapingController extends Controller
 		$crawler = $client->submit($form);
 
 		$first = strval(Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d'));
-		$last = strval(Carbon::create(null, null, null)->addMonth()->format('Y-m-d'));
+		$last = strval(Carbon::create(null, null, null)->addMonth()->addMonth()->format('Y-m-d'));
 		$url = "https://youjustbetter.softwaremedilink.com/reportesdinamicos/reporte/listado_acciones?filters%5Bsucursal%5D%5Bstatus%5D=activated&filters%5Bsucursal%5D%5Bvalue%5D=1&filters%5Bfecha_inicio%5D%5Bstatus%5D=activated&filters%5Bfecha_inicio%5D%5Bvalue%5D=".$first."&filters%5Bfecha_fin%5D%5Bstatus%5D=activated&filters%5Bfecha_fin%5D%5Bvalue%5D=".$last."";
 		$crawler = $client->request('GET', $url);
 		$array = $crawler->text();
 
-		$date = Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d');
+		$date = Carbon::create(null, null, null)->subMonth()->format('Y-m-d');
 
 		$array = substr($array,2,-2);
 		$split = explode('},{', $array);
-		return $split;
+
 		foreach ($split as $string)
 		{
 			$jsonobj = "{".$string."}";
