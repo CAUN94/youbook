@@ -49,48 +49,46 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    @if($training_user->settled)
-                        <table class="table table-hover table-striped table-borderless ">
-                            @foreach($training->appointments as $appoinment)
-                                @if($appoinment->status() == 0)
-                                    <tr>
-                                @else
-                                    <tr class="table-success">
-                                @endif
-                                    <td>
-                                        {{$days_dias[date_format(date_create($appoinment->date), 'l')]}}
-                                        {{date_format(date_create($appoinment->date), 'd')}}
-                                        {{$appoinment->time}}
-                                    </td>
-                                    <td>
-                                        {{$appoinment->name}} con
-                                        {{$appoinment->trainer()->name}}
-                                        {{$appoinment->trainer()->lastnames}}
-                                    </td>
-                                    <td>
 
-                                            @csrf
+                    <table class="table table-hover table-striped table-borderless ">
+                        @foreach($training->appointments as $appoinment)
+                            @if($appoinment->status() == 0)
+                                <tr>
+                            @else
+                                <tr class="table-success">
+                            @endif
+                                <td>
+                                    {{$days_dias[date_format(date_create($appoinment->date), 'l')]}}
+                                    {{date_format(date_create($appoinment->date), 'd')}}
+                                    {{$appoinment->time}}
+                                </td>
+                                <td>
+                                    {{$appoinment->name}} con
+                                    {{$appoinment->trainer()->name}}
+                                    {{$appoinment->trainer()->lastnames}}
+                                </td>
+                                <td>
 
-                                            <span class="badge badge-secondary">
-                                                @if($appoinment->status() == 0)
-                                                    <form action="{{route('booking.train')}}" method="post">@csrf
-                                                    <input type="hidden" name="getid" value="{{ $appoinment->id }}">
-                                                    <input type="submit" style="color:#fff;" value="Reservar">
-                                                @else
-                                                    <form action="{{route('delete.booking.train')}}" method="post">
-                                                    @csrf @method('DELETE')
-                                                    <input type="hidden" name="getid" value="{{ $appoinment->id }}">
-                                                    <input type="submit" style="color:#fff;" value="Cancelar">
-                                                @endif
-                                            </span>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    @else
-                        Pago Pendiente
-                    @endif
+                                        @csrf
+
+                                        <span class="badge badge-secondary">
+                                            @if($appoinment->status() == 0)
+                                                <form action="{{route('booking.train')}}" method="post">@csrf
+                                                <input type="hidden" name="getid" value="{{ $appoinment->id }}">
+                                                <input type="submit" style="color:#fff;" value="Reservar">
+                                            @else
+                                                <form action="{{route('delete.booking.train')}}" method="post">
+                                                @csrf @method('DELETE')
+                                                <input type="hidden" name="getid" value="{{ $appoinment->id }}">
+                                                <input type="submit" style="color:#fff;" value="Cancelar">
+                                            @endif
+                                        </span>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+
                 </div>
             </div>
 
