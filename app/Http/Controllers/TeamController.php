@@ -40,12 +40,13 @@ class TeamController extends Controller
 
             $summarys[] = $summary;
             $names[] = $profesional->name;
+            $medilinknames[] = $profesional->medilinkname;
             $goals[] = $goal;
             $percentages[] = $percentage;
             $remunerations[] = $remuneration;
 
         }
-        return view('youapp.team.index',compact('summarys','names','goals','percentages','remunerations'));
+        return view('youapp.team.index',compact('summarys','names','medilinknames','goals','percentages','remunerations'));
     }
 
     public function summary($actions)

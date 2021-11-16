@@ -57,3 +57,66 @@ var Categorias = new Chart(ctx, {
     cutoutPercentage: 80,
   },
 });
+
+// Kams
+
+var labels = kams.reduce((acc, cur) => {
+  acc = acc.concat(cur[0]);
+  return acc
+
+}, []);
+
+
+var data = kams.reduce((acc, cur) => {
+  acc = acc.concat(cur[1]);
+  return acc
+
+}, []);
+
+background = []
+var r = 241
+for (var i = 0; i < kams.length; i++) {
+  background.push("rgb("+r+", 112, 89)")
+  r -= 30
+}
+
+backgroundH = []
+var r = 241
+var g = 112
+for (var i = 0; i < kams.length; i++) {
+  backgroundH.push("rgb("+r+", "+g+", 89)")
+  r -= 30
+  g += 10
+}
+
+
+var ctx = document.getElementById("Kams");
+var Kams = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: labels,
+    datasets: [{
+      data: data,
+      backgroundColor: background ,
+      hoverBackgroundColor: backgroundH,
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false,
+    },
+    cutoutPercentage: 80,
+  },
+});

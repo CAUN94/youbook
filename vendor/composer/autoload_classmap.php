@@ -65,6 +65,7 @@ return array(
     'App\\Models\\AppointmentApp' => $baseDir . '/app/Models/AppointmentApp.php',
     'App\\Models\\Booking' => $baseDir . '/app/Models/Booking.php',
     'App\\Models\\BookingTrain' => $baseDir . '/app/Models/BookingTrain.php',
+    'App\\Models\\Kam' => $baseDir . '/app/Models/Kam.php',
     'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
     'App\\Models\\Poll' => $baseDir . '/app/Models/Poll.php',
     'App\\Models\\Record' => $baseDir . '/app/Models/Record.php',

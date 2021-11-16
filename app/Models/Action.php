@@ -29,6 +29,10 @@ class Action extends Model
         return DB::select( DB::raw($sql) );
     }
 
+    public function kams($firstday,$lastday,$array){
+        return DB::select( DB::raw("SELECT * from actions where Fecha_Realizacion >= '".$firstday."' and Fecha_Realizacion <= '".$lastday."' and Convenio in ('".$array."')"));
+    }
+
     public function occupation($firstday,$lastday,$professional = Null)
     {
         if(is_null($professional)){

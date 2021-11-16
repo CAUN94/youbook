@@ -209,6 +209,14 @@ class User extends Authenticatable
         return UserApp::where('rut',$this->rut)->first()->medilinkname;
     }
 
+    public function medilink(){
+        $user = UserApp::where('rut',$this->rut)->first();
+        if(is_null($user)){
+            return false;
+        }
+        return $user;
+    }
+
     public function isSettled(){
         return $this->student->settled;
     }
