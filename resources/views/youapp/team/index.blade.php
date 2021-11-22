@@ -94,7 +94,7 @@
 
             @if(\App\Models\UserApp::where('medilinkname',$medilinknames[$loop->index])->first())
             @php $medilink = \App\Models\UserApp::where('medilinkname',$medilinknames[$loop->index])->first() @endphp
-            @if($medilink->kams()->count()>0)
+            @if($medilink->kams()->count()>0 or Auth::user()->isAdmin())
 
 
             <div class="col-xl-3 col-md-6 mb-4">
