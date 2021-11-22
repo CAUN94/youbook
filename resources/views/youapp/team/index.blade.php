@@ -94,7 +94,7 @@
 
             @if(\App\Models\UserApp::where('medilinkname',$medilinknames[$loop->index])->first())
             @php $medilink = \App\Models\UserApp::where('medilinkname',$medilinknames[$loop->index])->first() @endphp
-            @if($medilink->kams()->count()>0 or Auth::user()->isAdmin())
+            @if($medilink->kams()->count()>0)
 
 
             <div class="col-xl-3 col-md-6 mb-4">
@@ -104,7 +104,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Remuneración Kams</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ array_sum(array_column($medilink->kamsCalculate("last-month"),1)) }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ array_sum(array_column($medilink->kamsCalculate("last-month"),1))/10 }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
