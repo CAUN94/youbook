@@ -124,7 +124,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Kams</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ array_sum(array_column(Auth::user()->medilink()->kamsCalculate($type),1)) }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ array_sum(array_column(Auth::user()->medilink()->kamsCalculate($type),1))/10 }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
