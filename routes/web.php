@@ -22,6 +22,7 @@ Route::get('/dashboard','DashboardController@index');
 Route::get('/calendar','DashboardController@calendar');
 Route::get('/week','DashboardController@week');
 Route::get('/padpow','RedirectController@pay');
+Route::get('/reclamos','RedirectController@pay');
 // Route::get('/padpow','PadpowController@pay');
 // Route::get('/padpow/{code}/return_url','PadpowController@check');
 
