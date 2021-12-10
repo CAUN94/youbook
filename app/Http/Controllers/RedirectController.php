@@ -161,8 +161,13 @@ class RedirectController extends Controller
 		return Redirect::away($url);
 	}
 
-	public function reclamos() {
+	public function rsf() {
 		$url = "https://docs.google.com/forms/d/e/1FAIpQLScCFgcGZG_OAlDUaG2VdAUUYD4m3dCHWcRD33cUl-zv2Wiw4A/viewform?usp=sf_link";
+		return Redirect::away($url);
+	}
+
+	public function registro() {
+		$url = "https://docs.google.com/forms/d/1NHVEMK_SuUTnFHyACwKxXvydQ0t9BhOLevnWaL3U9Bw/edit";
 		return Redirect::away($url);
 	}
 
