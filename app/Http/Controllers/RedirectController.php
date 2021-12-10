@@ -171,6 +171,11 @@ class RedirectController extends Controller
 		return Redirect::away($url);
 	}
 
+	public function comunicacones() {
+		$url = "https://docs.google.com/document/d/19iDHBI6mONTLLZ1j0MZoxyc0cyixm_HZGp2SzRF3CIE/edit#heading=h.samqshe4j5m8";
+		return Redirect::away($url);
+	}
+
 
 
 }
