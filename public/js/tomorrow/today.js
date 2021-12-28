@@ -29,6 +29,7 @@ pacientes.forEach(function (paciente) {
         }
 
         texto += ', estamos en San pascual 736, Las Condes. Contamos con estacionamiento afuera del local.'
+        texto += '--*Notar que en 2022 ajustamos precios segun variacion IPC. Cualquier duda nos puedes consultar por este medio* '
 
         texto = texto.replace(/\--/g,'%0A%0A')
         texto = texto.replace(/\s/g,'%20')
