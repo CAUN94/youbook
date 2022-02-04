@@ -30,12 +30,12 @@ Route::get('/comunicaciones','RedirectController@comunicaciones');
 
 
 
-Route::get('/training-new','TrainingController@trainingnew');
-Route::get('/training-user','TrainingController@traininguser');
-Route::delete('/training','TrainingController@delete');
-Route::post('/training-register_new','TrainingController@create_training_new')->name('training-register');
-Route::post('/training-register_user','TrainingController@create_training_user')->name('training-register-user');
-Route::get('/new-appoinment/{professionalId}/{date}','FrontendController@show')->name('create.appointment');
+// Route::get('/training-new','TrainingController@trainingnew');
+// Route::get('/training-user','TrainingController@traininguser');
+// Route::delete('/training','TrainingController@delete');
+// Route::post('/training-register_new','TrainingController@create_training_new')->name('training-register');
+// Route::post('/training-register_user','TrainingController@create_training_user')->name('training-register-user');
+// Route::get('/new-appoinment/{professionalId}/{date}','FrontendController@show')->name('create.appointment');
 
 Route::get('/encuesta','PollsController@create'); //polls/create
 Route::post('/encuesta','PollsController@store');
