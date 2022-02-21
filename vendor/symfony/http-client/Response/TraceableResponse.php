@@ -33,7 +33,7 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
 {
     private $client;
     private $response;
-    private $content;
+    private mixed $content;
     private $event;
 
     public function __construct(HttpClientInterface $client, ResponseInterface $response, &$content, StopwatchEvent $event = null)
@@ -44,7 +44,7 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
         $this->event = $event;
     }
 
-    public function __sleep()
+    public function __sleep(): array
     {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
@@ -132,7 +132,7 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
         }
     }
 
-    public function getInfo(string $type = null)
+    public function getInfo(string $type = null): mixed
     {
         return $this->response->getInfo($type);
     }
@@ -202,7 +202,7 @@ class TraceableResponse implements ResponseInterface, StreamableInterface
         }
     }
 
-    private function checkStatusCode($code)
+    private function checkStatusCode(int $code)
     {
         if (500 <= $code) {
             throw new ServerException($this);

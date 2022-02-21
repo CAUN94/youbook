@@ -6,8 +6,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use Malahierba\ChileRut\ChileRut;
-use Malahierba\ChileRut\Rules\ValidChileanRut;
 
 trait AuthenticatesUsers
 {
@@ -46,6 +44,10 @@ trait AuthenticatesUsers
         }
 
         if ($this->attemptLogin($request)) {
+            if ($request->hasSession()) {
+                $request->session()->put('auth.password_confirmed_at', time());
+            }
+
             return $this->sendLoginResponse($request);
         }
 
@@ -67,9 +69,8 @@ trait AuthenticatesUsers
      */
     protected function validateLogin(Request $request)
     {
-        $request->merge(['rut' => str_replace('.','',$request->rut)]);
         $request->validate([
-            'rut' => 'required|string',
+            $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
     }
@@ -153,8 +154,7 @@ trait AuthenticatesUsers
      */
     public function username()
     {
-        return 'rut';
-
+        return 'email';
     }
 
     /**

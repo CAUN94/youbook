@@ -32,20 +32,22 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
     }
     use TransportResponseTrait;
 
-    private static $performing = false;
+    private static bool $performing = false;
     private $multi;
+
+    /**
+     * @var resource
+     */
     private $debugBuffer;
 
     /**
-     * @param \CurlHandle|resource|string $ch
-     *
      * @internal
      */
-    public function __construct(CurlClientState $multi, $ch, array $options = null, LoggerInterface $logger = null, string $method = 'GET', callable $resolveRedirect = null, int $curlVersion = null)
+    public function __construct(CurlClientState $multi, \CurlHandle|string $ch, array $options = null, LoggerInterface $logger = null, string $method = 'GET', callable $resolveRedirect = null, int $curlVersion = null)
     {
         $this->multi = $multi;
 
-        if (\is_resource($ch) || $ch instanceof \CurlHandle) {
+        if ($ch instanceof \CurlHandle) {
             $this->handle = $ch;
             $this->debugBuffer = fopen('php://temp', 'w+');
             if (0x074000 === $curlVersion) {
@@ -170,6 +172,7 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
         };
 
         // Schedule the request in a non-blocking way
+        $multi->lastTimeout = null;
         $multi->openHandles[$id] = [$ch, $options];
         curl_multi_add_handle($multi->handle, $ch);
 
@@ -202,7 +205,7 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
     /**
      * {@inheritdoc}
      */
-    public function getInfo(string $type = null)
+    public function getInfo(string $type = null): mixed
     {
         if (!$info = $this->finalInfo) {
             $info = array_merge($this->info, curl_getinfo($this->handle));
@@ -247,13 +250,15 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
 
     public function __destruct()
     {
-        curl_setopt($this->handle, \CURLOPT_VERBOSE, false);
+        try {
+            if (null === $this->timeout) {
+                return; // Unused pushed response
+            }
 
-        if (null === $this->timeout) {
-            return; // Unused pushed response
+            $this->doDestruct();
+        } finally {
+            curl_setopt($this->handle, \CURLOPT_VERBOSE, false);
         }
-
-        $this->doDestruct();
     }
 
     /**
@@ -295,9 +300,17 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
             self::$performing = true;
             ++$multi->execCounter;
             $active = 0;
-            while (\CURLM_CALL_MULTI_PERFORM === curl_multi_exec($multi->handle, $active));
+            while (\CURLM_CALL_MULTI_PERFORM === ($err = curl_multi_exec($multi->handle, $active))) {
+            }
+
+            if (\CURLM_OK !== $err) {
+                throw new TransportException(curl_multi_strerror($err));
+            }
 
             while ($info = curl_multi_info_read($multi->handle)) {
+                if (\CURLMSG_DONE !== $info['msg']) {
+                    continue;
+                }
                 $result = $info['result'];
                 $id = (int) $ch = $info['handle'];
                 $waitFor = @curl_getinfo($ch, \CURLINFO_PRIVATE) ?: '_0';
@@ -313,8 +326,12 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
                     }
                 }
 
+                if (\CURLE_RECV_ERROR === $result && 'H' === $waitFor[0] && 400 <= ($responses[(int) $ch]->info['http_code'] ?? 0)) {
+                    $multi->handlesActivity[$id][] = new FirstChunk();
+                }
+
                 $multi->handlesActivity[$id][] = null;
-                $multi->handlesActivity[$id][] = \in_array($result, [\CURLE_OK, \CURLE_TOO_MANY_REDIRECTS], true) || '_0' === $waitFor || curl_getinfo($ch, \CURLINFO_SIZE_DOWNLOAD) === curl_getinfo($ch, \CURLINFO_CONTENT_LENGTH_DOWNLOAD) ? null : new TransportException(sprintf('%s for "%s".', curl_strerror($result), curl_getinfo($ch, \CURLINFO_EFFECTIVE_URL)));
+                $multi->handlesActivity[$id][] = \in_array($result, [\CURLE_OK, \CURLE_TOO_MANY_REDIRECTS], true) || '_0' === $waitFor || curl_getinfo($ch, \CURLINFO_SIZE_DOWNLOAD) === curl_getinfo($ch, \CURLINFO_CONTENT_LENGTH_DOWNLOAD) ? null : new TransportException(ucfirst(curl_error($ch) ?: curl_strerror($result)).sprintf(' for "%s".', curl_getinfo($ch, \CURLINFO_EFFECTIVE_URL)));
             }
         } finally {
             self::$performing = false;
@@ -328,11 +345,6 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
      */
     private static function select(ClientState $multi, float $timeout): int
     {
-        if (\PHP_VERSION_ID < 70211) {
-            // workaround https://bugs.php.net/76480
-            $timeout = min($timeout, 0.01);
-        }
-
         if ($multi->pauseExpiries) {
             $now = microtime(true);
 
@@ -353,7 +365,7 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
         }
 
         if ($multi->pauseExpiries && 0 < $timeout -= microtime(true) - $now) {
-            usleep(1E6 * $timeout);
+            usleep((int) (1E6 * $timeout));
         }
 
         return 0;
@@ -362,7 +374,7 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
     /**
      * Parses header lines as curl yields them to us.
      */
-    private static function parseHeaderLine($ch, string $data, array &$info, array &$headers, ?array $options, CurlClientState $multi, int $id, ?string &$location, ?callable $resolveRedirect, ?LoggerInterface $logger, &$content = null): int
+    private static function parseHeaderLine($ch, string $data, array &$info, array &$headers, ?array $options, CurlClientState $multi, int $id, ?string &$location, ?callable $resolveRedirect, ?LoggerInterface $logger): int
     {
         $waitFor = @curl_getinfo($ch, \CURLINFO_PRIVATE) ?: '_0';
 
@@ -371,17 +383,10 @@ final class CurlResponse implements ResponseInterface, StreamableInterface
         }
 
         if ('' !== $data) {
-            try {
-                // Regular header line: add it to the list
-                self::addResponseHeaders([$data], $info, $headers);
-            } catch (TransportException $e) {
-                $multi->handlesActivity[$id][] = null;
-                $multi->handlesActivity[$id][] = $e;
+            // Regular header line: add it to the list
+            self::addResponseHeaders([$data], $info, $headers);
 
-                return \strlen($data);
-            }
-
-            if (0 !== strpos($data, 'HTTP/')) {
+            if (!str_starts_with($data, 'HTTP/')) {
                 if (0 === stripos($data, 'Location:')) {
                     $location = trim(substr($data, 9));
                 }
