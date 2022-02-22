@@ -6,6 +6,7 @@ use App\Models\Action;
 use App\Models\AppointmentApp;
 use App\Models\Payment;
 use App\Models\Treatment;
+use App\Models\UserMedilink;
 use Carbon\Carbon;
 use Goutte\Client;
 use Illuminate\Http\Request;
@@ -229,5 +230,43 @@ class ScrapingController extends Controller
         $update->updated_at = Carbon::now();
         $update->save();
 		return back()->with('message-payments', 'Actualizado');
+	}
+
+	public function userMedilink()
+	{
+		$client = new Client();
+		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
+		$form = $crawler->selectButton('Ingresar')->form();
+		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
+		$crawler = $client->submit($form);
+
+		$url = "https://youjustbetter.softwaremedilink.com/reportesdinamicos/reporte/pacientes_nuevos";
+		$crawler = $client->request('GET', $url);
+		$array = $crawler->text();
+		$array = substr($array,2,-2);
+		$split = explode('},{', $array);
+		foreach ($split as $string)
+		{
+			$jsonobj = "{".$string."}";
+			$value = json_decode($jsonobj,true);
+			$userMedilink = UserMedilink::updateOrCreate(
+				['RUT' => $value['RUT/DNI']],
+				[
+					'Nombre' => $value['Nombre paciente'],
+					'Apellidos' => $value['Apellidos paciente'],
+					'Fecha_Creacion' => $value['Fecha Afiliación'],
+					'Ultima_Cita' => $value['Última Cita'],
+					'Nacimiento' => $value['Fecha nacimiento'],
+					'Celular' => $value['Celular'],
+					'Ciudad' => $value['Ciudad'],
+					'Comuna' => $value['Comuna'],
+					'Direccion' => $value['Dirección'],
+					'Email' => $value['E-Mail'],
+					'Observaciones' => $value['Observaciones'],
+					'Sexo' => $value['Sexo']
+				]
+			);
+		}
+		return back()->with('message-usermedilink', 'Actualizado');
 	}
 }

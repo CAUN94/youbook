@@ -79,6 +79,7 @@ return array(
     'App\\Models\\Treatment' => $baseDir . '/app/Models/Treatment.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\UserApp' => $baseDir . '/app/Models/UserApp.php',
+    'App\\Models\\UserMedilink' => $baseDir . '/app/Models/UserMedilink.php',
     'App\\Models\\UserRole' => $baseDir . '/app/Models/UserRole.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

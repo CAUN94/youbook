@@ -154,7 +154,7 @@ trait AuthenticatesUsers
      */
     public function username()
     {
-        return 'email';
+        return 'rut';
     }
 
     /**
@@ -200,4 +200,6 @@ trait AuthenticatesUsers
     {
         return Auth::guard();
     }
+
+
 }

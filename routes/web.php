@@ -139,6 +139,7 @@ Route::get('/scraping', 'ScrapingController@carbon');
 Route::get('/scraping-appointments', 'ScrapingController@appointments')->name('scraping-appointments');
 Route::get('/scraping-actions', 'ScrapingController@actions')->name('scraping-actions');
 Route::get('/scraping-treatments', 'ScrapingController@treatments')->name('scraping-treatments');
+Route::get('/scraping-usermedilink', 'ScrapingController@usermedilink')->name('scraping-usermedilink');
 Route::get('/scraping-payments', 'ScrapingController@payments')->name('scraping-payments');
 
 Route::group(['middleware'=>['reception']], function () {

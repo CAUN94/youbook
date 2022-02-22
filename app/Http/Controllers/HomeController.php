@@ -8,9 +8,10 @@ use App\Models\AppointmentApp;
 use App\Models\Payment;
 use App\Models\Transfer;
 use App\Models\Treatment;
+use App\Models\UserMedilink;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -40,7 +41,8 @@ class HomeController extends Controller
         $treatment_last = Treatment::last_register();
         $payment_last = Payment::last_register();
         $fintoc_last = Transfer::last_register();
-        return view('youapp.home',compact('action_last','appointment_last','treatment_last','payment_last','fintoc_last'));
+        $users_last = UserMedilink::last_register();
+        return view('youapp.home',compact('action_last','appointment_last','treatment_last','payment_last','fintoc_last','users_last'));
     }
 
     public function panel()
