@@ -111,6 +111,7 @@ class ProfessionalAppController extends Controller
             'Camila Valentini Rojas' => 0.42,
             'Jaime Pantoja Rodriguez' => 0.54,
             'Fernanda Cárdenas Muñoz' => 0.6,
+            'Rocío Nuche Salgado' => 0.7,
         ];
 
         return $coff[$name];
