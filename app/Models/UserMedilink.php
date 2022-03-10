@@ -23,7 +23,8 @@ class UserMedilink extends Model
         'Direccion',
         'Email',
         'Observaciones',
-        'Sexo'
+        'Sexo',
+        'Convenio'
     ];
 
     public static function last_register()

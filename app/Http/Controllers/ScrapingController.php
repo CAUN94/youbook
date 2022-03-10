@@ -264,7 +264,7 @@ class ScrapingController extends Controller
 					'Email' => $value['E-Mail'],
 					'Observaciones' => $value['Observaciones'],
 					'Sexo' => $value['Sexo'],
-					'Convenio' => $value['Convenio']
+					'Convenio' => $value['Convenio'],
 				]
 			);
 		}
