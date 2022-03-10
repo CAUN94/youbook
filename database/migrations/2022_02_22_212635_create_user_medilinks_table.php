@@ -28,6 +28,7 @@ class CreateUserMedilinksTable extends Migration
             $table->string('Email');
             $table->string('Observaciones')->nullable();
             $table->string('Sexo');
+            $table->string('Convenio')->nullable();
             $table->timestamps();
         });
     }
