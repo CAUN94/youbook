@@ -42,13 +42,13 @@ class ScrapingController extends Controller
 		$split = explode('},{', $array);
 		// return $split;
 
-		$date = Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d');
+		$date = Carbon::create(null, null, null)->subYear()->subYear()->subMonth()->format('Y-m-d');
 
 		foreach ($split as $string)
 		{
 			$jsonobj = "{".$string."}";
 			$value = json_decode($jsonobj, true);
-			if($value["Fecha"] >= $date){
+			if($value["Fecha"] >= "2018-01-01"){
 				$appointment = new AppointmentApp();
 				$appointment->Estado = $value["Estado"];
 	            $appointment->Fecha = $value["Fecha"];
@@ -88,7 +88,7 @@ class ScrapingController extends Controller
 		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
-		$first = strval(Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d'));
+		$first = strval(Carbon::create(null, null, null)->subYear()->subYear()->subMonth()->format('Y-m-d'));
 		$last = strval(Carbon::create(null, null, null)->addMonth()->addMonth()->format('Y-m-d'));
 		$url = "https://youjustbetter.softwaremedilink.com/reportesdinamicos/reporte/listado_acciones?filters%5Bsucursal%5D%5Bstatus%5D=activated&filters%5Bsucursal%5D%5Bvalue%5D=1&filters%5Bfecha_inicio%5D%5Bstatus%5D=activated&filters%5Bfecha_inicio%5D%5Bvalue%5D=".$first."&filters%5Bfecha_fin%5D%5Bstatus%5D=activated&filters%5Bfecha_fin%5D%5Bvalue%5D=".$last."";
 		$crawler = $client->request('GET', $url);
@@ -103,15 +103,19 @@ class ScrapingController extends Controller
 		{
 			$jsonobj = "{".$string."}";
 			$value = json_decode($jsonobj, true);
-			if($value["Fecha Realizacion"] >= $date){
+			if($value["Fecha Realizacion"] >= "2018-01-01"){
 				$action = new Action();
 	            $action->Sucursal = $value['Sucursal'];
 	            $action->Nombre = $value['Nombre paciente'];
 	            $action->Apellido = $value['Apellidos paciente'];
 	            $action->Categoria_Nr = $value['Id. Categoria'];
 	            $action->Categoria_Nombre = $value['Nombre Categoria'];
+
 	            $action->Tratamiento_Nr = $value['# Tratamiento'];
 	            $action->Profesional = $value['Realizado por'];
+	            if($value['Realizado por'] == null){
+	            	$action->Profesional = "Recovery";
+	            }
 	            $action->Estado = $value['Estado de la consulta'];
 	            $action->Convenio = $value['Nombre Convenio'];
 	            $action->Prestacion_Nr = $value['Id. Prestacion'];
