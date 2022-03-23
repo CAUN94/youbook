@@ -312,6 +312,7 @@ class TrainingController extends Controller
             'Jaime Pantoja Rodriguez' => 0.54,
             'Fernanda Cárdenas Muñoz' => 0.6,
             'Rocío Nuche Salgado' => 0.7,
+            'Constanza Ahumada Huerta' => 0.32
         ];
 
         return $coff[$name];
