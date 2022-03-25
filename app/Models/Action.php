@@ -63,7 +63,7 @@ class Action extends Model
     public static function close_month()
     {
     	$action = new Action;
-        $firstday = Carbon::create(null, null, 21, 00, 00, 01);
+        $firstday = Carbon::create(null, null, 21, 00, 00, 00);
         $lastday = Carbon::create(null, null, 20, 23, 55, 55);
         if(date('d') < 22){
             $firstday->subMonth()->subMonth();
@@ -116,7 +116,7 @@ class Action extends Model
     public static function professionalsCloseMonth()
     {
         $action = new Action;
-        $firstday = Carbon::create(null, null, 21, 00, 00, 01);
+        $firstday = Carbon::create(null, null, 21, 00, 00, 00);
             $lastday = Carbon::create(null, null, 20, 23, 55, 55);
             if(date('d') < 22){
                 $firstday->subMonth()->subMonth();
@@ -130,7 +130,7 @@ class Action extends Model
     public static function professionalCloseMonth($name)
     {
         $action = new Action;
-        $firstday = Carbon::create(null, null, 21, 00, 00, 01);
+        $firstday = Carbon::create(null, null, 21, 00, 00, 00);
         $lastday = Carbon::create(null, null, 20, 23, 55, 55);
             if(date('d') < 22){
                 $firstday->subMonth()->subMonth();

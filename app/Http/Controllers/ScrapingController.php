@@ -20,7 +20,7 @@ class ScrapingController extends Controller
 
     public function carbon()
     {
-    	$date = Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d');
+    	$date = Carbon::create(null, null, null)->subMonth()->subMonth()->subMonth()->subMonth()->format('Y-m-d');
     	return $date;
     }
 
@@ -31,7 +31,7 @@ class ScrapingController extends Controller
 		$form = $crawler->selectButton('Ingresar')->form();
 		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
-		$first = strval(Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d'));
+		$first = strval(Carbon::create(null, null, null)->subMonth()->subMonth()->subMonth()->subMonth()->format('Y-m-d'));
 		$last = strval(Carbon::create(null, null, null)->addMonth()->addMonth()->format('Y-m-d'));
 		$url = "https://youjustbetter.softwaremedilink.com/reportesdinamicos/reporte/citas?filters%5Bsucursal%5D%5Bstatus%5D=activated&filters%5Bsucursal%5D%5Bvalue%5D=1&filters%5Bfecha_inicio%5D%5Bstatus%5D=activated&filters%5Bfecha_inicio%5D%5Bvalue%5D=".$first."&filters%5Bfecha_fin%5D%5Bstatus%5D=activated&filters%5Bfecha_fin%5D%5Bvalue%5D=".$last."";
 		$crawler = $client->request('GET', $url);
@@ -42,7 +42,7 @@ class ScrapingController extends Controller
 		$split = explode('},{', $array);
 		// return $split;
 
-		$date = Carbon::create(null, null, null)->subYear()->subYear()->subMonth()->format('Y-m-d');
+		$date = Carbon::create(null, null, null)->subYear()->subYear()->subMonth()->subMonth()->format('Y-m-d');
 
 		foreach ($split as $string)
 		{
@@ -88,13 +88,13 @@ class ScrapingController extends Controller
 		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
-		$first = strval(Carbon::create(null, null, null)->subYear()->subYear()->subMonth()->format('Y-m-d'));
+		$first = strval(Carbon::create(null, null, null)->subYear()->subYear()->subMonth()->subMonth()->format('Y-m-d'));
 		$last = strval(Carbon::create(null, null, null)->addMonth()->addMonth()->format('Y-m-d'));
 		$url = "https://youjustbetter.softwaremedilink.com/reportesdinamicos/reporte/listado_acciones?filters%5Bsucursal%5D%5Bstatus%5D=activated&filters%5Bsucursal%5D%5Bvalue%5D=1&filters%5Bfecha_inicio%5D%5Bstatus%5D=activated&filters%5Bfecha_inicio%5D%5Bvalue%5D=".$first."&filters%5Bfecha_fin%5D%5Bstatus%5D=activated&filters%5Bfecha_fin%5D%5Bvalue%5D=".$last."";
 		$crawler = $client->request('GET', $url);
 		$array = $crawler->text();
 
-		$date = Carbon::create(null, null, null)->subMonth()->format('Y-m-d');
+		$date = Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d');
 
 		$array = substr($array,2,-2);
 		$split = explode('},{', $array);
@@ -195,7 +195,7 @@ class ScrapingController extends Controller
 		$array = substr($array,2,-2);
 		$split = explode('},{', $array);
 
-		$date = Carbon::create(null, null, null)->subMonth()->subMonth()->format('Y-m-d');
+		$date = Carbon::create(null, null, null)->subMonth()->subMonth()->subMonth()->subMonth()->format('Y-m-d');
 
 		foreach ($split as $string)
 		{

@@ -23,7 +23,7 @@ class OccupationController extends Controller
         $action = new Action();
 
         if($type == "actual-month"){
-            $firstday = Carbon::create(null, null, 21, 00, 00, 01);
+            $firstday = Carbon::create(null, null, 21, 00, 00, 00);
             $lastday = Carbon::create(null, null, 20, 23, 55, 55);
             if(date('d') < 22){
                 $firstday->subMonth();
@@ -36,7 +36,7 @@ class OccupationController extends Controller
             $title = "Mes Actual del 21/".$firstday->month." al 20/".$lastday->month;
         }
         elseif($type == "last-month"){
-            $firstday = Carbon::create(null, null, 21, 00, 00, 01);
+            $firstday = Carbon::create(null, null, 21, 00, 00, 00);
             $lastday = Carbon::create(null, null, 20, 23, 55, 55);
             if(date('d') < 22){
                 $firstday->subMonth()->subMonth();
@@ -119,7 +119,7 @@ class OccupationController extends Controller
         $action = new Action();
 
         if($type == "actual-month"){
-            $firstday = Carbon::create(null, null, 21, 00, 00, 01);
+            $firstday = Carbon::create(null, null, 21, 00, 00, 00);
             $lastday = Carbon::create(null, null, 20, 23, 55, 55);
             if(date('d') < 22){
                 $firstday->subMonth();
@@ -130,7 +130,7 @@ class OccupationController extends Controller
             $title = "Mes Actual del 21/".$firstday->month." al 20/".$lastday->month;
         }
         elseif($type == "last-month"){
-            $firstday = Carbon::create(null, null, 21, 00, 00, 01);
+            $firstday = Carbon::create(null, null, 21, 00, 00, 00);
             $lastday = Carbon::create(null, null, 20, 23, 55, 55);
             if(date('d') < 22){
                 $firstday->subMonth()->subMonth();
