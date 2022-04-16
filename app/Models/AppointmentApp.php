@@ -27,8 +27,8 @@ class AppointmentApp extends Model
     public static function tomorrow_appoiments()
     {
         $tomorrow = Carbon::tomorrow();
-        if ($tomorrow->format('l') == 'Friday'){
-            $monday = $tomorrow->copy()->addDays(3);
+        if ($tomorrow->format('l') == 'Saturday'){
+            $monday = $tomorrow->copy()->addDays(2);
         // if ($tomorrow->format('l') == 'Friday'){
         //     $monday = $tomorrow->copy()->addDays(3);
 
