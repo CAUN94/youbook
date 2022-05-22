@@ -46,6 +46,7 @@ return array(
     'App\\Http\\Controllers\\TrainingController' => $baseDir . '/app/Http/Controllers/TrainingController.php',
     'App\\Http\\Controllers\\TransfersController' => $baseDir . '/app/Http/Controllers/TransfersController.php',
     'App\\Http\\Controllers\\TreatmentController' => $baseDir . '/app/Http/Controllers/TreatmentController.php',
+    'App\\Http\\Controllers\\UserMedilinkController' => $baseDir . '/app/Http/Controllers/UserMedilinkController.php',
     'App\\Http\\Controllers\\WeekController' => $baseDir . '/app/Http/Controllers/WeekController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Admin' => $baseDir . '/app/Http/Middleware/Admin.php',

@@ -597,6 +597,7 @@ class ComposerStaticIniteb62c33eca4790e6df9b0a9f5a4fecf8
         'App\\Http\\Controllers\\TrainingController' => __DIR__ . '/../..' . '/app/Http/Controllers/TrainingController.php',
         'App\\Http\\Controllers\\TransfersController' => __DIR__ . '/../..' . '/app/Http/Controllers/TransfersController.php',
         'App\\Http\\Controllers\\TreatmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/TreatmentController.php',
+        'App\\Http\\Controllers\\UserMedilinkController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserMedilinkController.php',
         'App\\Http\\Controllers\\WeekController' => __DIR__ . '/../..' . '/app/Http/Controllers/WeekController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Admin' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin.php',
