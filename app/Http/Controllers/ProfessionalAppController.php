@@ -115,7 +115,9 @@ class ProfessionalAppController extends Controller
             'Constanza Ahumada Huerta' => 0.32,
             'Antonio Ceresuela Phillips' => 0.7,
             'Ángel Saez Miranda' => 0.32,
-            'Nicole Cedeño Wolf ' => 1
+            'Nicole Cedeño Wolf ' => 1,
+            'Manuel Silva Ávila' => 0.56
+
         ];
 
         return $coff[$name];
