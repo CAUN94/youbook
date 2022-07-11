@@ -1,7 +1,7 @@
 var table = $('#pacientesTable');
 table.find("tbody tr").remove();
 pacientes.forEach(function (paciente) {
-    if('No confirmado' == paciente['Estado'] || 'Agenda Online' == paciente['Estado']){
+    if('No confirmado' == paciente['Estado'] || 'Agenda Online' == paciente['Estado'] || 'Lista de espera' == paciente['Estado']){
         nombre = paciente['Nombre_paciente'] + " " +paciente["Apellidos_paciente"]
         nr = paciente['Tratamiento_Nr']
         paciente['Celular'] = paciente['Celular'].toString()
