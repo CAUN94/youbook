@@ -93,7 +93,7 @@ class ProfessionalAppController extends Controller
     {
         $coff = [
             'Alonso Niklitschek Sanhueza' => 0.6,
-            'César Moya Calderón' => 0.32,
+            'César Moya Calderón' => 0.42,
             'Daniella Vivallo Vera' => 0.45,
             'Juan Manuel Guzmán Habinger' => 0.7,
             'Iver Cristi Sánchez' => 0.6,
@@ -109,7 +109,7 @@ class ProfessionalAppController extends Controller
             'Diego Contreras Briceño' => 0.7,
             'You Entrenamiento' => 1,
             'Camila Valentini Rojas' => 0.42,
-            'Jaime Pantoja Rodriguez' => 0.54,
+            'Jaime Pantoja Rodriguez' => 0.45,
             'Fernanda Cárdenas Muñoz' => 0.6,
             'Rocío Nuche Salgado' => 0.7,
             'Constanza Ahumada Huerta' => 0.32,
