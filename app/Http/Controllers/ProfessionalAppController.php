@@ -119,7 +119,7 @@ class ProfessionalAppController extends Controller
             'Manuel Silva Ávila' => 0.56,
             'Josefa Andrea Valcárcel Silva' => 0.46,
             'Leslie Butler Bobadilla' => 0.42,
-            'Javier Carvajal ' => 0.7,
+            'Javier Carvajal Solé' => 0.7,
 
         ];
 
