@@ -28,7 +28,7 @@ class ScrapingController extends Controller
 	{
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
-		$form = $crawler->selectButton('Ingresar')->form();
+		$form = $crawler->filter('form')->form();
 		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 		$first = strval(Carbon::create(null, null, null)->subMonth()->subMonth()->subMonth()->subMonth()->format('Y-m-d'));
@@ -84,7 +84,7 @@ class ScrapingController extends Controller
 	{
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
-		$form = $crawler->selectButton('Ingresar')->form();
+		$form = $crawler->filter('form')->form();
 		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
@@ -142,7 +142,7 @@ class ScrapingController extends Controller
 	{
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
-		$form = $crawler->selectButton('Ingresar')->form();
+		$form = $crawler->filter('form')->form();
 		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
@@ -185,7 +185,7 @@ class ScrapingController extends Controller
 	{
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
-		$form = $crawler->selectButton('Ingresar')->form();
+		$form = $crawler->filter('form')->form();
 		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
@@ -240,7 +240,7 @@ class ScrapingController extends Controller
 	{
 		$client = new Client();
 		$crawler = $client->request('GET', 'https://youjustbetter.softwaremedilink.com/reportesdinamicos');
-		$form = $crawler->selectButton('Ingresar')->form();
+		$form = $crawler->filter('form')->form();
 		$form->setValues(['rut' => 'admin', 'password' => 'Pascual4900']);
 		$crawler = $client->submit($form);
 
